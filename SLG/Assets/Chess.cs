@@ -102,7 +102,6 @@ public class Chess : MonoBehaviour
                     Debug.Log("Cancel Button!");
                     this.transform.position = lastPosition;
                     this.transform.rotation = lastRotation;
-                    allowMoved = true;
                     isMoved = false;
                     rayPoint = this.transform.position;
                     isMovedOver = true;
