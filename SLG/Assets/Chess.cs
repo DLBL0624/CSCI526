@@ -36,6 +36,13 @@ public class Chess : MonoBehaviour
     public float HP = 100;
     public float Att = 105;
 
+    //Chess Move Interval Schedule
+    [Header("Time Variables")]
+    public float proTime = 0.0f;
+    public float NextTime = 0.0f;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,10 +77,10 @@ public class Chess : MonoBehaviour
             {
                 if (!isMoved)
                 {
-                    Debug.Log("Please Select a Position");
+                    Debug.Log("Press Move Button to Move");
                     if (hitInfo.collider.name == cpt.move_Button.name)
                     {
-                        Debug.Log("Move Button!");
+                        Debug.Log("Please Select a Position!");
                         allowMoved = true;
                         
                     }
@@ -111,7 +118,7 @@ public class Chess : MonoBehaviour
         }
         if (!isMovedOver)
         {
-            moveToPosition(rayPoint);
+            moveToPositionByNormal(rayPoint);
             
         }
 
@@ -121,13 +128,51 @@ public class Chess : MonoBehaviour
 
     }
     //Make the Chess Slowly Move to the Position (not follow any road)
-    private void moveToPosition(Vector3 targetPosition)
+    private void moveToPositionByNormal(Vector3 targetPosition)
     {
         Vector3 offSet = targetPosition - this.transform.position;
         Vector3 norm = offSet.normalized;
         norm.y = 0;
         this.transform.position += norm * speed * Time.deltaTime;
         if (Vector3.Distance(targetPosition, this.transform.position) < 0.1f)
+        {
+            isMovedOver = true;
+            this.transform.position = targetPosition;
+            cpt.isPosChanged = true;
+        }
+
+    }
+
+    private void moveToPositionByDirection(Vector3 targetPosition)
+    {
+
+        Vector3 offSet = targetPosition - this.transform.position;
+        float offSet_x = offSet.x;
+        float offSet_z = offSet.z;
+
+        proTime = Time.fixedTime;
+        if (Mathf.Abs(offSet_x) >= Mathf.Abs(offSet_z))
+        {
+            if (proTime - NextTime > 1)
+            {
+                print("FixedTime Here" + (proTime - NextTime));
+                this.transform.position += new Vector3((offSet_x / Mathf.Abs(offSet_x)), 0, 0);
+                NextTime = proTime;
+
+            }
+        }
+        else
+        {
+            if (proTime - NextTime > 1)
+            {
+                print("FixedTime Here" + (proTime - NextTime));
+                this.transform.position += new Vector3(0, 0, (offSet_z / Mathf.Abs(offSet_z)));
+                NextTime = proTime;
+
+            }
+        }
+        
+        if (Vector3.Distance(targetPosition, this.transform.position) == 0)
         {
             isMovedOver = true;
             this.transform.position = targetPosition;
