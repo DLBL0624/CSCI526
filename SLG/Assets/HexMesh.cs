@@ -54,14 +54,12 @@ public class HexMesh : MonoBehaviour
     void Triangulate (HexCell cell)
     {
         Vector3 center = cell.transform.localPosition;
-        int end;
         for(int i = 0; i<6; i++)
         {
-            end = (i + 1 == HexMetrics.corners.Length ? 0 : i + 1);
             AddTriangle(
                 center,
                 center + HexMetrics.corners[i],
-                center + HexMetrics.corners[end]
+                center + HexMetrics.corners[i+1]
             );
             AddTriangleColor(cell.color);
         }
