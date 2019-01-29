@@ -57,3 +57,4 @@ public class gameManager : MonoBehaviour
         chessB.HP -= chessA.Att;
     }
 }
+
