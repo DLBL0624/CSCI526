@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Chess.cs" />
+    <Compile Include="Assets\EdgeVertices.cs" />
     <Compile Include="Assets\gameManager.cs" />
     <Compile Include="Assets\HexCell.cs" />
     <Compile Include="Assets\HexCoordinates.cs" />

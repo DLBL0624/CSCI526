@@ -245,6 +245,7 @@ MonoBehaviour:
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   touchedColor: {r: 0, g: 0, b: 1, a: 1}
   gridCanvas: {fileID: 0}
+  noiseSource: {fileID: 2800000, guid: 22d38c9273b2b4b40bfdd5295a05d935, type: 3}
 --- !u!4 &73971511
 Transform:
   m_ObjectHideFlags: 0

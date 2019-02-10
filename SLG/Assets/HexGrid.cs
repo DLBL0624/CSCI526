@@ -20,9 +20,11 @@ public class HexGrid : MonoBehaviour
 
     HexMesh hexMesh;
 
+    public Texture2D noiseSource;
+
     private void Awake()
     {
-
+        HexMetrics.noiseSource = noiseSource;
         gridCanvas = GetComponentInChildren<Canvas>();
         hexMesh = GetComponentInChildren<HexMesh>();
 
@@ -35,6 +37,11 @@ public class HexGrid : MonoBehaviour
                 CreateCell(x, z, i++);
             }
         }
+    }
+
+    private void OnEnable()
+    {
+        HexMetrics.noiseSource = noiseSource;
     }
 
     void CreateCell(int x, int z, int i)
@@ -86,6 +93,7 @@ public class HexGrid : MonoBehaviour
         label.text = cell.coordinates.ToStringOnSeparateLines();
 
         cell.uiRect = label.rectTransform;
+        cell.Elevation = 0;
     }
 
     private void Start()
