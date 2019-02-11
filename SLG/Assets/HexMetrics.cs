@@ -103,6 +103,10 @@ public static class HexMetrics
     }
 
     public const float elevationPerturbStrength = 1.5f;
+
+    public const int chunkSizeX = 4, chunkSizeZ = 3;    //地图块儿
+
+
 }
 
 

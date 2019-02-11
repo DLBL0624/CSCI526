@@ -68,6 +68,8 @@
     <Compile Include="Assets\HexDirection.cs" />
     <Compile Include="Assets\HexEdgeType.cs" />
     <Compile Include="Assets\HexGrid.cs" />
+    <Compile Include="Assets\HexGridChunk.cs" />
+    <Compile Include="Assets\HexMapCamera.cs" />
     <Compile Include="Assets\HexMapEditor.cs" />
     <Compile Include="Assets\HexMesh.cs" />
     <Compile Include="Assets\HexMetrics.cs" />
