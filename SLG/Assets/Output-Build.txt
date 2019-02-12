@@ -1,0 +1,8 @@
+﻿1>------ Build started: Project: Assembly-CSharp, Configuration: Debug Any CPU ------
+1>D:\UnityProject\Hoster\SLG\Assets\mapManager.cs(285,9,285,64): warning CS0618: 'LineRenderer.SetColors(Color, Color)' is obsolete: 'Use startColor, endColor or colorGradient instead.'
+1>D:\UnityProject\Hoster\SLG\Assets\mapManager.cs(286,9,286,61): warning CS0618: 'LineRenderer.SetWidth(float, float)' is obsolete: 'Use startWidth, endWidth or widthCurve instead.'
+1>D:\UnityProject\Hoster\SLG\Assets\mapManager.cs(288,9,288,49): warning CS0618: 'LineRenderer.SetVertexCount(int)' is obsolete: 'Use positionCount instead.'
+1>D:\UnityProject\Hoster\SLG\Assets\HexCell.cs(136,23,136,32): warning CS0649: Field 'HexCell.neighbors' is never assigned to, and will always have its default value null
+1>D:\UnityProject\Hoster\SLG\Assets\HexMesh.cs(13,35,13,38): warning CS0649: Field 'HexMesh.uvs' is never assigned to, and will always have its default value null
+1>  Assembly-CSharp -> D:\UnityProject\Hoster\SLG\Temp\bin\Debug\Assembly-CSharp.dll
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
