@@ -31,7 +31,18 @@ public class HexMapEditor : MonoBehaviour
         Ignore, Yes, No
     }
 
-    OptionalToggle riverMode;
+    OptionalToggle riverMode, roadMode;
+
+    public void SetRiverMode (int mode)
+    {
+        riverMode = (OptionalToggle)mode;
+        
+    }
+
+    public void SetRoadMode (int mode)
+    {
+        roadMode = (OptionalToggle)mode;
+    }
 
     private void Awake()
     {
@@ -114,16 +125,30 @@ public class HexMapEditor : MonoBehaviour
             {
                 cell.Elevation = activeElevation;
             }
-            if(riverMode == OptionalToggle.No)
+            
+            if (riverMode == OptionalToggle.No)
             {
                 cell.RemoveRiver();
             }
-            else if (isDrag && riverMode == OptionalToggle.Yes)
+            if (roadMode == OptionalToggle.No)
+            {
+                cell.RemoveRoads();
+            }
+            else if (isDrag)
             {
                 HexCell otherCell = cell.GetNeighbor(dragDirection.Opposite());
                 if (otherCell)
                 {
-                    otherCell.SetOutgoingRiver(dragDirection);
+                    if(riverMode == OptionalToggle.Yes)
+                    {
+                        Debug.Log("Drag River!");
+                        otherCell.SetOutgoingRiver(dragDirection);
+                    }
+                    if (roadMode == OptionalToggle.Yes)
+                    {
+                        Debug.Log("Drag Road!");
+                        otherCell.AddRoad(dragDirection);
+                    }
                 }
             }
         }
@@ -156,11 +181,6 @@ public class HexMapEditor : MonoBehaviour
     public void ShowUI (bool visible)
     {
         hexGrid.ShowUI(visible);
-    }
-
-    public void SetRiverMode (int mode)
-    {
-        riverMode = (OptionalToggle)mode;
     }
 
     void ValidateDrag(HexCell currentCell)
