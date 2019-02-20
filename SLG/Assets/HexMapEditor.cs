@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class HexMapEditor : MonoBehaviour
 {
+    public bool applyMapEditor = true;
 
     public Color[] colors;
 
@@ -57,13 +58,16 @@ public class HexMapEditor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
+        if(applyMapEditor)
         {
-            HandleInput();
-        }
-        else
-        {
-            previousCell = null;
+            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
+            {
+                HandleInput();
+            }
+            else
+            {
+                previousCell = null;
+            }
         }
     }
 

@@ -149,7 +149,7 @@ public class HexGrid : MonoBehaviour
     {
         position = transform.InverseTransformPoint(position);
         HexCoordinates coordinates = HexCoordinates.FromPosition(position);
-        Debug.Log(coordinates);
+        //Debug.Log(coordinates);
         int index = coordinates.X + coordinates.Z * cellCountX + coordinates.Z / 2;
         return cells[index];
     }

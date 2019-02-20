@@ -60,7 +60,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ActorIDGenerator.cs" />
+    <Compile Include="Assets\ActorManager.cs" />
     <Compile Include="Assets\Chess.cs" />
+    <Compile Include="Assets\ChoiceActor.cs" />
     <Compile Include="Assets\EdgeVertices.cs" />
     <Compile Include="Assets\gameManager.cs" />
     <Compile Include="Assets\HexCell.cs" />
