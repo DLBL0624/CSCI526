@@ -4,6 +4,30 @@ using UnityEngine;
 
 public class gameManager : MonoBehaviour
 {
+    ////
+    //public Animator[] team;
+
+    //// actor list
+    //public ChoiceActor[] highlights;
+
+    //// hud actor list
+    //public Transform[] hudTeam;
+
+    //// choice actor
+    //Animator choice;
+
+    //// hud position
+    //Vector3 hudStartPos;
+
+
+
+
+
+
+
+
+
+    //original code
     //switch
     public bool isSelected = false;
     public bool isInstantiate = false;

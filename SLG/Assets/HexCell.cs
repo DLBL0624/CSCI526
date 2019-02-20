@@ -10,6 +10,20 @@ public class HexCell : MonoBehaviour
 
     HexDirection incomingRiver, outgoingRiver;
 
+    Color color;
+
+    public HexGridChunk chunk;
+
+    private int elevation = int.MinValue;
+
+    public RectTransform uiRect;    //Adjust Label's position when height is changed
+
+    [SerializeField]
+    private HexCell[] neighbors;
+
+    [SerializeField]
+    bool[] roads;
+
     public bool HasIncomingRiver
     {
         get
@@ -58,7 +72,13 @@ public class HexCell : MonoBehaviour
         }
     }
 
-    
+    public HexDirection HasRiverBeginOrEndDirection
+    {
+        get
+        {
+            return hasIncomingRiver ? incomingRiver : outgoingRiver;
+        }
+    }
 
 
     public Color Color
@@ -78,9 +98,6 @@ public class HexCell : MonoBehaviour
         }
     }
 
-    Color color;
-
-    public HexGridChunk chunk;
 
 
     public int Elevation    //height
@@ -115,6 +132,14 @@ public class HexCell : MonoBehaviour
                 RemoverIncomingRiver();
             }
 
+            for(int i = 0; i < roads.Length; i++)
+            {
+                if(roads[i] && GetElevationDifference((HexDirection)i) > 1 )
+                {
+                    SetRoad(i, false);
+                }
+            }
+
             Refresh();
         }
     }
@@ -126,15 +151,6 @@ public class HexCell : MonoBehaviour
             return (elevation + HexMetrics.riverSurfaceElevationOffset) * HexMetrics.elevationStep;
         }
     }
-
-    private int elevation = int.MinValue;
-
-    public RectTransform uiRect;    //Adjust Label's position when height is changed
-
-
-    [SerializeField]
-    private HexCell[] neighbors;
-
 
     public HexCell GetNeighbor(HexDirection direction)
     {
@@ -202,19 +218,20 @@ public class HexCell : MonoBehaviour
             return;
         }
         RemoverOutgoingRiver();
-        if(HasIncomingRiver && incomingRiver == direction)
+        if (HasIncomingRiver && incomingRiver == direction)
         {
             RemoverIncomingRiver();
         }
         hasOutgoingRiver = true;
         outgoingRiver = direction;
-        RefreshSelfOnly();
+        //RefreshSelfOnly();
 
         neighbor.RemoverIncomingRiver();
         neighbor.hasIncomingRiver = true;
         neighbor.incomingRiver = direction.Opposite();
-        neighbor.RefreshSelfOnly();
-        
+        //neighbor.RefreshSelfOnly();
+
+        SetRoad((int)direction, false);
     }
 
     public void RemoveRiver()
@@ -263,6 +280,60 @@ public class HexCell : MonoBehaviour
             return (elevation + HexMetrics.streamBedElevationOffset) * HexMetrics.elevationStep;
         }
     }
+
+    public bool HasRoadThroughEdge(HexDirection direction)
+    {
+        return roads[(int)direction];
+    }
+
+    public bool HasRoads
+    {
+        get
+        {
+            for (int i = 0; i < roads.Length; i++)
+            {
+                if(roads[i])
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    public void RemoveRoads()
+    {
+        for(int i = 0; i < neighbors.Length; i++)
+        {
+            if(roads[i])
+            {
+                SetRoad(i, false);
+            }
+        }
+    }
+
+    void SetRoad(int index, bool state)
+    {
+        roads[index] = state;
+        neighbors[index].roads[(int)((HexDirection)index).Opposite()] = state;
+        neighbors[index].RefreshSelfOnly();
+        RefreshSelfOnly();
+    }
+
+    public int GetElevationDifference (HexDirection direction)
+    {
+        int difference = elevation - GetNeighbor(direction).elevation;
+        return difference >= 0 ? difference : -difference;
+    }
+
+    public void AddRoad(HexDirection direction)
+    {
+        if(!roads[(int)direction] && ! HasRiverThroughEdge(direction) && GetElevationDifference(direction) <= 1)
+        {
+            SetRoad((int)direction, true);
+        }
+    }
+
 }
 
 
