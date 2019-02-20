@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 /// <summary>
 /// Game Manager Main Code
@@ -21,7 +22,7 @@ public class ActorManager : MonoBehaviour
 
     private HexCell targetCell;
 
-    
+    public GameObject chessAttr;
 
     public HexGrid hexGrid;
 
@@ -32,7 +33,10 @@ public class ActorManager : MonoBehaviour
 
     void Start()
     {
-        
+        for(int i = 0; i<highlights.Length; i++)
+        {
+            highlights[i].setID(i);
+        }
     }
 
     void SetSelected(int id)
@@ -48,6 +52,7 @@ public class ActorManager : MonoBehaviour
         choice = highlights[id];
         currentCell = choice.hexCell;
         SelectedMark = Instantiate(SelectedMark_pfb, choice.getTransform().position + new Vector3(0, 10, 0), choice.getTransform().rotation);
+        showChessAttribute();
     }
 
     // attack event from button
@@ -71,7 +76,14 @@ public class ActorManager : MonoBehaviour
     public void Attack()
     {
         if (!choice) return;
-        
+        if (choice.bs==behaviorStatus.rest)
+        {
+            Debug.Log("It has already attacked!");
+        }
+        else
+        {
+            choice.bs = behaviorStatus.attackready;
+        }
 
     }
 
@@ -84,7 +96,7 @@ public class ActorManager : MonoBehaviour
             Debug.Log("This chess didn't do any thing!");
             return;
         }
-        else if ((int)choice.bs == 3)
+        else if (choice.bs == behaviorStatus.rest)
         {
             Debug.Log("This chess has attacked ! It cannot cancel the attack command");
             return;
@@ -116,7 +128,7 @@ public class ActorManager : MonoBehaviour
             {
                 chessMove();
             }
-            else if(choice.bs == behaviorStatus.moved)
+            else if(choice.bs == behaviorStatus.attackready)
             {//for attack
 
             }
@@ -139,6 +151,12 @@ public class ActorManager : MonoBehaviour
         choice.reloadPosition();
     }
 
+    void chessAttack()
+    {
+
+        choice.bs = behaviorStatus.rest;
+        
+    }
     //apply xun lu Algorithm to find the path and chess will move follow the path
     private void xunluAlgorithm(HexCell a, HexCell b)
     {
@@ -155,6 +173,14 @@ public class ActorManager : MonoBehaviour
         }
     }
 
+    public void showChessAttribute()
+    {
+        chessAttr.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = choice.gameObject.name;
+        chessAttr.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = choice.hp.ToString();
+        chessAttr.transform.GetChild(2).GetChild(1).GetComponent<Text>().text = choice.att.ToString();
+        chessAttr.transform.GetChild(3).GetChild(1).GetComponent<Text>().text = choice.bs.ToString();
+    }
+
     //// goto main menu scene
     //public void LoadMenu()
     //{
@@ -167,5 +193,6 @@ public enum behaviorStatus
     wakeup,
     ready,
     moved,
+    attackready,
     rest
 }

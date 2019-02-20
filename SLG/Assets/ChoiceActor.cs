@@ -38,7 +38,7 @@ public class ChoiceActor : MonoBehaviour
         reloadPosition();
 
         //get ID
-        this.id = ActorIDGenerator.getNewID();
+        //this.id = ActorIDGenerator.getNewID();
 
         //original status
         this.bs = behaviorStatus.wakeup;
@@ -78,5 +78,10 @@ public class ChoiceActor : MonoBehaviour
     public void reloadPosition()
     {
         tr.position = hexCell.Position;
+    }
+
+    public void setID(int id)
+    {
+        this.id = id;
     }
 }
