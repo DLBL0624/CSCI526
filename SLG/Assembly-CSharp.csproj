@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\HexEdgeType.cs" />
     <Compile Include="Assets\Scripts\HexFeatureCollection.cs" />
     <Compile Include="Assets\Scripts\HexFeatureManager.cs" />
+    <Compile Include="Assets\Scripts\HexFeatureManagerForDotLineRange.cs" />
     <Compile Include="Assets\Scripts\HexGrid.cs" />
     <Compile Include="Assets\Scripts\HexGridChunk.cs" />
     <Compile Include="Assets\Scripts\HexHash.cs" />

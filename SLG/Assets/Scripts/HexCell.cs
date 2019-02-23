@@ -353,7 +353,7 @@ public class HexCell : MonoBehaviour
         }
         set
         {
-            if(WaterLevel == value)
+            if(waterLevel == value)
             {
                 return;
             }
@@ -418,6 +418,24 @@ public class HexCell : MonoBehaviour
             }
         }
     }
+
+    public bool Walled
+    {
+        get
+        {
+            return walled;
+        }
+        set
+        {
+            if(walled != value)
+            {
+                walled = value;
+                Refresh();
+            }
+        }
+    }
+
+    bool walled;
 
     public int Distance
     {
