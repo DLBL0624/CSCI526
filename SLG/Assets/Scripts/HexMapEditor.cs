@@ -19,6 +19,14 @@ public class HexMapEditor : MonoBehaviour
 
     int activeElevation;
 
+    bool applyWaterLevel = true;
+
+    int activeWaterLevel;
+
+    bool applyUrbanLevel = true, applyFarmLevel = true, applyPlantLevel = true;
+
+    int activeUrbanLevel, activeFarmLevel, activePlantLevel;
+
     int brushSize;
 
     bool isDrag;
@@ -27,6 +35,7 @@ public class HexMapEditor : MonoBehaviour
 
     HexCell previousCell;
 
+
     enum OptionalToggle
     {
         Ignore, Yes, No
@@ -34,13 +43,13 @@ public class HexMapEditor : MonoBehaviour
 
     OptionalToggle riverMode, roadMode;
 
-    public void SetRiverMode (int mode)
+    public void SetRiverMode(int mode)
     {
         riverMode = (OptionalToggle)mode;
-        
+
     }
 
-    public void SetRoadMode (int mode)
+    public void SetRoadMode(int mode)
     {
         roadMode = (OptionalToggle)mode;
     }
@@ -58,7 +67,7 @@ public class HexMapEditor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(applyMapEditor)
+        if (applyMapEditor)
         {
             if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
             {
@@ -78,7 +87,7 @@ public class HexMapEditor : MonoBehaviour
         if (Physics.Raycast(inputRay, out hit))
         {
             HexCell currentCell = hexGrid.GetCell(hit.point);
-            if(previousCell && previousCell != currentCell)
+            if (previousCell && previousCell != currentCell)
             {
                 ValidateDrag(currentCell);
             }
@@ -95,8 +104,8 @@ public class HexMapEditor : MonoBehaviour
             previousCell = null;
         }
     }
-    
-    void EditCells (HexCell center)
+
+    void EditCells(HexCell center)
     {
         int centerX = center.coordinates.X;
         int centerZ = center.coordinates.Z;
@@ -119,7 +128,7 @@ public class HexMapEditor : MonoBehaviour
 
     void EditCell(HexCell cell)
     {
-        if(cell)
+        if (cell)
         {
             if (applyColor)
             {
@@ -129,7 +138,22 @@ public class HexMapEditor : MonoBehaviour
             {
                 cell.Elevation = activeElevation;
             }
-            
+            if (applyWaterLevel)
+            {
+                cell.WaterLevel = activeWaterLevel;
+            }
+            if (applyUrbanLevel)
+            {
+                cell.UrbanLevel = activeUrbanLevel;
+            }
+            if (applyFarmLevel)
+            {
+                cell.FarmLevel = activeFarmLevel;
+            }
+            if (applyPlantLevel)
+            {
+                cell.PlantLevel = activePlantLevel;
+            }
             if (riverMode == OptionalToggle.No)
             {
                 cell.RemoveRiver();
@@ -143,7 +167,7 @@ public class HexMapEditor : MonoBehaviour
                 HexCell otherCell = cell.GetNeighbor(dragDirection.Opposite());
                 if (otherCell)
                 {
-                    if(riverMode == OptionalToggle.Yes)
+                    if (riverMode == OptionalToggle.Yes)
                     {
                         Debug.Log("Drag River!");
                         otherCell.SetOutgoingRiver(dragDirection);
@@ -175,6 +199,46 @@ public class HexMapEditor : MonoBehaviour
     public void SetApplyElevation(bool toggle)
     {
         applyElevation = toggle;
+    }
+
+    public void SetApplyWaterLevel(bool toggle)
+    {
+        applyWaterLevel = toggle;
+    }
+
+    public void SetWaterLevel(float level)
+    {
+        activeWaterLevel = (int)level;
+    }
+
+    public void SetApplyUrbanLevel (bool toggle)
+    {
+        applyUrbanLevel = toggle;
+    }
+
+    public void SetApplyFarmLevel(bool toggle)
+    {
+        applyFarmLevel = toggle;
+    }
+
+    public void SetApplyPlantLevel(bool toggle)
+    {
+        applyPlantLevel = toggle;
+    }
+
+    public void SetUrbanLevel (float level)
+    {
+        activeUrbanLevel = (int)level;
+    }
+
+    public void SetFarmLevel (float level)
+    {
+        activeFarmLevel = (int)level;
+    }
+
+    public void SetPlantLevel (float level)
+    {
+        activePlantLevel = (int)level;
     }
 
     public void SetBrushSize(float size)
