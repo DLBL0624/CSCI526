@@ -181,4 +181,19 @@ public class HexGrid : MonoBehaviour
             chunks[i].ShowUI(visible);
         }
     }
+
+    
+    public void FindDistancesTo(HexCell cell)
+    {
+        for (int i = 0; i < cells.Length; i++)
+        {
+            cells[i].Distance = cell.coordinates.DistanceTo(cells[i].coordinates);
+        }
+    }
+
+    //Find distances between two cells
+    public int FindDistanceBetweenCells(HexCell c1, HexCell c2)
+    {
+        return c2.coordinates.DistanceTo(c1.coordinates);
+    }
 }
