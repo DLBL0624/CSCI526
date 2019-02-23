@@ -18,7 +18,7 @@ public class ActorManager : MonoBehaviour
 
     private GameObject SelectedMark;
 
-    private HexCell currentCell;//英文说不明白了。。。储存棋子的原始位置，用于cancel使棋子回到上一个位置
+    private HexCell currentCell;
 
     private HexCell targetCell;
 
@@ -39,19 +39,29 @@ public class ActorManager : MonoBehaviour
         }
     }
 
-    void SetSelected(int id)
+    public void RemoveSelectedMark()
     {
         for (int i = 0; i < highlights.Length; i++)
         {
             highlights[i].selected = false;
-            if(SelectedMark) Destroy(SelectedMark);
+            if (SelectedMark) Destroy(SelectedMark);
         }
+    }
+
+    public void generateSelectedMark()
+    {
+        SelectedMark = Instantiate(SelectedMark_pfb, choice.getTransform().position + new Vector3(0, 10, 0), choice.getTransform().rotation);
+    }
+
+    void SetSelected(int id)
+    {
+        RemoveSelectedMark();
         highlights[id].selected = true;
         
         //generate selectedMark
         choice = highlights[id];
         currentCell = choice.hexCell;
-        SelectedMark = Instantiate(SelectedMark_pfb, choice.getTransform().position + new Vector3(0, 10, 0), choice.getTransform().rotation);
+        generateSelectedMark();
         showChessAttribute();
     }
 
@@ -106,12 +116,14 @@ public class ActorManager : MonoBehaviour
             choice.hexCell = currentCell;
             choice.reloadPosition();
             choice.bs = behaviorStatus.wakeup;
+            RemoveSelectedMark();
+            generateSelectedMark();
         }
     }
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject() && choice.bs == behaviorStatus.ready)
+        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject() &&choice&&choice.bs == behaviorStatus.ready)
         {
             HandleInput();
         }
@@ -124,7 +136,7 @@ public class ActorManager : MonoBehaviour
         if (Physics.Raycast(inputRay, out hit))
         {
             targetCell = hexGrid.GetCell(hit.point);
-            if(choice.bs == behaviorStatus.ready)
+            if(choice.bs == behaviorStatus.ready&&choice.hexCell!=targetCell)
             {
                 chessMove();
             }
@@ -149,6 +161,9 @@ public class ActorManager : MonoBehaviour
         choice.bs = behaviorStatus.moved;
         choice.hexCell = targetCell;
         choice.reloadPosition();
+        //reset the Marker;
+        RemoveSelectedMark();
+        generateSelectedMark();
     }
 
     void chessAttack()

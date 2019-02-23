@@ -24,6 +24,8 @@ public class HexCell : MonoBehaviour
     [SerializeField]
     bool[] roads;
 
+    int waterLevel;
+
     public bool HasIncomingRiver
     {
         get
@@ -148,7 +150,15 @@ public class HexCell : MonoBehaviour
     {
         get
         {
-            return (elevation + HexMetrics.riverSurfaceElevationOffset) * HexMetrics.elevationStep;
+            return (elevation + HexMetrics.waterElevationOffset) * HexMetrics.elevationStep;
+        }
+    }
+
+    public float WaterSurfaceY
+    {
+        get
+        {
+            return (waterLevel + HexMetrics.waterElevationOffset) * HexMetrics.elevationStep;
         }
     }
 
@@ -334,6 +344,79 @@ public class HexCell : MonoBehaviour
         }
     }
 
+    public int WaterLevel
+    {
+        get
+        {
+            return waterLevel;
+        }
+        set
+        {
+            if(WaterLevel == value)
+            {
+                return;
+            }
+            waterLevel = value;
+        }
+    }
+
+    public bool IsUnderwater
+    {
+        get
+        {
+            return waterLevel > elevation;
+        }
+    }
+
+    public int UrbanLevel
+    {
+        get
+        {
+            return urbanLevel;
+        }
+        set
+        {
+            if(urbanLevel != value)
+            {
+                urbanLevel = value;
+                RefreshSelfOnly();
+            }
+        }
+    }
+
+    int urbanLevel, farmLevel, plantLevel;
+
+    public int FarmLevel
+    {
+        get
+        {
+            return farmLevel;
+        }
+        set
+        {
+            if(farmLevel != value)
+            {
+                farmLevel = value;
+                RefreshSelfOnly();
+            }
+        }
+    }
+
+    public int PlantLevel
+    {
+        get
+        {
+            return plantLevel;
+        }
+        set
+        {
+            if(plantLevel != value)
+            {
+                plantLevel = value;
+                RefreshSelfOnly();
+            }
+        }
+    }
 }
 
 

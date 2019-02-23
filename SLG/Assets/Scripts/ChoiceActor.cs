@@ -78,6 +78,7 @@ public class ChoiceActor : MonoBehaviour
     public void reloadPosition()
     {
         tr.position = hexCell.Position;
+        tr.position.Set(tr.position.x,tr.position.y+tr.localScale.y * 1, tr.position.z);
     }
 
     public void setID(int id)

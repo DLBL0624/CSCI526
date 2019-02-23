@@ -13,11 +13,12 @@ public class HexGrid : MonoBehaviour
 
     public int chunkCountX = 4, chunkCountZ = 3;
 
+    public Color defaultColor = Color.white;
+
     public HexCell cellPrefab;
     public Text cellLabelPrefab;
 
-    public Color defaultColor = Color.white;
-    public Color touchedColor = Color.blue;
+   
 
 
     HexGridChunk[] chunks;
@@ -28,9 +29,12 @@ public class HexGrid : MonoBehaviour
 
     public Texture2D noiseSource;
 
+    public int seed;
+
     private void Awake()
     {
         HexMetrics.noiseSource = noiseSource;
+        HexMetrics.InitializeHashGrid(seed);
 
         cellCountX = chunkCountX * HexMetrics.chunkSizeX;
         cellCountZ = chunkCountZ * HexMetrics.chunkSizeZ;
@@ -69,6 +73,7 @@ public class HexGrid : MonoBehaviour
     private void OnEnable()
     {
         HexMetrics.noiseSource = noiseSource;
+        HexMetrics.InitializeHashGrid(seed);
     }
 
     void CreateCell(int x, int z, int i)
