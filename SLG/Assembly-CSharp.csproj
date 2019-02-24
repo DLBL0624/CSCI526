@@ -61,6 +61,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\EnemyActor.cs" />
+    <Compile Include="Assets\NewMapMenu.cs" />
+    <Compile Include="Assets\SaveLoadItem.cs" />
+    <Compile Include="Assets\SaveLoadMenu.cs" />
     <Compile Include="Assets\Scripts\ActorIDGenerator.cs" />
     <Compile Include="Assets\Scripts\ActorManager.cs" />
     <Compile Include="Assets\Scripts\Chess.cs" />
