@@ -7,6 +7,8 @@ public static class roundManager
     private static int round = 0;
     private static roundTurn turn = roundTurn.PlayerTurn;
 
+    public static ActorManager actorManager;
+
     public static int getRound()
     {
         return round;
@@ -24,7 +26,11 @@ public static class roundManager
 
     public static void switchTurn()
     {
-        if ((int)turn == 0) turn++;
+        if ((int)turn == 0)
+        {
+            turn++;
+            actorManager.resetBehaviorStatus();
+        }
         else
         {
             turn--;
