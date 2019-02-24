@@ -7,24 +7,26 @@ public class ChoiceActor : MonoBehaviour
     private int id;//chessID
 
     //chess attribute
-    public int ap;//actionPower
+    public int ap = 10;//actionPower
 
-    public int hp;//HealthPower
+    public int hp = 100;//HealthPower
 
-    public int att;//attackDamage
+    public int hpMax = 100;//HealthPowerMax
 
-    public int def = 0;//define
+    public int att = 20;//attackDamage
+
+    public int def = 0;//defense
 
     public behaviorStatus bs;
 
     // main game manager
     public ActorManager actorManager;
 
-    // choice of team
+    // select by user?
     public bool selected;
 
-    // enemy list
-    Transform[] enemies;
+    // is the actor death?
+    private bool isDead = false;
 
     // current transform
     Transform tr;
@@ -42,12 +44,6 @@ public class ChoiceActor : MonoBehaviour
 
         //original status
         this.bs = behaviorStatus.wakeup;
-
-        //load the enemies
-        //List<Transform> list = new List<Transform>();
-        //foreach (Transform tf in GameObject.Find("Enemies").transform)
-        //    list.Add(tf);
-        //enemies = list.ToArray();
         
     }
 
@@ -55,19 +51,6 @@ public class ChoiceActor : MonoBehaviour
     void OnMouseDown()
     {
         actorManager.SendMessage("SetSelected", id, SendMessageOptions.DontRequireReceiver);
-    }
-
-    // attack event from mecanim
-    void OnDeal(int type)
-    {
-        
-
-    }
-
-    // update shadow position
-    void Update()
-    {
-        
     }
 
     public Transform getTransform()
@@ -84,5 +67,19 @@ public class ChoiceActor : MonoBehaviour
     public void setID(int id)
     {
         this.id = id;
+    }
+
+    public void checkAlive()
+    {
+        if(this.hp<=0)
+        {
+            isDead = true;
+            noAlive();
+        }
+    }
+
+    public void noAlive()
+    {
+        Destroy(this.gameObject);
     }
 }
