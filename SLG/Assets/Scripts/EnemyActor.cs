@@ -6,6 +6,8 @@ public class EnemyActor : MonoBehaviour
 {
     private int id;//chessID
 
+    public string actorName;//Actor Name
+
     //chess attribute
     public int ap = 10;//actionPower
 

@@ -6,16 +6,18 @@ public class ChoiceActor : MonoBehaviour
 {
     private int id;//chessID
 
+    public string actorName;//Actor Name
+
     //chess attribute
-    public int ap = 10;//actionPower
+    public int ap = 10;//ActionPower
 
     public int hp = 100;//HealthPower
 
     public int hpMax = 100;//HealthPowerMax
 
-    public int att = 20;//attackDamage
+    public int att = 20;//AttackDamage
 
-    public int def = 0;//defense
+    public int def = 0;//Defense
 
     public behaviorStatus bs;
 

@@ -56,6 +56,7 @@ public class ActorManager : MonoBehaviour
 
     private void Awake()
     {
+        roundManager.actorManager = this;
         //load enemies 
         List<EnemyActor> list1 = new List<EnemyActor>();
         foreach (Transform tf in enemySet)
@@ -276,17 +277,23 @@ public class ActorManager : MonoBehaviour
 
     public void showChessAttribute()
     {
-        chessAttr.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = choiceActor.gameObject.name;
+        chessAttr.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = choiceActor.actorName;
         chessAttr.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = choiceActor.hp.ToString();
         chessAttr.transform.GetChild(2).GetChild(1).GetComponent<Text>().text = choiceActor.att.ToString();
         chessAttr.transform.GetChild(3).GetChild(1).GetComponent<Text>().text = choiceActor.bs.ToString();
     }
 
-    //// goto main menu scene
-    //public void LoadMenu()
-    //{
-    //    Application.LoadLevel("Menu");
-    //}
+    public void resetBehaviorStatus()
+    {
+        foreach(ChoiceActor ca in friends)
+        {
+            ca.bs = behaviorStatus.wakeup;
+        }
+        foreach (EnemyActor en in enemies)
+        {
+            en.bs = behaviorStatus.wakeup;
+        }
+    }
 
 }
 

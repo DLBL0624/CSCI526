@@ -60,15 +60,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\EnemyActor.cs" />
-    <Compile Include="Assets\NewMapMenu.cs" />
-    <Compile Include="Assets\SaveLoadItem.cs" />
-    <Compile Include="Assets\SaveLoadMenu.cs" />
+    <Compile Include="Assets\QuitGameMenu.cs" />
     <Compile Include="Assets\Scripts\ActorIDGenerator.cs" />
     <Compile Include="Assets\Scripts\ActorManager.cs" />
     <Compile Include="Assets\Scripts\Chess.cs" />
     <Compile Include="Assets\Scripts\ChoiceActor.cs" />
     <Compile Include="Assets\Scripts\EdgeVertices.cs" />
+    <Compile Include="Assets\Scripts\EnemyActor.cs" />
     <Compile Include="Assets\Scripts\gameManager.cs" />
     <Compile Include="Assets\Scripts\gameSystem.cs" />
     <Compile Include="Assets\Scripts\HexCell.cs" />
@@ -87,7 +85,10 @@
     <Compile Include="Assets\Scripts\HexMetrics.cs" />
     <Compile Include="Assets\Scripts\ListPool.cs" />
     <Compile Include="Assets\Scripts\mapManager.cs" />
+    <Compile Include="Assets\Scripts\NewMapMenu.cs" />
     <Compile Include="Assets\Scripts\roundManager.cs" />
+    <Compile Include="Assets\Scripts\SaveLoadItem.cs" />
+    <Compile Include="Assets\Scripts\SaveLoadMenu.cs" />
     <Compile Include="Assets\Scripts\selectedMark.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
