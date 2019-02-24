@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Map
   - UIText
+  - PlayerChess
   layers:
   - Default
   - TransparentFX

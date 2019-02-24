@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/TinyBattleFantasy/Scenes/Menu.unity
+- path: Assets/TinyBattleFantasy/Scenes/Battle.unity
   isLoaded: 1
   isActive: 1
