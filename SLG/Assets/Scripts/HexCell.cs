@@ -15,6 +15,8 @@ public class HexCell : MonoBehaviour
 
     public HexGridChunk chunk;
 
+    public int cost;
+
     private int elevation = int.MinValue;
 
     public RectTransform uiRect;    //Adjust Label's position when height is changed
