@@ -10,9 +10,34 @@ using UnityEngine.UI;
 public class ActorManager : MonoBehaviour
 {
     // actor list
-    public ChoiceActor[] highlights;
 
-    private ChoiceActor choice;
+    public Transform friendSet; //use for get friends Actors;
+
+    public Transform enemySet;  //use for get enemies Actors;
+
+    private ChoiceActor[] friends;
+
+    private EnemyActor[] enemies;
+
+    public ChoiceActor[] Friends
+    {
+        get
+        {
+            return friends;
+        }
+    }
+
+    public EnemyActor[] Enemies
+    {
+        get
+        {
+            return enemies;
+        }
+    }
+
+    private ChoiceActor choiceActor;
+
+    private EnemyActor enemyActor;
 
     public GameObject SelectedMark_pfb;
 
@@ -30,46 +55,87 @@ public class ActorManager : MonoBehaviour
     bool cundangOK = false;
     bool gongjiOK = false;
 
+    private void Awake()
+    {
+        //load enemies 
+        List<EnemyActor> list1 = new List<EnemyActor>();
+        foreach (Transform tf in enemySet)
+        {
+            list1.Add(tf.GetComponent<EnemyActor>());
+        }
+        enemies = list1.ToArray();
+        //set enemies' ID
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            enemies[i].setID(i);
+            enemies[i].actorManager = this;
+        }
+
+        //load friends
+        List<ChoiceActor> list2 = new List<ChoiceActor>();
+        foreach (Transform tf in friendSet)
+        {
+            list2.Add(tf.GetComponent<ChoiceActor>());
+        }
+        friends = list2.ToArray();
+        //set enemies' ID
+        for (int i = 0; i < friends.Length; i++)
+        {
+            friends[i].setID(i);
+            friends[i].actorManager = this;
+        }
+    }
 
     void Start()
     {
-        for(int i = 0; i<highlights.Length; i++)
-        {
-            highlights[i].setID(i);
-        }
+
     }
 
     public void RemoveSelectedMark()
     {
-        for (int i = 0; i < highlights.Length; i++)
+        for (int i = 0; i < friends.Length; i++)
         {
-            highlights[i].selected = false;
+            friends[i].selected = false;
             if (SelectedMark) Destroy(SelectedMark);
         }
     }
 
     public void generateSelectedMark()
     {
-        SelectedMark = Instantiate(SelectedMark_pfb, choice.getTransform().position + new Vector3(0, 10, 0), choice.getTransform().rotation);
+        SelectedMark = Instantiate(SelectedMark_pfb, choiceActor.getTransform().position + new Vector3(0, 10, 0), choiceActor.getTransform().rotation);
     }
 
     void SetSelected(int id)
     {
         RemoveSelectedMark();
-        highlights[id].selected = true;
+        friends[id].selected = true;
         
         //generate selectedMark
-        choice = highlights[id];
-        currentCell = choice.hexCell;
+        choiceActor = friends[id];
+        currentCell = choiceActor.hexCell;
         generateSelectedMark();
         showChessAttribute();
+    }
+
+    void SetSelectedTarget(int id)
+    {
+        if(!choiceActor||choiceActor.bs != behaviorStatus.attackready)
+        {
+            return;
+        }
+        this.enemyActor = enemies[id];
+
+        //attack
+        if(hexGrid.FindDistanceBetweenCells(choiceActor.hexCell, enemyActor.hexCell)== 1) chessAttack(choiceActor, enemyActor);
+        
+        this.enemyActor = null;
     }
 
     // attack event from button
     public void Move()
     {
-        if (!choice) return;
-        else if ((int)choice.bs>1)
+        if (!choiceActor) return;
+        else if ((int)choiceActor.bs>1)
         {
             Debug.Log("This chess has already Moved!");
             return;
@@ -77,7 +143,7 @@ public class ActorManager : MonoBehaviour
         else
         {
             Debug.Log("Please select a position!");
-            choice.bs = behaviorStatus.ready;
+            choiceActor.bs = behaviorStatus.ready;
         }
         
     }
@@ -85,14 +151,14 @@ public class ActorManager : MonoBehaviour
     // attack event from button
     public void Attack()
     {
-        if (!choice) return;
-        if (choice.bs==behaviorStatus.rest)
+        if (!choiceActor) return;
+        if (choiceActor.bs==behaviorStatus.rest)
         {
             Debug.Log("It has already attacked!");
         }
         else
         {
-            choice.bs = behaviorStatus.attackready;
+            choiceActor.bs = behaviorStatus.attackready;
         }
 
     }
@@ -100,30 +166,47 @@ public class ActorManager : MonoBehaviour
     // attack event from button
     public void Cancel()
     {
-        if (!choice) return;
-        else if ((int)choice.bs < 2)
+        if (!choiceActor) return;
+        else if ((int)choiceActor.bs < 2)
         {
             Debug.Log("This chess didn't do any thing!");
             return;
         }
-        else if (choice.bs == behaviorStatus.rest)
+        else if (choiceActor.bs == behaviorStatus.rest)
         {
             Debug.Log("This chess has attacked ! It cannot cancel the attack command");
             return;
         }
         else
         {
-            choice.hexCell = currentCell;
-            choice.reloadPosition();
-            choice.bs = behaviorStatus.wakeup;
+            choiceActor.hexCell = currentCell;
+            choiceActor.reloadPosition();
+            choiceActor.bs = behaviorStatus.wakeup;
             RemoveSelectedMark();
             generateSelectedMark();
         }
     }
 
+    //Attack
+    void OnDeal(ChoiceActor fri, EnemyActor eny)
+    {
+        fri.hp -= eny.att;
+        eny.hp -= fri.att;
+        eny.checkAlive();
+        fri.checkAlive();
+    }
+
+    void OnDeal(EnemyActor eny, ChoiceActor fri)
+    {
+        eny.hp -= fri.att;
+        fri.hp -= eny.att;
+        eny.checkAlive();
+        fri.checkAlive();
+    }
+
     void Update()
     {
-        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject() &&choice&&choice.bs == behaviorStatus.ready)
+        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject() &&choiceActor&&choiceActor.bs == behaviorStatus.ready)
         {
             HandleInput();
         }
@@ -136,41 +219,45 @@ public class ActorManager : MonoBehaviour
         if (Physics.Raycast(inputRay, out hit))
         {
             targetCell = hexGrid.GetCell(hit.point);
-            if(choice.bs == behaviorStatus.ready&&choice.hexCell!=targetCell)
+            if(choiceActor.bs == behaviorStatus.ready&&choiceActor.hexCell!=targetCell)
             {
                 chessMove();
             }
-            else if(choice.bs == behaviorStatus.attackready)
-            {//for attack
-
-            }
+            //else if(choiceActor.bs == behaviorStatus.attackready)
+            //{//for attack
+                
+            //}
         }
-        
     }
 
     void chessMove()
     {
         if (xunluOK)
         {
-            xunluAlgorithm(choice.hexCell, targetCell);
+            xunluAlgorithm(choiceActor.hexCell, targetCell);
         }
         else
         {
-            moveToPositionByNormal(choice.hexCell, targetCell);
+            moveToPositionByNormal(choiceActor.hexCell, targetCell);
         }
-        choice.bs = behaviorStatus.moved;
-        choice.hexCell = targetCell;
-        choice.reloadPosition();
+        choiceActor.bs = behaviorStatus.moved;
+        choiceActor.hexCell = targetCell;
+        choiceActor.reloadPosition();
         //reset the Marker;
         RemoveSelectedMark();
         generateSelectedMark();
     }
 
-    void chessAttack()
+    void chessAttack(ChoiceActor fri, EnemyActor eny)
     {
+        OnDeal(fri, eny);
+        fri.bs = behaviorStatus.rest;
+    }
 
-        choice.bs = behaviorStatus.rest;
-        
+    void chessAttack( EnemyActor eny, ChoiceActor fri)
+    {
+        OnDeal(eny, fri);
+        eny.bs = behaviorStatus.rest;
     }
     //apply xun lu Algorithm to find the path and chess will move follow the path
     private void xunluAlgorithm(HexCell a, HexCell b)
@@ -182,18 +269,18 @@ public class ActorManager : MonoBehaviour
     {
         Vector3 offSet = b.Position - a.Position;
         Vector3 norm = offSet.normalized;
-        while (Vector3.Distance(choice.getTransform().position, b.Position)> HexMetrics.outerRadius + 2f)
+        while (Vector3.Distance(choiceActor.getTransform().position, b.Position)> HexMetrics.outerRadius + 2f)
         {
-            choice.getTransform().position += norm * HexMetrics.outerRadius * Time.deltaTime;
+            choiceActor.getTransform().position += norm * HexMetrics.outerRadius * Time.deltaTime;
         }
     }
 
     public void showChessAttribute()
     {
-        chessAttr.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = choice.gameObject.name;
-        chessAttr.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = choice.hp.ToString();
-        chessAttr.transform.GetChild(2).GetChild(1).GetComponent<Text>().text = choice.att.ToString();
-        chessAttr.transform.GetChild(3).GetChild(1).GetComponent<Text>().text = choice.bs.ToString();
+        chessAttr.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = choiceActor.gameObject.name;
+        chessAttr.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = choiceActor.hp.ToString();
+        chessAttr.transform.GetChild(2).GetChild(1).GetComponent<Text>().text = choiceActor.att.ToString();
+        chessAttr.transform.GetChild(3).GetChild(1).GetComponent<Text>().text = choiceActor.bs.ToString();
     }
 
     //// goto main menu scene
@@ -201,6 +288,7 @@ public class ActorManager : MonoBehaviour
     //{
     //    Application.LoadLevel("Menu");
     //}
+
 }
 
 public enum behaviorStatus

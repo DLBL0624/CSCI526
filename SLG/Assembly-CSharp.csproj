@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\EnemyActor.cs" />
     <Compile Include="Assets\Scripts\ActorIDGenerator.cs" />
     <Compile Include="Assets\Scripts\ActorManager.cs" />
     <Compile Include="Assets\Scripts\Chess.cs" />
