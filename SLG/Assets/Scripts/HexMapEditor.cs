@@ -2,18 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.IO;
 
 public class HexMapEditor : MonoBehaviour
 {
     public bool applyMapEditor = true;
 
-    public Color[] colors;
-
     public HexGrid hexGrid;
-
-    private Color activeColor;
-
-    bool applyColor;
 
     bool applyElevation = true;
 
@@ -30,6 +25,8 @@ public class HexMapEditor : MonoBehaviour
     int brushSize;
 
     bool isDrag;
+
+    int activeTerrainTypeIndex;
 
     HexDirection dragDirection;
 
@@ -59,10 +56,6 @@ public class HexMapEditor : MonoBehaviour
         walledMode = (OptionalToggle)mode;
     }
 
-    private void Awake()
-    {
-        SelectColor(0);
-    }
     // Start is called before the first frame update
     void Start()
     {
@@ -135,9 +128,9 @@ public class HexMapEditor : MonoBehaviour
     {
         if (cell)
         {
-            if (applyColor)
+            if(activeTerrainTypeIndex >= 0)
             {
-                cell.Color = activeColor;
+                cell.TerrainTypeIndex = activeTerrainTypeIndex;
             }
             if (applyElevation)
             {
@@ -192,15 +185,6 @@ public class HexMapEditor : MonoBehaviour
                     }
                 }
             }
-        }
-    }
-
-    public void SelectColor(int index)
-    {
-        applyColor = index >= 0;
-        if (applyColor)
-        {
-            activeColor = colors[index];
         }
     }
 
@@ -264,6 +248,11 @@ public class HexMapEditor : MonoBehaviour
         activeSpecialIndex = (int)index;
     }
 
+    public void SetTerrainTypeIndex(int index)
+    {
+        activeTerrainTypeIndex = index;
+    }
+
     public void SetBrushSize(float size)
     {
         brushSize = (int)size;
@@ -285,5 +274,37 @@ public class HexMapEditor : MonoBehaviour
             }
         }
         isDrag = false;
+    }
+
+    public void Save()
+    {
+        Debug.Log(Application.persistentDataPath);
+        string path = Path.Combine(Application.persistentDataPath, "test.map");
+
+        using (
+            BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.Create))
+        ){
+            writer.Write(0);
+            hexGrid.Save(writer);
+        }
+    }
+
+    public void Load()
+    {
+        string path = Path.Combine(Application.persistentDataPath, "test.map");
+        using (
+            BinaryReader reader = new BinaryReader(File.OpenRead(path))
+        ){
+            int header = reader.ReadInt32();
+            if(header == 0)
+            {
+                hexGrid.Load(reader);
+            }
+            else
+            {
+                Debug.LogWarning("Unkown map format" + header);
+            }
+            
+        }
     }
 }

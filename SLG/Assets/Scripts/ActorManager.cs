@@ -53,7 +53,6 @@ public class ActorManager : MonoBehaviour
 
     bool xunluOK = false;
     bool cundangOK = false;
-    bool gongjiOK = false;
 
     private void Awake()
     {
