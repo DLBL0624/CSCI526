@@ -153,14 +153,7 @@ public class HexCell : MonoBehaviour
             uiRect.localPosition = uiPosition;
 
             //river
-            if (hasOutgoingRiver && elevation < GetNeighbor(outgoingRiver).elevation)
-            {
-                RemoverOutgoingRiver();
-            }
-            if (hasIncomingRiver && elevation > GetNeighbor(incomingRiver).elevation)
-            {
-                RemoverIncomingRiver();
-            }
+            ValidateRivers();
 
             for(int i = 0; i < roads.Length; i++)
             {
@@ -251,7 +244,7 @@ public class HexCell : MonoBehaviour
             return;
         }
         HexCell neighbor = GetNeighbor(direction);
-        if(!neighbor || elevation < neighbor.elevation)
+        if(!IsValidRiverDestination(neighbor))
         {
             return;
         }
@@ -388,6 +381,8 @@ public class HexCell : MonoBehaviour
                 return;
             }
             waterLevel = value;
+            ValidateRivers();
+            Refresh();
         }
     }
 
@@ -398,7 +393,29 @@ public class HexCell : MonoBehaviour
             return waterLevel > elevation;
         }
     }
+    
+    bool IsValidRiverDestination (HexCell neighbor)
+    {
+        return neighbor && (elevation >= neighbor.elevation || waterLevel == neighbor.elevation);
+    }
 
+    void ValidateRivers()
+    {
+        if(
+            hasOutgoingRiver &&
+            !IsValidRiverDestination(GetNeighbor(outgoingRiver))
+        )
+        {
+            RemoverOutgoingRiver();
+        }
+        if(
+            hasIncomingRiver &&
+            !GetNeighbor(incomingRiver).IsValidRiverDestination(this)
+        )
+        {
+            RemoverIncomingRiver();
+        }
+    }
     public int UrbanLevel
     {
         get
