@@ -7,6 +7,7 @@ public class HexGridChunk : MonoBehaviour
 
     HexCell[] cells;
 
+
     public HexMesh terrain, rivers, roads, water, waterShore, estuaries;
     Canvas gridCanvas;
 

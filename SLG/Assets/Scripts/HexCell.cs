@@ -16,6 +16,10 @@ public class HexCell : MonoBehaviour
 
     public HexGridChunk chunk;
 
+    public int cost;
+
+    public bool hasObject = false;
+
     private int elevation = int.MinValue;
 
     public RectTransform uiRect;    //Adjust Label's position when height is changed
@@ -529,6 +533,7 @@ public class HexCell : MonoBehaviour
         writer.Write((byte)plantLevel);
         writer.Write((byte)specialIndex);
         writer.Write(walled);
+
 
         if(hasIncomingRiver)
         {

@@ -27,6 +27,7 @@ public class ChoiceActor : MonoBehaviour
     // select by user?
     public bool selected;
 
+
     // is the actor death?
     private bool isDead = false;
 
@@ -46,7 +47,7 @@ public class ChoiceActor : MonoBehaviour
 
         //original status
         this.bs = behaviorStatus.wakeup;
-        
+
     }
 
     // choice actor event
@@ -63,12 +64,20 @@ public class ChoiceActor : MonoBehaviour
     public void reloadPosition()
     {
         tr.position = hexCell.Position;
-        tr.position.Set(tr.position.x,tr.position.y+tr.localScale.y * 1, tr.position.z);
+        tr.position.Set(tr.position.x, tr.position.y + tr.localScale.y * 1, tr.position.z);
     }
 
-    public void setID(int id)
+    public int ID
     {
-        this.id = id;
+        get
+        {
+            return this.id;
+        }
+        set
+        {
+            this.id = value;
+
+        }
     }
 
     public void checkAlive()
