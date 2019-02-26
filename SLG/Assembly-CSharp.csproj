@@ -60,6 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\HexGameUI.cs" />
+    <Compile Include="Assets\HexUnit.cs" />
     <Compile Include="Assets\QuitGameMenu.cs" />
     <Compile Include="Assets\Scripts\ActorIDGenerator.cs" />
     <Compile Include="Assets\Scripts\ActorManager.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="Assets\Scripts\gameManager.cs" />
     <Compile Include="Assets\Scripts\gameSystem.cs" />
     <Compile Include="Assets\Scripts\HexCell.cs" />
+    <Compile Include="Assets\Scripts\HexCellPriorityQueue.cs" />
     <Compile Include="Assets\Scripts\HexCoordinates.cs" />
     <Compile Include="Assets\Scripts\HexDirection.cs" />
     <Compile Include="Assets\Scripts\HexEdgeType.cs" />
@@ -100,6 +103,7 @@
     <None Include="Assets\Shaders\Water Shore.shader" />
     <None Include="Assets\Shaders\Terrain.shader" />
     <None Include="Assets\Shaders\VertexColors.shader" />
+    <None Include="Assets\Shaders\Highlight.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />

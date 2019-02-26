@@ -39,7 +39,6 @@ public class EnemyActor : MonoBehaviour
     void Start()
     {
         tr = transform;
-        Debug.Log(hexCell);
         hexCell = actorManager.hexGrid.GetCell(tr.position);
         reloadPosition();
 
