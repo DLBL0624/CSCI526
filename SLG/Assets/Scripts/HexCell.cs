@@ -16,6 +16,10 @@ public class HexCell : MonoBehaviour
 
     public HexGridChunk chunk;
 
+    public int cost;
+
+    public bool hasObject = false;
+
     private int elevation = int.MinValue;
 
     public RectTransform uiRect;    //Adjust Label's position when height is changed
@@ -108,15 +112,6 @@ public class HexCell : MonoBehaviour
         get
         {
             return hasIncomingRiver ? incomingRiver : outgoingRiver;
-        }
-    }
-
-
-    public Color Color
-    {
-        get
-        {
-            return HexMetrics.colors[terrainTypeIndex];
         }
     }
 
@@ -228,6 +223,10 @@ public class HexCell : MonoBehaviour
                     neighbor.chunk.Refresh();
                 }
             }
+            if (Unit)
+            {
+                Unit.ValidateLocation();
+            }
         }
     }
 
@@ -301,6 +300,10 @@ public class HexCell : MonoBehaviour
     void RefreshSelfOnly()
     {
         chunk.Refresh();
+        if (Unit)
+        {
+            Unit.ValidateLocation();
+        }
     }
 
     public float StreamBedY
@@ -493,14 +496,21 @@ public class HexCell : MonoBehaviour
         set
         {
             distance = value;
-            UpdateDistanceLabel();
+            //UpdateDistanceLabel();//不调用距离
         }
     }
 
-    void UpdateDistanceLabel()
+    //void UpdateDistanceLabel()
+    //{
+    //    Text label = uiRect.GetComponent<Text>();
+
+    //    label.text = distance == int.MaxValue?"":distance.ToString();
+    //}
+
+    public void SetLabel(string text)
     {
-        Text label = uiRect.GetComponent<Text>();
-        label.text = distance.ToString();
+        UnityEngine.UI.Text label = uiRect.GetComponent<Text>();
+        label.text =  text;
     }
 
     int distance;
@@ -529,6 +539,7 @@ public class HexCell : MonoBehaviour
         writer.Write((byte)plantLevel);
         writer.Write((byte)specialIndex);
         writer.Write(walled);
+
 
         if(hasIncomingRiver)
         {
@@ -598,6 +609,53 @@ public class HexCell : MonoBehaviour
             roads[i] = (roadFlags & (1 << i)) != 0;
         }
     }
+
+    public void DisableHighlight()
+    {
+        Image highlight = uiRect.GetChild(0).GetComponent<Image>();
+        highlight.enabled = false;
+    }
+
+    public void EnableHighlight(Color color)
+    {
+        Image highlight = uiRect.GetChild(0).GetComponent<Image>();
+        highlight.color = color;
+        highlight.enabled = true;
+    }
+
+    public HexCell PathFrom
+    {
+        get;
+        set;
+    }
+
+    public int SearchHeuristic
+    {
+        get;
+        set;
+    }
+
+    public int SearchPriority
+    {
+        get
+        {
+            return distance + SearchHeuristic;
+        }
+    }
+
+    public int SearchPhase
+    {
+        get;
+        set;
+    }
+
+    public HexCell NextWithSamePriority
+    {
+        get;
+        set;
+    }
+
+    public HexUnit Unit { get; set; }
 }
 
 

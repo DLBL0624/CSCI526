@@ -4,6 +4,9 @@ using UnityEngine;
 
 public static class roundManager
 {
+
+
+
     private static int round = 0;
     private static roundTurn turn = roundTurn.PlayerTurn;
 
@@ -29,10 +32,11 @@ public static class roundManager
         if ((int)turn == 0)
         {
             turn++;
-            actorManager.resetBehaviorStatus();
+            actorManager.aIManager.AIstart();
         }
         else
         {
+            actorManager.resetBehaviorStatus();
             turn--;
             round++;
         }

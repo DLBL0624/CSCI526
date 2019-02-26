@@ -60,16 +60,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\HexGameUI.cs" />
+    <Compile Include="Assets\HexUnit.cs" />
     <Compile Include="Assets\QuitGameMenu.cs" />
     <Compile Include="Assets\Scripts\ActorIDGenerator.cs" />
     <Compile Include="Assets\Scripts\ActorManager.cs" />
+    <Compile Include="Assets\Scripts\AIManager.cs" />
+    <Compile Include="Assets\Scripts\BeginQuitBtn.cs" />
+    <Compile Include="Assets\Scripts\Bezier.cs" />
     <Compile Include="Assets\Scripts\Chess.cs" />
     <Compile Include="Assets\Scripts\ChoiceActor.cs" />
     <Compile Include="Assets\Scripts\EdgeVertices.cs" />
     <Compile Include="Assets\Scripts\EnemyActor.cs" />
+    <Compile Include="Assets\Scripts\FalQuitBtn.cs" />
     <Compile Include="Assets\Scripts\gameManager.cs" />
     <Compile Include="Assets\Scripts\gameSystem.cs" />
     <Compile Include="Assets\Scripts\HexCell.cs" />
+    <Compile Include="Assets\Scripts\HexCellPriorityQueue.cs" />
     <Compile Include="Assets\Scripts\HexCoordinates.cs" />
     <Compile Include="Assets\Scripts\HexDirection.cs" />
     <Compile Include="Assets\Scripts\HexEdgeType.cs" />
@@ -84,12 +91,17 @@
     <Compile Include="Assets\Scripts\HexMesh.cs" />
     <Compile Include="Assets\Scripts\HexMetrics.cs" />
     <Compile Include="Assets\Scripts\ListPool.cs" />
+    <Compile Include="Assets\Scripts\LoadGmBtn.cs" />
+    <Compile Include="Assets\Scripts\LoadLeaveBtn.cs" />
+    <Compile Include="Assets\Scripts\MainQuitMenuBtn.cs" />
     <Compile Include="Assets\Scripts\mapManager.cs" />
     <Compile Include="Assets\Scripts\NewMapMenu.cs" />
     <Compile Include="Assets\Scripts\roundManager.cs" />
     <Compile Include="Assets\Scripts\SaveLoadItem.cs" />
     <Compile Include="Assets\Scripts\SaveLoadMenu.cs" />
     <Compile Include="Assets\Scripts\selectedMark.cs" />
+    <Compile Include="Assets\Scripts\StartGmBtn.cs" />
+    <Compile Include="Assets\Scripts\VicQuitBtn.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
@@ -97,7 +109,9 @@
     <None Include="Assets\Output-Build.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\Shaders\Water Shore.shader" />
+    <None Include="Assets\Shaders\Terrain.shader" />
     <None Include="Assets\Shaders\VertexColors.shader" />
+    <None Include="Assets\Shaders\Highlight.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
@@ -116,19 +130,19 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/UnityProject/Hoster/SLG/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/UnityProject/Hoster/526SLG/SLG/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/UnityProject/Hoster/SLG/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>D:/UnityProject/Hoster/526SLG/SLG/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/UnityProject/Hoster/SLG/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>D:/UnityProject/Hoster/526SLG/SLG/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/UnityProject/Hoster/SLG/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/UnityProject/Hoster/526SLG/SLG/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>D:/UnityProject/Hoster/SLG/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>D:/UnityProject/Hoster/526SLG/SLG/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -335,19 +349,19 @@
       <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements">
-      <HintPath>D:/UnityProject/Hoster/SLG/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.dll</HintPath>
+      <HintPath>D:/UnityProject/Hoster/526SLG/SLG/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements.Editor">
-      <HintPath>D:/UnityProject/Hoster/SLG/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.Editor.dll</HintPath>
+      <HintPath>D:/UnityProject/Hoster/526SLG/SLG/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>D:/UnityProject/Hoster/SLG/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>D:/UnityProject/Hoster/526SLG/SLG/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>D:/UnityProject/Hoster/SLG/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>D:/UnityProject/Hoster/526SLG/SLG/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>D:/UnityProject/Hoster/SLG/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>D:/UnityProject/Hoster/526SLG/SLG/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:/Program Files/Unity/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

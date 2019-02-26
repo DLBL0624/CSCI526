@@ -24,6 +24,7 @@ public class EnemyActor : MonoBehaviour
     // main game manager
     public ActorManager actorManager;
 
+
     // select by user?
     public bool selected;
 
@@ -69,9 +70,22 @@ public class EnemyActor : MonoBehaviour
         tr.position.Set(tr.position.x, tr.position.y + tr.localScale.y * 1, tr.position.z);
     }
 
-    public void setID(int id)
+    //public void setID(int id)
+    //{
+    //    this.id = id;
+    //}
+
+    public int ID
     {
-        this.id = id;
+        get
+        {
+            return this.id;
+        }
+        set
+        {
+            this.id = value;
+
+        }
     }
 
     public void checkAlive()
