@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\ActorIDGenerator.cs" />
     <Compile Include="Assets\Scripts\ActorManager.cs" />
     <Compile Include="Assets\Scripts\AIManager.cs" />
+    <Compile Include="Assets\Scripts\Bezier.cs" />
     <Compile Include="Assets\Scripts\Chess.cs" />
     <Compile Include="Assets\Scripts\ChoiceActor.cs" />
     <Compile Include="Assets\Scripts\EdgeVertices.cs" />
