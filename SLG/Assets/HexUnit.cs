@@ -7,13 +7,16 @@ public class HexUnit : MonoBehaviour
 {
     List<HexCell> pathToTravel;
 
-    public static HexUnit unitPrefab;
+    //public static HexUnit unitPrefab;
+    public static HexUnit[] unitPrefab;
 
     const float travelSpeed = 4f;
 
     const float rotationSpeed = 180f;
 
-    public HexCell Location
+    public int unitType = 0;
+
+    public HexCell Location//cell
     {
         get
         {
@@ -71,14 +74,17 @@ public class HexUnit : MonoBehaviour
     {
         location.coordinates.Save(writer);
         writer.Write(orientation);
+        writer.Write(unitType);
+
     }
 
     public static void Load(BinaryReader reader, HexGrid grid)
     {
         HexCoordinates coordinates = HexCoordinates.Load(reader);
         float orientation = reader.ReadSingle();
+        int type = reader.ReadInt32();//读取棋子类型
         grid.AddUnit(
-            Instantiate(unitPrefab), grid.GetCell(coordinates), orientation
+            Instantiate(unitPrefab[type]), grid.GetCell(coordinates), orientation
         );
     }
 
@@ -87,7 +93,7 @@ public class HexUnit : MonoBehaviour
         return !cell.IsUnderwater && !cell.Unit;
     }
 
-    public void Travel(List<HexCell> path)
+    public void Travel(List<HexCell> path)//欢乐神游
     {
         Location = path[path.Count - 1];
         pathToTravel = path;
@@ -95,7 +101,7 @@ public class HexUnit : MonoBehaviour
         StartCoroutine(TravelPath());
     }
 
-    IEnumerator TravelPath()
+    IEnumerator TravelPath()//欢乐神游，一格格走
     {
         Vector3 a, b, c = pathToTravel[0].Position;
         transform.localPosition = c;
@@ -134,7 +140,7 @@ public class HexUnit : MonoBehaviour
         pathToTravel = null;
     }
 
-    IEnumerator LookAt(Vector3 point)
+    IEnumerator LookAt(Vector3 point)//父亲，快看！诸葛亮！
     {
         point.y = transform.localPosition.y;
         Quaternion fromRotation = transform.localRotation;

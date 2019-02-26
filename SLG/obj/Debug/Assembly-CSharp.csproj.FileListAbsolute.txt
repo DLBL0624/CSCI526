@@ -284,3 +284,7 @@ D:\UnityProject\Hoster\SLG\Temp\bin\Debug\UnityEngine.SpatialTracking.xml
 D:\UnityProject\Hoster\SLG\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 D:\UnityProject\Hoster\SLG\obj\Debug\Assembly-CSharp.dll
 D:\UnityProject\Hoster\SLG\obj\Debug\Assembly-CSharp.pdb
+D:\UnityProject\Hoster\526SLG\SLG\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+D:\UnityProject\Hoster\526SLG\SLG\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
+D:\UnityProject\Hoster\526SLG\SLG\obj\Debug\Assembly-CSharp.dll
+D:\UnityProject\Hoster\526SLG\SLG\obj\Debug\Assembly-CSharp.pdb

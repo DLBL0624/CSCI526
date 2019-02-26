@@ -37,7 +37,7 @@ public class HexGrid : MonoBehaviour
 
     List<HexUnit> units = new List<HexUnit>();
 
-    public HexUnit unitPrefab;
+    public HexUnit[] unitPrefab;
 
     private void Awake()
     {

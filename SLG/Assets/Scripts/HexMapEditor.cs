@@ -36,6 +36,8 @@ public class HexMapEditor : MonoBehaviour
 
     bool editMode;
 
+    int unitType;
+
     enum OptionalToggle
     {
         Ignore, Yes, No
@@ -269,6 +271,11 @@ public class HexMapEditor : MonoBehaviour
         activeTerrainTypeIndex = index;
     }
 
+    public void SetUnitTypeIndex(int index)
+    {
+        unitType = index;
+    }
+
     public void SetBrushSize(float size)
     {
         brushSize = (int)size;
@@ -317,7 +324,7 @@ public class HexMapEditor : MonoBehaviour
         if (cell && !cell.Unit)
         {
             hexGrid.AddUnit(
-                Instantiate(HexUnit.unitPrefab), cell, Random.Range(0f, 360f)
+                Instantiate(HexUnit.unitPrefab[unitType]), cell, Random.Range(0f, 360f)
             );
         }
     }
