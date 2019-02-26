@@ -10,11 +10,11 @@ public class HexMapEditor : MonoBehaviour
 
     public HexGrid hexGrid;
 
-    bool applyElevation = true;
+    bool applyElevation;
 
     int activeElevation;
 
-    bool applyWaterLevel = true;
+    bool applyWaterLevel;
 
     int activeWaterLevel;
 
