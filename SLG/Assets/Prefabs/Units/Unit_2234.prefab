@@ -460,9 +460,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actorName: Arthas
   ap: 24
-  hp: 150
-  hpMax: 150
-  att: 40
+  hp: 250
+  hpMax: 250
+  att: 60
   def: 0
   bs: 0
   team: 0

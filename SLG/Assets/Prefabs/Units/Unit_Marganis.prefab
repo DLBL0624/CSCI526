@@ -60,8 +60,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actorName: Malganis
   ap: 24
-  hp: 200
-  hpMax: 200
+  hp: 300
+  hpMax: 300
   att: 30
   def: 0
   bs: 0

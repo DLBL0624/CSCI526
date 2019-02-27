@@ -154,7 +154,7 @@ MonoBehaviour:
   ap: 24
   hp: 80
   hpMax: 80
-  att: 30
+  att: 35
   def: 0
   bs: 0
   team: 1

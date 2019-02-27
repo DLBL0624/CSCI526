@@ -276,6 +276,10 @@ public class HexGrid : MonoBehaviour
                 {
                     continue;
                 }
+                if(neighbor.SpecialIndex>0)
+                {
+                    continue;
+                }
                 HexEdgeType edgeType = current.GetEdgeType(neighbor);
                 if(edgeType == HexEdgeType.Cliff)
                 {
