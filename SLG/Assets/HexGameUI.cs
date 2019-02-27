@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class HexGameUI : MonoBehaviour
 {
@@ -15,9 +17,17 @@ public class HexGameUI : MonoBehaviour
 
     HexUnit selectedUnit;
 
-    public GameObject SelectedMark_pfb;
+    bool isMalganisDead = false;
 
-    private GameObject SelectedMark;
+    bool isArthasDead = false;
+
+    //HexMapCamera hexMapCamera;
+
+    //public GameObject SelectedMark_pfb;
+
+    //private GameObject SelectedMark;
+
+    public CharacterStatus statusWindow;
 
     bool showAttackRange = false;
 
@@ -46,8 +56,10 @@ public class HexGameUI : MonoBehaviour
         if (currentCell)
         {
             selectedUnit = currentCell.Unit;
+            if(selectedUnit)statusWindow.showUnitStatus(selectedUnit);
         }
     }
+
     void DoTargetSelection()
     {
         UpdateCurrentCell();
@@ -56,6 +68,66 @@ public class HexGameUI : MonoBehaviour
             targetUnit = currentCell.Unit; 
         }
         
+    }
+
+    public void AIDoSelection(HexUnit enemyUnit, HexUnit friendUnit, int speed)
+    {
+        selectedUnit = enemyUnit;
+        checkPos(friendUnit);
+        targetUnit = friendUnit;
+        if (currentCell && selectedUnit.isValidDestination(currentCell))
+        {
+            grid.FindPath(selectedUnit.Location, currentCell, speed, true);
+        }
+        else
+        {
+            grid.ClearPath();
+        }
+
+        if(!checkNeighbor(selectedUnit.Location, friendUnit.Location))DoMove();//移动
+        if(targetUnit) ShowAttackCell(true);
+        DoAttack();//攻击
+    }
+
+    public bool checkNeighbor(HexCell c1, HexCell c2)
+    {
+        for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++)
+        {
+            HexCell neighbor = c1.GetNeighbor(d);
+            if(neighbor == c2)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void checkPos(HexUnit friendUnit)
+    {
+        for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++)
+        {
+            Debug.Log("Checking " + "friendUnit " + friendUnit.Location.coordinates);
+            HexCell neighbor = friendUnit.Location.GetNeighbor(d);
+            HexEdgeType edgeType = friendUnit.Location.GetEdgeType(neighbor);
+            Debug.Log(edgeType);
+            if (neighbor == null)
+            {
+                continue;
+            }
+            if (neighbor.IsUnderwater || neighbor.Unit)
+            {
+                continue;
+            }
+            if (edgeType == HexEdgeType.Cliff)
+            {
+                continue;
+            }
+            if (friendUnit.Location.Walled != neighbor.Walled)
+            {
+                continue;
+            }
+            currentCell = neighbor;//找能到的cell
+        }
     }
 
     void Update()
@@ -73,25 +145,30 @@ public class HexGameUI : MonoBehaviour
                     DoTargetSelection();
                 }
             }
-            else if (selectedUnit)//已选中目标
+            else if (selectedUnit&&selectedUnit.UnitAttribute.team==0)//已选中目标
             {
                 if (Input.GetMouseButtonDown(1))
                 {
                     if(showAttackRange == false)
                     {
-                        DoMove();//走位
+                        if(selectedUnit.UnitAttribute.bs != behaviorStatus.moved)
+                        {
+                            DoMove();//走位
+                        }
                     }
                     else
                     {
-                        DoAttack();
+                        if(selectedUnit.UnitAttribute.bs != behaviorStatus.rest)
+                        {
+                            DoAttack();
+                        }
                     }
-                    
                 }
                 else
                 {
-                    if(showAttackRange == false)
+                    if(showAttackRange == false&&selectedUnit.UnitAttribute.bs == behaviorStatus.wakeup)
                     {
-                        DoPathfinding();//找路径
+                        DoPathfinding(selectedUnit.UnitAttribute.ap);//找路径
                     }
                     else
                     {
@@ -100,16 +177,26 @@ public class HexGameUI : MonoBehaviour
                 }
             }
         }
+        if(isMalganisDead)
+        {
+            //victory
+            SceneManager.LoadScene("Victory");
+        }
+        if(isArthasDead)
+        {
+            //fail
+            SceneManager.LoadScene("Failure");
+        }
     }
 
-    void DoPathfinding()
+    void DoPathfinding(int speed)
     {
         if (UpdateCurrentCell())
         {
             if (currentCell && selectedUnit.isValidDestination(currentCell))
             {
-                grid.FindPath(selectedUnit.Location, currentCell, 24);
-        }
+                grid.FindPath(selectedUnit.Location, currentCell, speed);
+            }
             else
             {
                 grid.ClearPath();
@@ -123,12 +210,13 @@ public class HexGameUI : MonoBehaviour
         {
             selectedUnit.Travel(grid.GetPath());
             grid.ClearPath();
+            selectedUnit.UnitAttribute.bs = behaviorStatus.moved;
         }
     }
 
     public void OnAttack()
     {
-        if(selectedUnit)
+        if(selectedUnit&&selectedUnit.UnitAttribute.team==0&&selectedUnit.UnitAttribute.bs!=behaviorStatus.rest)
         {
             if(showAttackRange==false)
             {
@@ -150,10 +238,30 @@ public class HexGameUI : MonoBehaviour
         {
             ShowAttackCell(false);
             selectedUnit.Fight(targetUnit);
+            checkDie(selectedUnit);
+            checkDie(targetUnit);
             showAttackRange = false;
-            Debug.Log("showAttackRange" + showAttackRange);
-            Debug.Log(rangeCells.Count);
+            if(selectedUnit)statusWindow.showUnitStatus(selectedUnit);
             targetUnit = null;
+            
+            selectedUnit.UnitAttribute.bs = behaviorStatus.rest;
+        }
+    }
+
+    void checkDie(HexUnit hu)
+    {
+        if (hu.UnitAttribute.hp <= 0)
+        {
+            if (hu.UnitAttribute.actorName == "Arthas")
+            {
+                isArthasDead = true;
+            }
+            if (hu.UnitAttribute.actorName == "Malganis")
+            {
+                isMalganisDead = true;
+            }
+            grid.unitManager.removeUnit(hu);
+            hu.Die();
         }
     }
 
@@ -182,19 +290,5 @@ public class HexGameUI : MonoBehaviour
         }
         
     }
-
-    //public void RemoveSelectedMark()
-    //{
-    //    for (int i = 0; i < friends.Length; i++)
-    //    {
-    //        friends[i].selected = false;
-    //        if (SelectedMark) Destroy(SelectedMark);
-    //    }
-    //}
-
-    //public void generateSelectedMark()
-    //{
-    //    SelectedMark = Instantiate(SelectedMark_pfb, selectedUnit.transform.position + new Vector3(0, 10, 0), selectedUnit.transform.rotation);
-    //}
 
 }

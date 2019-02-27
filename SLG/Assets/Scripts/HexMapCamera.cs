@@ -39,6 +39,11 @@ public class HexMapCamera : MonoBehaviour
         stick = swivel.GetChild(0);
     }
 
+    public void moveFollowChess()
+    {
+
+    }
+
     private void Update()
     {
         float zoomDelta = Input.GetAxis("Mouse ScrollWheel");

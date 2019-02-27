@@ -17,7 +17,13 @@ public class HexUnit : MonoBehaviour
 
     UnitAttribute unitAttribute;
 
-
+    public UnitAttribute UnitAttribute
+    {
+        get
+        {
+            return unitAttribute;
+        }
+    }
 
     public HexCell Location//cell
     {
@@ -77,14 +83,6 @@ public class HexUnit : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void checkDie()
-    {
-        if(unitAttribute.hp<=0)
-        {
-            Die();
-        }
-    }
-
     public void Save(BinaryWriter writer)
     {
         location.coordinates.Save(writer);
@@ -114,6 +112,7 @@ public class HexUnit : MonoBehaviour
         pathToTravel = path;
         StopAllCoroutines();
         StartCoroutine(TravelPath());
+
     }
 
     IEnumerator TravelPath()//欢乐神游，一格格走
@@ -179,14 +178,10 @@ public class HexUnit : MonoBehaviour
         orientation = transform.localRotation.eulerAngles.y;
     }
 
-    public void Fight(HexUnit target)//欢乐神游
+    public void Fight(HexUnit target)//欢乐战斗
     {
         this.unitAttribute.hp -= target.unitAttribute.att;
         target.unitAttribute.hp -= this.unitAttribute.att;
-        //Debug.Log(this.unitAttribute.hp);
-        //Debug.Log(target.unitAttribute.hp);
-        target.checkDie();
-        this.checkDie();
     }
 
     public bool checkTeam(HexCell target)

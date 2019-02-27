@@ -39,6 +39,8 @@ public class HexGrid : MonoBehaviour
 
     public HexUnit[] unitPrefab;
 
+    public UnitManager unitManager;
+
     private void Awake()
     {
         HexMetrics.noiseSource = noiseSource;
@@ -60,6 +62,7 @@ public class HexGrid : MonoBehaviour
 
         ClearPath();
         ClearUnits();
+        unitManager.clearUnits();
         if (chunks != null)
         {
             for (int i = 0; i < chunks.Length; i++)
@@ -218,15 +221,20 @@ public class HexGrid : MonoBehaviour
     }
 
 
-    public void FindPath(HexCell fromCell, HexCell toCell, int speed)// speed = 行动力
+    public void FindPath(HexCell fromCell, HexCell toCell, int speed, bool AI = false)// speed = 行动力
     {
         ClearPath();
         currentPathFrom = fromCell;
         currentPathTo = toCell;
+        //how to get turn?
         currentPathExists = Search(fromCell, toCell, speed);
-        if (currentPathExists)
+        if (currentPathExists&&ShowTurn(speed)==0)
         {
-            ShowPath(speed);
+            if(!AI)ShowPath(speed);
+        }
+        else
+        {
+            currentPathExists = false;
         }
     }
 
@@ -276,7 +284,7 @@ public class HexGrid : MonoBehaviour
                 int moveCost;
                 if(current.HasRoadThroughEdge(d))
                 {
-                    moveCost = 1;
+                    moveCost = 4;
                 }
                 else if (current.Walled != neighbor.Walled)
                 {
@@ -332,6 +340,22 @@ public class HexGrid : MonoBehaviour
         currentPathTo.EnableHighlight(Color.red);
     }
 
+    int ShowTurn(int speed)
+    {
+        int turn = int.MaxValue;
+        if (currentPathExists)
+        {
+            HexCell current = currentPathTo;
+            while (current != currentPathFrom)
+            {
+                turn = (current.Distance - 1) / speed;
+                if (turn > 0) break;
+                current = current.PathFrom;
+            }
+        }
+        return turn;
+    }
+
     public void ClearPath()
     {
         if (currentPathExists)
@@ -376,6 +400,7 @@ public class HexGrid : MonoBehaviour
     {
         ClearPath();
         ClearUnits();
+        unitManager.clearUnits();
         int x = 20, z = 15;
         if(header>=1)
         {
@@ -404,17 +429,20 @@ public class HexGrid : MonoBehaviour
             for (int i = 0; i < unitCount; i++)
             {
                 HexUnit.Load(reader, this);
+
             }
         }
     }
 
     void ClearUnits()
     {
+        unitManager.clearUnits();
         for (int i = 0; i < units.Count; i++)
         {
             units[i].Die();
         }
         units.Clear();
+        
     }
 
     public void AddUnit(HexUnit unit, HexCell location, float orientation)
@@ -423,11 +451,13 @@ public class HexGrid : MonoBehaviour
         unit.transform.SetParent(transform, false);
         unit.Location = location;
         unit.Orientation = orientation;
+        unitManager.loadUnit(unit);
     }
 
     public void RemoveUnit(HexUnit unit)
     {
         units.Remove(unit);
+        unitManager.removeUnit(unit);
         unit.Die();
     }
 
@@ -463,5 +493,13 @@ public class HexGrid : MonoBehaviour
         path.Add(currentPathFrom);
         path.Reverse();
         return path;
+    }
+
+    public void resetList()
+    {
+        foreach(HexUnit hx in units)
+        {
+            hx.UnitAttribute.bs = behaviorStatus.wakeup;
+        }
     }
 }

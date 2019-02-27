@@ -8,7 +8,7 @@ public class UnitAttribute : MonoBehaviour
 
     public string actorName;//Actor Name
 
-    public int ap = 10;//ActionPower
+    public int ap = 24;//ActionPower
 
     public int hp = 100;//HealthPower
 
@@ -22,11 +22,4 @@ public class UnitAttribute : MonoBehaviour
 
     public int team;
 
-}
-
-public enum team
-{
-    friend,
-    enemy,
-    neutral
 }
