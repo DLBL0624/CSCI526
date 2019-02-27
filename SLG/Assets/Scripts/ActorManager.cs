@@ -472,12 +472,3 @@ public class ActorManager : MonoBehaviour
     }
 
 }
-
-public enum behaviorStatus
-{
-    wakeup,
-    ready,
-    moved,
-    attackready,
-    rest
-}

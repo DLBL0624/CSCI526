@@ -288,3 +288,7 @@ D:\UnityProject\Hoster\526SLG\SLG\obj\Debug\Assembly-CSharp.csprojAssemblyRefere
 D:\UnityProject\Hoster\526SLG\SLG\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
 D:\UnityProject\Hoster\526SLG\SLG\obj\Debug\Assembly-CSharp.dll
 D:\UnityProject\Hoster\526SLG\SLG\obj\Debug\Assembly-CSharp.pdb
+D:\UnityProject\Hoster\before_midterm\SLG\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+D:\UnityProject\Hoster\before_midterm\SLG\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
+D:\UnityProject\Hoster\before_midterm\SLG\obj\Debug\Assembly-CSharp.dll
+D:\UnityProject\Hoster\before_midterm\SLG\obj\Debug\Assembly-CSharp.pdb

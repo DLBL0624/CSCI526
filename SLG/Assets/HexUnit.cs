@@ -7,7 +7,6 @@ public class HexUnit : MonoBehaviour
 {
     List<HexCell> pathToTravel;
 
-    //public static HexUnit unitPrefab;
     public static HexUnit[] unitPrefab;
 
     const float travelSpeed = 4f;
@@ -15,6 +14,10 @@ public class HexUnit : MonoBehaviour
     const float rotationSpeed = 180f;
 
     public int unitType = 0;
+
+    UnitAttribute unitAttribute;
+
+
 
     public HexCell Location//cell
     {
@@ -42,6 +45,10 @@ public class HexUnit : MonoBehaviour
         {
             transform.localPosition = location.Position;
         }
+        if(GetComponent<UnitAttribute>())
+        {
+            unitAttribute = GetComponent<UnitAttribute>();
+        }
     }
 
     public float Orientation
@@ -68,6 +75,14 @@ public class HexUnit : MonoBehaviour
     {
         location.Unit = null;
         Destroy(gameObject);
+    }
+
+    void checkDie()
+    {
+        if(unitAttribute.hp<=0)
+        {
+            Die();
+        }
     }
 
     public void Save(BinaryWriter writer)
@@ -163,4 +178,21 @@ public class HexUnit : MonoBehaviour
         }
         orientation = transform.localRotation.eulerAngles.y;
     }
+
+    public void Fight(HexUnit target)//欢乐神游
+    {
+        this.unitAttribute.hp -= target.unitAttribute.att;
+        target.unitAttribute.hp -= this.unitAttribute.att;
+        //Debug.Log(this.unitAttribute.hp);
+        //Debug.Log(target.unitAttribute.hp);
+        target.checkDie();
+        this.checkDie();
+    }
+
+    public bool checkTeam(HexCell target)
+    {
+        return this.unitAttribute.team != target.Unit.unitAttribute.team;
+    }
+
+    //EnableHighLight;
 }
