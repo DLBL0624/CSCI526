@@ -7,40 +7,102 @@ public class AIManager : MonoBehaviour
 {
     //roundManager
 
-    public ActorManager actorManager;
+    public UnitManager unitManager;
+    public HexGameUI hexGameUI;
+    public HexGrid hexGrid;
 
     public void AIstart()
     {
-        //Debug.Log("....");
-        foreach (EnemyActor aiChess in actorManager.Enemies)
+        List<HexUnit> enemy_temp = unitManager.enemyUnits;
+        Debug.Log(unitManager.enemyUnits.Count);
+        for (int i = 0; i< enemy_temp.Count;i++ )
         {
-            //Debug.Log("....");
-            List<int> ids = actorManager.FindPlayer(aiChess);
-            AI(aiChess, ids);
-            ids.Clear();
+            HexUnit aiChess = enemy_temp[i];
+            if (!aiChess) continue;
+            //List<int> ids = unitManager.FindPlayer(aiChess);
+            //List<HexUnit> DetectChess = unitManager.friendUnits;
+
+            List<HexUnit> DetectChess = AIFindTouchableChess(aiChess);
+            Debug.Log("DetectChess = " +DetectChess.Count);
+            AI(aiChess, DetectChess);
+            
+            DetectChess.Clear();
         }
         roundManager.switchTurn();
     }
 
-    void AI(EnemyActor aiChess, List<int> ids)
+    void AI(HexUnit aiChess, List<HexUnit> DetectChess)
     {
-        ChoiceActor target = null;
+
+        HexUnit target = null;
         int maxScore = int.MinValue;
-        foreach (int id in ids)
+        for(int i = 0; i< DetectChess.Count; i++)
         {
-            ChoiceActor userChess = actorManager.Friends[id];
-            int score = Mathf.Min(aiChess.att, userChess.hp) - Mathf.Min(userChess.att, aiChess.hp);
+            HexUnit userChess = DetectChess[i];
+            int score = Mathf.Min(aiChess.UnitAttribute.att, userChess.UnitAttribute.hp) - Mathf.Min(userChess.UnitAttribute.att, aiChess.UnitAttribute.hp);
             if (score > maxScore)
             {
                 maxScore = score;
                 target = userChess;
             }
-            Debug.Log(id);
         }
+        
         if (maxScore != int.MinValue)
         {
-            actorManager.moveToTarget(aiChess, target);
-            actorManager.chessAttack(aiChess, target);
+            Debug.Log("....");
+            hexGameUI.AIDoSelection(aiChess, target, aiChess.UnitAttribute.ap);
         }
     }
+
+    List<HexUnit> AIFindTouchableChess(HexUnit aiChess)
+    {
+        List<HexUnit> friend_temp = unitManager.friendUnits;
+
+        List<HexUnit> cellList = new List<HexUnit>();
+        Debug.Log(unitManager.friendUnits.Count);
+        for(int i = 0; i<friend_temp.Count; i++)
+        { 
+            HexUnit friendChess = friend_temp[i];
+            if (!friendChess) continue;
+            HexCell targetChess = friendChess.Location;
+            if(hexGameUI.checkNeighbor(friendChess.Location, aiChess.Location))
+            {
+                cellList.Add(friendChess);
+            }
+            else
+            {
+                for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++)
+                {
+                    HexCell neighbor = friendChess.Location.GetNeighbor(d);
+                    HexEdgeType edgeType = friendChess.Location.GetEdgeType(neighbor);
+                    Debug.Log(edgeType);
+                    if (neighbor == null)
+                    {
+                        continue;
+                    }
+                    if (neighbor.IsUnderwater || (neighbor.Unit && neighbor.Unit != aiChess))
+                    {
+                        continue;
+                    }
+                    if (edgeType == HexEdgeType.Cliff)
+                    {
+                        continue;
+                    }
+                    if (friendChess.Location.Walled != neighbor.Walled)
+                    {
+                        continue;
+                    }
+                    targetChess = neighbor;//找能到的cell
+                }
+                hexGrid.FindPath(aiChess.Location, targetChess, aiChess.UnitAttribute.ap);
+                Debug.Log(hexGrid.HasPath);
+                if (hexGrid.HasPath)
+                {
+                    cellList.Add(friendChess);
+                }
+            }
+        }
+        return cellList;
+    }
+
 }

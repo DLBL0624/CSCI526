@@ -1,0 +1,6 @@
+newmtl duskwoodfurniture01
+illum 1
+map_Kd duskwoodfurniture01.png
+newmtl mm_quilt_opt
+illum 1
+map_Kd mm_quilt_opt.png

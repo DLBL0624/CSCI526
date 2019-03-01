@@ -326,6 +326,7 @@ public class HexMapEditor : MonoBehaviour
             hexGrid.AddUnit(
                 Instantiate(HexUnit.unitPrefab[unitType]), cell, Random.Range(0f, 360f)
             );
+            
         }
     }
 

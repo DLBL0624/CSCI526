@@ -10,7 +10,7 @@ public static class roundManager
     private static int round = 0;
     private static roundTurn turn = roundTurn.PlayerTurn;
 
-    public static ActorManager actorManager;
+    public static UnitManager unitManager;
 
     public static int getRound()
     {
@@ -32,11 +32,11 @@ public static class roundManager
         if ((int)turn == 0)
         {
             turn++;
-            actorManager.aIManager.AIstart();
+            unitManager.aiManager.AIstart();
         }
         else
         {
-            actorManager.resetBehaviorStatus();
+            unitManager.grid.resetList();
             turn--;
             round++;
         }

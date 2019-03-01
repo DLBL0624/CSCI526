@@ -59,7 +59,6 @@ public class ActorManager : MonoBehaviour
 
     private void Awake()
     {
-        roundManager.actorManager = this;
         //load enemies 
         List<EnemyActor> list1 = new List<EnemyActor>();
         foreach (Transform tf in enemySet)
@@ -471,13 +470,4 @@ public class ActorManager : MonoBehaviour
         }
     }
 
-}
-
-public enum behaviorStatus
-{
-    wakeup,
-    ready,
-    moved,
-    attackready,
-    rest
 }
