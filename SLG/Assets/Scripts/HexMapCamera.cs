@@ -64,6 +64,12 @@ public class HexMapCamera : MonoBehaviour
         {
             AdjustPosition(xDelta, zDelta);
         }
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        {
+            Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+            float speed = 0.1F;
+            transform.Translate(-touchDeltaPosition.x * speed, 0, -touchDeltaPosition.y * speed);
+        }
     }
 
     void AdjustRotation(float delta)

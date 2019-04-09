@@ -9,13 +9,13 @@ public class BeginQuitBtn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Button btn = this.GetComponent<Button>();
-        btn.onClick.AddListener(OnClick);
+        //Button btn = this.GetComponent<Button>();
+        //btn.onClick.AddListener(OnClick);
     }
 
     // Update is called once per frame
 
-    void OnClick()
+    public void beginQuit()
     {
         SceneManager.LoadScene("begin");
     }

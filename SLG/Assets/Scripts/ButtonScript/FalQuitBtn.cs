@@ -8,13 +8,13 @@ public class FalQuitBtn : MonoBehaviour
 {
     void Start()
     {
-        Button btn = this.GetComponent<Button>();
-        btn.onClick.AddListener(OnClick);
+        //Button btn = this.GetComponent<Button>();
+        //btn.onClick.AddListener(OnClick);
     }
 
     // Update is called once per frame
 
-    void OnClick()
+    public void falQuit()
     {
         SceneManager.LoadScene("begin");
     }
