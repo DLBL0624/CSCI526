@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.49641287, b: 0.5748173, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -805,6 +805,7 @@ GameObject:
   m_Component:
   - component: {fileID: 73971511}
   - component: {fileID: 73971510}
+  - component: {fileID: 73971512}
   m_Layer: 0
   m_Name: HexGrid
   m_TagString: Map
@@ -854,6 +855,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &73971512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73971509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e83bb5c2cfe402093c5e7115f15149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &76261212
 GameObject:
   m_ObjectHideFlags: 0
@@ -8274,6 +8287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90cb6b4f427b9834ba8746c8c65fa79e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cmr: {fileID: 0}
   stickMinZoom: -250
   stickMaxZoom: -45
   swivelMinZoom: 90
@@ -8282,6 +8296,8 @@ MonoBehaviour:
   moveSpeedMaxZoom: 100
   rotationSpeed: 180
   grid: {fileID: 73971510}
+  zoomOutMin: 1
+  zoomOutMax: 8
 --- !u!1 &836137826
 GameObject:
   m_ObjectHideFlags: 0

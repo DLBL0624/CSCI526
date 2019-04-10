@@ -20,6 +20,8 @@ public class HexMapCamera : MonoBehaviour
 
     float zoom = 1f;
 
+    public Camera cmr;
+
     public float stickMinZoom, stickMaxZoom;    //视角缩放限度
 
     public float swivelMinZoom, swivelMaxZoom;  //视角旋转限度
@@ -37,11 +39,14 @@ public class HexMapCamera : MonoBehaviour
         instance = this;
         swivel = transform.GetChild(0);
         stick = swivel.GetChild(0);
+        cmr = stick.GetChild(0).GetComponent<Camera>();
+
+
     }
 
     public void moveFollowChess()
     {
-
+        
     }
 
     private void Update()
@@ -64,7 +69,23 @@ public class HexMapCamera : MonoBehaviour
         {
             AdjustPosition(xDelta, zDelta);
         }
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+
+        if (Input.touchCount == 2)
+        {
+            Touch touchZero = Input.GetTouch(0);
+            Touch touchOne = Input.GetTouch(1);
+
+            Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
+            Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
+
+            float prevMagnitude = (touchZeroPrevPos - touchOnePrevPos).magnitude;
+            float currentMagnitude = (touchZero.position - touchOne.position).magnitude;
+
+            float difference = currentMagnitude - prevMagnitude;
+
+            AdjustZoom(difference * 0.01f);
+        }
+        else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
             Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
             float speed = 0.1F;
