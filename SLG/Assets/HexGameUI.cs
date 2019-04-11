@@ -168,7 +168,7 @@ public class HexGameUI : MonoBehaviour
                 {
                     if(showAttackRange == false&&selectedUnit.UnitAttribute.bs == behaviorStatus.wakeup)
                     {
-                        DoPathfinding(selectedUnit.UnitAttribute.ap);//找路径
+                        DoPathfinding(selectedUnit.UnitAttribute.Ap);//找路径
                     }
                     else
                     {
@@ -214,6 +214,7 @@ public class HexGameUI : MonoBehaviour
         }
     }
 
+    //选择攻击目标
     public void OnAttack()
     {
         if(selectedUnit&&selectedUnit.UnitAttribute.team==0&&selectedUnit.UnitAttribute.bs!=behaviorStatus.rest)
@@ -232,6 +233,26 @@ public class HexGameUI : MonoBehaviour
         
     }
 
+    //选择施法目标
+    public void OnSpell()
+    {
+        //目标选择条件
+        if (selectedUnit && selectedUnit.UnitAttribute.team == 0 && selectedUnit.UnitAttribute.bs != behaviorStatus.rest)
+        {
+            if (showAttackRange == false)
+            {
+                ShowAttackCell(true);
+            }
+            else
+            {
+                ShowAttackCell(false);
+            }
+            //选择攻击目标
+            showAttackRange = !showAttackRange;
+        }
+
+    }
+
     void DoAttack()
     {
         if(targetUnit)
@@ -243,26 +264,49 @@ public class HexGameUI : MonoBehaviour
             showAttackRange = false;
             if(selectedUnit)statusWindow.showUnitStatus(selectedUnit);
             targetUnit = null;
-            
             selectedUnit.UnitAttribute.bs = behaviorStatus.rest;
         }
     }
 
+    void DoSpell()
+    {
+
+    }
+
     void checkDie(HexUnit hu)
     {
+        if(hu != null)
+        {
+            //if hu 不存在
+            return;
+        }
         if (hu.UnitAttribute.hp <= 0)
         {
-            if (hu.UnitAttribute.actorName == "Arthas")
+            if (hu.UnitAttribute.hpMin == 0)
             {
-                isArthasDead = true;
+                //胜利判断条件 --- 后续需要更改
+                //TODO -> change the victory condition
+                // this is just an example for level tutorial
+                if (hu.UnitAttribute.actorName == "Arthas")
+                {
+                    isArthasDead = true;
+                }
+                if (hu.UnitAttribute.actorName == "Malganis")
+                {
+                    isMalganisDead = true;
+                }
+                grid.unitManager.removeUnit(hu);
+                hu.Die();
             }
-            if (hu.UnitAttribute.actorName == "Malganis")
+            //用于检测克罗米被动 (第一次死生命回到1)
+            else if (hu.UnitAttribute.hpMin > 0)
             {
-                isMalganisDead = true;
+                hu.UnitAttribute.hp = hu.UnitAttribute.hpMin;
+                hu.UnitAttribute.hpMin = 0;
             }
-            grid.unitManager.removeUnit(hu);
-            hu.Die();
+            
         }
+        
     }
 
     void ShowAttackCell(bool enable)

@@ -222,6 +222,11 @@ public static class HexMetrics
         near.y += (far.y - near.y) * v + wallYOffset;
         return near;
     }
+
+    public static int FindDistanceBetweenCells(HexCell c1, HexCell c2)
+    {
+        return c2.coordinates.DistanceTo(c1.coordinates);
+    }
 }
 
 

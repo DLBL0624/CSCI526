@@ -65,4 +65,22 @@ public class UnitManager : MonoBehaviour
         enemyUnits.Clear();
         neutralUnits.Clear();
     }
+
+    //只用于欧几里德距离意义上的最近，不考虑路径的最近，主要用于吉安娜的技能
+    public HexUnit getClosestEnemy(HexUnit unitChess)
+    {
+        HexUnit closestEnemy = null;
+        int minDist = int.MaxValue, dist;
+        for(int i = 0; i<enemyUnits.Count;i++)
+        {
+            dist = grid.FindDistanceBetweenCells(enemyUnits[i].Location, unitChess.Location);
+            if(minDist>dist)
+            {
+                minDist = dist;
+                closestEnemy = enemyUnits[i];
+            }
+        }
+
+        return closestEnemy ? closestEnemy:null;
+    }
 }

@@ -151,13 +151,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actorName: Unit_Enemy
-  ap: 24
   hp: 80
   hpMax: 80
+  ap: 24
   att: 35
   def: 0
+  sp: 0
   bs: 0
   team: 1
+  passSkillNumber: -1
 --- !u!1 &2547668224739229671
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,10 +321,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7007847402442963401}
     m_Modifications:
-    - target: {fileID: 100262, guid: d63a70da354da4c4f8e86b12460b3e09, type: 3}
-      propertyPath: m_Name
-      value: malganis
-      objectReference: {fileID: 0}
     - target: {fileID: 400262, guid: d63a70da354da4c4f8e86b12460b3e09, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -378,6 +376,10 @@ PrefabInstance:
     - target: {fileID: 400262, guid: d63a70da354da4c4f8e86b12460b3e09, type: 3}
       propertyPath: m_LocalScale.z
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 100262, guid: d63a70da354da4c4f8e86b12460b3e09, type: 3}
+      propertyPath: m_Name
+      value: malganis
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d63a70da354da4c4f8e86b12460b3e09, type: 3}

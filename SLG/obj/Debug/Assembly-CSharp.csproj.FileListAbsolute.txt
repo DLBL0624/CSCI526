@@ -936,3 +936,7 @@ D:/UnityProject/Hoster/before_midterm/SLG/Temp/bin/Debug/UnityEditor.UI.xml
 /Users/xueshiyu/CSCI526/SLG/obj/Debug/Assembly-CSharp.csproj.CopyComplete
 /Users/xueshiyu/CSCI526/SLG/obj/Debug/Assembly-CSharp.dll
 /Users/xueshiyu/CSCI526/SLG/obj/Debug/Assembly-CSharp.pdb
+C:\Users\xjn06\Desktop\CSCI526-mobile-Buff\CSCI526-mobile\SLG\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\xjn06\Desktop\CSCI526-mobile-Buff\CSCI526-mobile\SLG\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
+C:\Users\xjn06\Desktop\CSCI526-mobile-Buff\CSCI526-mobile\SLG\obj\Debug\Assembly-CSharp.dll
+C:\Users\xjn06\Desktop\CSCI526-mobile-Buff\CSCI526-mobile\SLG\obj\Debug\Assembly-CSharp.pdb

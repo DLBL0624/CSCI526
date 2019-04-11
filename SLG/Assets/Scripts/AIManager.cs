@@ -39,7 +39,8 @@ public class AIManager : MonoBehaviour
         for(int i = 0; i< DetectChess.Count; i++)
         {
             HexUnit userChess = DetectChess[i];
-            int score = Mathf.Min(aiChess.UnitAttribute.att, userChess.UnitAttribute.hp) - Mathf.Min(userChess.UnitAttribute.att, aiChess.UnitAttribute.hp);
+            //计算分数加权的方式，暂不考虑sp过三的事
+            int score = Mathf.Min(aiChess.UnitAttribute.Att - userChess.UnitAttribute.Def, userChess.UnitAttribute.hp) - Mathf.Min(userChess.UnitAttribute.Att - aiChess.UnitAttribute.Def, aiChess.UnitAttribute.hp);
             if (score > maxScore)
             {
                 maxScore = score;
@@ -50,7 +51,7 @@ public class AIManager : MonoBehaviour
         if (maxScore != int.MinValue)
         {
             Debug.Log("....");
-            hexGameUI.AIDoSelection(aiChess, target, aiChess.UnitAttribute.ap);
+            hexGameUI.AIDoSelection(aiChess, target, aiChess.UnitAttribute.Ap);
         }
     }
 
@@ -94,7 +95,7 @@ public class AIManager : MonoBehaviour
                     }
                     targetChess = neighbor;//找能到的cell
                 }
-                hexGrid.FindPath(aiChess.Location, targetChess, aiChess.UnitAttribute.ap);
+                hexGrid.FindPath(aiChess.Location, targetChess, aiChess.UnitAttribute.Ap);
                 Debug.Log(hexGrid.HasPath);
                 if (hexGrid.HasPath)
                 {

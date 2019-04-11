@@ -59,13 +59,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actorName: Malganis
-  ap: 24
   hp: 300
   hpMax: 300
+  ap: 24
   att: 30
   def: 0
+  sp: 0
   bs: 0
   team: 1
+  passSkillNumber: -1
 --- !u!1001 &3591111030410282287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -73,14 +75,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7423639572946587207}
     m_Modifications:
-    - target: {fileID: 100002, guid: 553479bc3a96fe246868a052090e2e31, type: 3}
-      propertyPath: m_Name
-      value: malganis
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 553479bc3a96fe246868a052090e2e31, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 553479bc3a96fe246868a052090e2e31, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -136,6 +130,14 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 553479bc3a96fe246868a052090e2e31, type: 3}
       propertyPath: m_LocalScale.z
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 553479bc3a96fe246868a052090e2e31, type: 3}
+      propertyPath: m_Name
+      value: malganis
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 553479bc3a96fe246868a052090e2e31, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 553479bc3a96fe246868a052090e2e31, type: 3}

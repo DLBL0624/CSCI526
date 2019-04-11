@@ -178,10 +178,51 @@ public class HexUnit : MonoBehaviour
         orientation = transform.localRotation.eulerAngles.y;
     }
 
+    void LookAtTarget(Vector3 point)//父亲，快看！诸葛亮！
+    {
+        point.y = transform.localPosition.y;
+        Quaternion fromRotation = transform.localRotation;
+        Quaternion toRotation =
+            Quaternion.LookRotation(point - transform.localPosition);
+
+        float angle = Quaternion.Angle(fromRotation, toRotation);
+        if (angle > 0f)
+        {
+            float speed = rotationSpeed / angle;
+            for (
+                float t = Time.deltaTime * speed;
+                t < 1f;
+                t += Time.deltaTime
+            )
+            {
+                transform.localRotation =
+                    Quaternion.Slerp(fromRotation, toRotation, t);
+            }
+        }
+        orientation = transform.localRotation.eulerAngles.y;
+    }
+
     public void Fight(HexUnit target)//欢乐战斗
     {
-        this.unitAttribute.hp -= target.unitAttribute.att;
-        target.unitAttribute.hp -= this.unitAttribute.att;
+        //看向对手
+        LookAtTarget(target.location.Position);
+        //攻击方必先手
+        target.unitAttribute.hp -= (this.unitAttribute.Att - target.UnitAttribute.Def);
+        //如果对方还活着
+        if(target.unitAttribute.hp>0)
+        {
+            this.unitAttribute.hp -= (target.unitAttribute.Att - this.UnitAttribute.Def);
+            //如果我方比对方速度快3以上 追加攻击
+            if(this.unitAttribute.Sp>=target.unitAttribute.Sp + 3)
+            {
+                target.unitAttribute.hp -= (this.unitAttribute.Att - target.UnitAttribute.Def);
+            }
+            //如果对方比我方速度快3以上 对方追加攻击
+            else if (target.unitAttribute.Sp >= this.unitAttribute.Sp + 3)
+            {
+                this.unitAttribute.hp -= (target.unitAttribute.Att - this.UnitAttribute.Def);
+            }
+        }
     }
 
     public bool checkTeam(HexCell target)

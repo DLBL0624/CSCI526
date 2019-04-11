@@ -17,6 +17,6 @@ public class BeginQuitBtn : MonoBehaviour
 
     public void beginQuit()
     {
-        SceneManager.LoadScene("begin");
+        Application.Quit();
     }
 }

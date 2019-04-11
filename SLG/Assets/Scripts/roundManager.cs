@@ -5,8 +5,6 @@ using UnityEngine;
 public static class roundManager
 {
 
-
-
     private static int round = 0;
     private static roundTurn turn = roundTurn.PlayerTurn;
 

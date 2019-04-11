@@ -504,6 +504,7 @@ public class HexGrid : MonoBehaviour
         foreach(HexUnit hx in units)
         {
             hx.UnitAttribute.bs = behaviorStatus.wakeup;
+            //buff calculate
         }
     }
 }
