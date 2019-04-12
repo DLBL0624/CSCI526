@@ -6,7 +6,7 @@ public class HolyHalo : Buff
 {
     private int buffEffect = 4;
     private bool buffAdded = false;
-    private string description = "与己方单位相邻时，自己和相邻单位的攻击+4";
+    private string description = "与己方单位相邻时，自己和相邻单位的防御+4";
     private int countBuffer = 0;
 
     private string buffName = "HolyHalo";
