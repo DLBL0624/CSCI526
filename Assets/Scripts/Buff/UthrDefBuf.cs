@@ -49,6 +49,8 @@ public class UthrDefBuf : Buff
         if(unit)
         {
             unit.GetComponent<UnitAttribute>().defTemp -= buffEffect;
+            unit = null;
+            uthr = null;
         }
     }
 

@@ -14,7 +14,7 @@ public class AIManager : MonoBehaviour
     public void AIstart()
     {
         List<HexUnit> enemy_temp = unitManager.enemyUnits;
-        Debug.Log(unitManager.enemyUnits.Count);
+        Debug.Log("Number of Enemies = " + unitManager.enemyUnits.Count);
         for (int i = 0; i< enemy_temp.Count;i++ )
         {
             HexUnit aiChess = enemy_temp[i];
@@ -60,7 +60,7 @@ public class AIManager : MonoBehaviour
         List<HexUnit> friend_temp = unitManager.friendUnits;
 
         List<HexUnit> cellList = new List<HexUnit>();
-        Debug.Log(unitManager.friendUnits.Count);
+        Debug.Log("Number of Friends = " + unitManager.friendUnits.Count);
         for(int i = 0; i<friend_temp.Count; i++)
         { 
             HexUnit friendChess = friend_temp[i];

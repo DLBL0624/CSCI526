@@ -72,9 +72,13 @@ public class UnitAttribute : MonoBehaviour
 
     public List<Buff> Buffables = new List<Buff>(); //所有buff
 
-    public int passSkillNumber;//技能编号
+    public int passSkillNumber;//被动技能编号
+
+    public int actiSkillNumber;//主动技能编号
 
     public Buff passSkill;//被动技能
+
+    public Skill activeSkill;//主动技能
 
     public int range = 1;//攻击范围 -> 默认为1，暂不可用
 
@@ -82,8 +86,8 @@ public class UnitAttribute : MonoBehaviour
 
     public void AddBuffable(Buff ibuff)
     {
-        Debug.Log(Buffables.Count);
         Buffables.Add(ibuff);
+        Debug.Log("After Add : RestBuff = " + Buffables.Count);
     }
 
     public void RemoveBuffable(Buff ibuff)
@@ -101,28 +105,29 @@ public class UnitAttribute : MonoBehaviour
             }
             
         }
-        Debug.Log("RestBuff = " + Buffables.Count);
+        Debug.Log("After Remove : RestBuff = " + Buffables.Count);
     }
-
-    //public int checkIndex(Buff ibuff)
-    //{
-    //    return Buffables.IndexOf(ibuff);
-    //}
 
     public bool checkBuffable(Buff ibuff)
     {
         return Buffables.Contains(ibuff);
     }
 
+
+
     public void Update()
     {
         //buff结算
-        for (int i = 0; i < Buffables.Count; i++)
+        for (int i = Buffables.Count-1; i >=0; i--)
         {
             Buffables[i].Apply(this);
 
             if (Buffables[i].FinishTurn)
+            {
+                Buff disabledBuff = Buffables[i];
                 Buffables.Remove(Buffables[i]);
+            }
+                
         }
         //如果buff池已加载成功且当前角色拥有被动技能
         if (passSkill!=null)
@@ -132,7 +137,18 @@ public class UnitAttribute : MonoBehaviour
         }
         else if (passSkill==null)
         {
+            //添加被动技能
             passSkill = BuffPool.getPassiveSkills(this.passSkillNumber);
+        }
+        if (activeSkill != null)
+        {
+            //主动技能结算
+            activeSkill.Apply(this);
+        }
+        else if (activeSkill == null)
+        {
+            //添加主动技能
+            activeSkill = BuffPool.getActiveSkills(this.actiSkillNumber);
         }
     }
 }

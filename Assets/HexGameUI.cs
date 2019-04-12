@@ -31,6 +31,8 @@ public class HexGameUI : MonoBehaviour
 
     bool showAttackRange = false;
 
+    bool showSpellRange = false;
+
     public void SetEditMode(bool toggle)
     {
         enabled = !toggle;
@@ -55,6 +57,18 @@ public class HexGameUI : MonoBehaviour
         UpdateCurrentCell();
         if (currentCell)
         {
+            //若已有unit
+            if(selectedUnit)
+            {
+                //相同unit 双击取消
+                if(selectedUnit==currentCell.Unit)
+                {
+                    selectedUnit = null;
+                    statusWindow.showUnitStatus(null);
+                    
+                    return;
+                }
+            }
             selectedUnit = currentCell.Unit;
             if(selectedUnit)statusWindow.showUnitStatus(selectedUnit);
         }
@@ -129,14 +143,14 @@ public class HexGameUI : MonoBehaviour
             currentCell = neighbor;//找能到的cell
         }
     }
-
+    //用于攻击操作
     void Update()
     {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if(showAttackRange == false)
+                if(showAttackRange == false&&showSpellRange == false)
                 {
                     DoSelection();
                 }
@@ -149,24 +163,56 @@ public class HexGameUI : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(1))
                 {
-                    if(showAttackRange == false)
+                    if(showAttackRange == false && showSpellRange ==false)
                     {
                         if(selectedUnit.UnitAttribute.bs != behaviorStatus.moved)
                         {
                             DoMove();//走位
                         }
                     }
-                    else
+                    else if(showAttackRange == true)
                     {
                         if(selectedUnit.UnitAttribute.bs != behaviorStatus.rest)
                         {
                             DoAttack();
                         }
                     }
+                    else if(showSpellRange == true)
+                    {
+                        if (selectedUnit.UnitAttribute.bs != behaviorStatus.rest)
+                        {
+                            Skill selectedUnitSkill = selectedUnit.UnitAttribute.activeSkill;
+                            if(selectedUnitSkill!=null)
+                            {
+                                if(selectedUnitSkill.TargetItself)
+                                {
+                                    if(selectedUnitSkill.Spellable)
+                                    {
+                                        targetUnit = selectedUnit;
+                                        DoSpell();
+                                    }
+                                }
+                                else
+                                {
+                                    if(selectedUnitSkill.Spellable)
+                                    {
+                                        if (targetUnit)
+                                        {
+                                            if (targetUnit.UnitAttribute.team == selectedUnitSkill.TargetTeam)
+                                            {
+                                                DoSpell();
+                                            }
+                                        }
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
                 }
                 else
                 {
-                    if(showAttackRange == false&&selectedUnit.UnitAttribute.bs == behaviorStatus.wakeup)
+                    if(showAttackRange == false&&showSpellRange == false&&selectedUnit.UnitAttribute.bs == behaviorStatus.wakeup)
                     {
                         DoPathfinding(selectedUnit.UnitAttribute.Ap);//找路径
                     }
@@ -219,7 +265,9 @@ public class HexGameUI : MonoBehaviour
     {
         if(selectedUnit&&selectedUnit.UnitAttribute.team==0&&selectedUnit.UnitAttribute.bs!=behaviorStatus.rest)
         {
-            if(showAttackRange==false)
+            showSpellRange = false;
+            ShowSpellCell(false);
+            if (showAttackRange==false)
             {
                 ShowAttackCell(true);
             }
@@ -227,7 +275,6 @@ public class HexGameUI : MonoBehaviour
             {
                 ShowAttackCell(false);
             }
-            //选择攻击目标
             showAttackRange = !showAttackRange;
         }
         
@@ -236,21 +283,29 @@ public class HexGameUI : MonoBehaviour
     //选择施法目标
     public void OnSpell()
     {
-        //目标选择条件
-        if (selectedUnit && selectedUnit.UnitAttribute.team == 0 && selectedUnit.UnitAttribute.bs != behaviorStatus.rest)
+        if(selectedUnit)
         {
-            if (showAttackRange == false)
+            if (selectedUnit.UnitAttribute.actiSkillNumber != -1)
             {
-                ShowAttackCell(true);
+                Skill activeSkill = selectedUnit.UnitAttribute.activeSkill;
+                //目标选择条件
+                if (selectedUnit.UnitAttribute.team == 0 && selectedUnit.UnitAttribute.bs != behaviorStatus.rest)
+                {
+                    showAttackRange = false;
+                    ShowAttackCell(false);
+                    if (showSpellRange == false)
+                    {
+                        ShowSpellCell(true);
+                    }
+                    else
+                    {
+                        ShowSpellCell(false);
+                    }
+                    showSpellRange = !showSpellRange;
+                }
             }
-            else
-            {
-                ShowAttackCell(false);
-            }
-            //选择攻击目标
-            showAttackRange = !showAttackRange;
         }
-
+        
     }
 
     void DoAttack()
@@ -270,12 +325,19 @@ public class HexGameUI : MonoBehaviour
 
     void DoSpell()
     {
-
+        ShowSpellCell(false);
+        selectedUnit.Spell(targetUnit);
+        checkDie(selectedUnit);
+        checkDie(targetUnit);
+        showSpellRange = false;
+        if (selectedUnit) statusWindow.showUnitStatus(selectedUnit);
+        targetUnit = null;
+        selectedUnit.UnitAttribute.bs = behaviorStatus.rest;
     }
 
     void checkDie(HexUnit hu)
     {
-        if(hu != null)
+        if(hu == null)
         {
             //if hu 不存在
             return;
@@ -335,4 +397,30 @@ public class HexGameUI : MonoBehaviour
         
     }
 
+
+    void ShowSpellCell(bool enable)
+    {
+        //假设距离为一
+        if (enable)
+        {
+            grid.ClearPath();
+            for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++)
+            {
+                HexCell neighbor = selectedUnit.Location.GetNeighbor(d);
+                rangeCells.Add(neighbor);
+                neighbor.EnableHighlight(Color.cyan);
+            }
+        }
+        else
+        {
+            for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++)
+            {
+                HexCell neighbor = selectedUnit.Location.GetNeighbor(d);
+                neighbor.DisableHighlight();
+
+            }
+            rangeCells.Clear();
+        }
+
+    }
 }

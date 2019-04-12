@@ -225,6 +225,12 @@ public class HexUnit : MonoBehaviour
         }
     }
 
+    public void Spell(HexUnit target)//欢乐施法
+    {
+        LookAtTarget(target.location.Position);
+        unitAttribute.activeSkill.Spell(target);
+    }
+
     public bool checkTeam(HexCell target)
     {
         return this.unitAttribute.team != target.Unit.unitAttribute.team;

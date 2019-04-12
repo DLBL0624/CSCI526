@@ -164,7 +164,8 @@ MonoBehaviour:
   spTemp: 0
   bs: 0
   team: 0
-  passSkillNumber: 2
+  passSkillNumber: 0
+  actiSkillNumber: 0
   range: 1
 --- !u!1 &7288856870319514838
 GameObject:
