@@ -459,7 +459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actorName: Arthas
-  hp: 134
+  hp: 250
   hpMin: 0
   hpMax: 250
   ap: 24
@@ -473,7 +473,7 @@ MonoBehaviour:
   bs: 0
   team: 0
   passSkillNumber: 2
-  actiSkillNumber: 0
+  actiSkillNumber: 2
   range: 1
 --- !u!1 &4468317445648127661
 GameObject:

@@ -30,6 +30,8 @@ ModelImporter:
     2100036: mm_wf_blcksmth_floor_01
     2100038: human_rockwallmid
     2100040: nr_hu_interwindow_bluebroken
+    2100042: house03interiorMat
+    2100044: houseexteriorMat
     2300000: house03interior
     2300002: houseexterior
     3300000: house03interior

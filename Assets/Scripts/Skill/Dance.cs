@@ -1,30 +1,31 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SacredRuling : Skill
+public class Dance : Skill
 {
-    private string skillName = "Sacred Ruling";
-    private string description = "（由自己发动攻击时，于战斗前，对特定范围->大范围内的敌人给予（自己的攻击－敌人的防守）的伤害）";
+    private string skillName = "Dance";
+    private string description = "（让已行动的目标恢复行动能力并且攻击+4）";
     private int startTurn = 0;
     private int recentTurn = 0;
-    private int coolDown = 4;
+    private int coolDown = 0;
     private bool spellable = true;
-    private int targetTeam = 1;//目标 -> 敌人
+    private int targetTeam = 0;//目标 -> 友军
     private behaviorStatus targetBehaviour = behaviorStatus.rest;//目标状态
     private UnitAttribute unit;
     private UnitAttribute target;
     private bool targetItself = false;
-    private bool needBehaviour;
+    private bool needBehaviour = true;
+
 
     public void Apply(Component charUnit)
     {
         if (charUnit as UnitAttribute != null)
         {
-            
+
             recentTurn = roundManager.getRound();
-            if(recentTurn - startTurn >= coolDown)
+            Debug.Log("当前Turn：" + recentTurn + "起始Turn" + startTurn);
+            if (recentTurn - startTurn >= coolDown)
             {
                 spellable = true;
             }
@@ -38,37 +39,27 @@ public class SacredRuling : Skill
 
     public void Spell(Component targetUnit)
     {
-        if(spellable)
+        if (spellable)
         {
             startTurn = roundManager.getRound();
 
 
             if (targetUnit as HexUnit != null)
             {
-                //大范围受伤
+                //再来一次
                 this.target = ((HexUnit)targetUnit).UnitAttribute;
-                target.hp -= unit.Att - target.Def;
-                HexCell targetCell = ((HexUnit)targetUnit).Location;
-                for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++)
-                {
-                    HexUnit targetNeightbor = targetCell.GetNeighbor(d).Unit;
-                    if (targetNeightbor && targetNeightbor.UnitAttribute.team == targetTeam)
-                    {
-                        this.target = targetNeightbor.UnitAttribute;
-                        target.hp -= unit.Att - target.Def;
-                        target.hp = target.hp <= 0 ? 1 : target.hp;
-                    }
-
-                }
+                target.bs = behaviorStatus.wakeup;
+                target.AddBuffable(new ChromieDanBuf());
             }
 
             spellable = false;
         }
-        
+
     }
 
     //Skill Description
-    public string SkillName {
+    public string SkillName
+    {
         get
         {
             return this.skillName;
@@ -78,7 +69,8 @@ public class SacredRuling : Skill
 
         }
     }
-    public string Description {
+    public string Description
+    {
         get
         {
             return this.description;
@@ -100,15 +92,19 @@ public class SacredRuling : Skill
         {
         }
     }
-    public int RecentTurn {
-        get {
+    public int RecentTurn
+    {
+        get
+        {
             return this.recentTurn;
         }
-        set {
+        set
+        {
             this.recentTurn = value;
         }
     }
-    public int CoolDown {
+    public int CoolDown
+    {
         get
         {
             return this.coolDown;
@@ -127,12 +123,13 @@ public class SacredRuling : Skill
         }
         set
         {
-            
+
         }
     }
 
     //Valid Condition
-    public int TargetTeam {
+    public int TargetTeam
+    {
         get
         {
             return this.targetTeam;
@@ -142,14 +139,15 @@ public class SacredRuling : Skill
 
         }
     }
-    public behaviorStatus TargetBehaviour {
+    public behaviorStatus TargetBehaviour
+    {
         get
         {
             return this.targetBehaviour;
         }
         set
         {
-            
+
         }
     }
     public bool TargetItself
@@ -163,7 +161,6 @@ public class SacredRuling : Skill
 
         }
     }
-
     public bool NeedBehavior
     {
         get
@@ -175,5 +172,4 @@ public class SacredRuling : Skill
 
         }
     }
-
 }

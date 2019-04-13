@@ -22,4 +22,5 @@ public interface Skill
     int TargetTeam { get; set; }
     behaviorStatus TargetBehaviour { get; set; }
     bool TargetItself { get; set; }
+    bool NeedBehavior { get; set; }
 }

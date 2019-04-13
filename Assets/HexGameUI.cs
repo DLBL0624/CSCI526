@@ -77,7 +77,7 @@ public class HexGameUI : MonoBehaviour
     void DoTargetSelection()
     {
         UpdateCurrentCell();
-        if (currentCell&&currentCell.Unit&&rangeCells.Contains(currentCell)&&selectedUnit.checkTeam(currentCell))
+        if (currentCell && currentCell.Unit && rangeCells.Contains(currentCell))
         {
             targetUnit = currentCell.Unit; 
         }
@@ -172,36 +172,64 @@ public class HexGameUI : MonoBehaviour
                     }
                     else if(showAttackRange == true)
                     {
-                        if(selectedUnit.UnitAttribute.bs != behaviorStatus.rest)
+                        if(selectedUnit.UnitAttribute.bs != behaviorStatus.rest && selectedUnit.checkTeam(targetUnit.Location))
                         {
                             DoAttack();
                         }
                     }
                     else if(showSpellRange == true)
                     {
+                        //当前角色未进行过攻击、施法
                         if (selectedUnit.UnitAttribute.bs != behaviorStatus.rest)
                         {
                             Skill selectedUnitSkill = selectedUnit.UnitAttribute.activeSkill;
+                            //当前角色有主动技能
                             if(selectedUnitSkill!=null)
                             {
+                                //如果当前角色主动技能只能对自己释放
                                 if(selectedUnitSkill.TargetItself)
                                 {
+                                    //当前角色不在冷却中
                                     if(selectedUnitSkill.Spellable)
                                     {
                                         targetUnit = selectedUnit;
                                         DoSpell();
                                     }
                                 }
+                                //如果当前角色主动技能对其他人释放
                                 else
                                 {
-                                    if(selectedUnitSkill.Spellable)
+                                    //当前角色不在冷却中
+                                    
+                                    if (selectedUnitSkill.Spellable)
                                     {
+                                        Debug.Log("//当前角色不在冷却中");
+                                        //已选中目标
                                         if (targetUnit)
                                         {
-                                            if (targetUnit.UnitAttribute.team == selectedUnitSkill.TargetTeam)
+                                            Debug.Log("//有目标");
+                                            if (selectedUnitSkill.NeedBehavior)
                                             {
-                                                DoSpell();
+                                                
+                                                Debug.Log("目标" + targetUnit.UnitAttribute.name + "状态 - >" + targetUnit.UnitAttribute.bs + "所需状态 - >" + selectedUnitSkill.TargetBehaviour);
+                                                if (targetUnit.UnitAttribute.bs == selectedUnitSkill.TargetBehaviour)
+                                                {
+                                                    if (targetUnit.UnitAttribute.team == selectedUnitSkill.TargetTeam)
+                                                    {
+                                                        DoSpell();
+                                                    }
+                                                }
                                             }
+                                            else
+                                            {
+                                                Debug.Log("//不强求");
+                                                if (targetUnit.UnitAttribute.team == selectedUnitSkill.TargetTeam)
+                                                {
+                                                    DoSpell();
+                                                }
+                                            
+                                            }
+                                            
                                         }
                                     }
                                 }

@@ -41,6 +41,10 @@ public static class BuffPool
         {
             case 0://阿尔萨斯 - > 圣裁
                 return new SacredRuling();
+            case 1://希尔瓦娜斯 -> 贯穿
+                return new Hunting();
+            case 2://克罗米 -> 跳舞
+                return new Dance();
             default:
                 return new SacredRuling();
         }

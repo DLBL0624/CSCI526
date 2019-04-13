@@ -38,6 +38,8 @@ ModelImporter:
     2100052: nr_hu_roofpanel
     2100054: mm_westfall_stonetrim
     2100056: mm_duskwood_stonefloor_01
+    2100058: house_extMat
+    2100060: house_intMat
     2300000: house_ext
     2300002: house_int
     3300000: house_ext
