@@ -6,7 +6,7 @@ public class HolyHalo : Buff
 {
     private int buffEffect = 4;
     private bool buffAdded = false;
-    private string description = "与己方单位相邻时，自己和相邻单位的防御+4";
+    private string description = "与己方单位相邻时，自己和相邻单位的攻击+4";
     private int countBuffer = 0;
 
     private string buffName = "HolyHalo";
@@ -49,7 +49,7 @@ public class HolyHalo : Buff
                         if (neighbor.Unit.UnitAttribute.team == ((UnitAttribute)charUnit).team)
                         {
                             //己方单位获得加防御buff
-                            neighbor.Unit.UnitAttribute.RemoveBuffable(new UthrDefBuf(((UnitAttribute)charUnit).gameObject) {BuffName = "UthrDefBuf" });
+                            neighbor.Unit.UnitAttribute.RemoveBuffable(new UthrDefBuf(((UnitAttribute)charUnit).gameObject));
                             
                             neighbor.Unit.UnitAttribute.AddBuffable(new UthrDefBuf(((UnitAttribute)charUnit).gameObject));
                         }

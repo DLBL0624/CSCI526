@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -87,7 +87,7 @@ public class UnitAttribute : MonoBehaviour
     public void AddBuffable(Buff ibuff)
     {
         Buffables.Add(ibuff);
-        Debug.Log("AfterAdd RestBuff = " + Buffables.Count);
+        Debug.Log("After Add : RestBuff = " + Buffables.Count);
     }
 
     public void RemoveBuffable(Buff ibuff)
@@ -105,7 +105,7 @@ public class UnitAttribute : MonoBehaviour
                 buff.UnApply();
                 Debug.Log("RemoveBuff: " + Buffables.Remove(buff));
             }
-            
+
         }
         Debug.Log("After Remove : RestBuff = " + Buffables.Count);
     }
@@ -118,6 +118,7 @@ public class UnitAttribute : MonoBehaviour
     public void Update()
     {
         //buff结算
+
         for (int i = Buffables.Count - 1; i >= 0; i--)
         {
             Buffables[i].Apply(this);
@@ -126,7 +127,6 @@ public class UnitAttribute : MonoBehaviour
             {
                 Buffables.Remove(Buffables[i]);
             }
-
         }
         //如果buff池已加载成功且当前角色拥有被动技能
         if (passSkill!=null)

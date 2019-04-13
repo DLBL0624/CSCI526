@@ -13,13 +13,20 @@ public class CharacterStatus : MonoBehaviour
         Slider hpStatus = transform.GetChild(0).GetComponent<Slider>();
         Text chessName = transform.GetChild(2).GetComponent<Text>();
         Image avatar = transform.GetChild(3).GetChild(0).GetComponent<Image>();
+        if (!selectedUnit)
+        {
+            hpStatus.maxValue = 0;
+            hpStatus.value = 0;
+            chessName.text = "";
+            avatar.sprite = null;
+            return;
+        }
 
         hpStatus.maxValue = selectedUnit.UnitAttribute.hpMax;
         hpStatus.value = selectedUnit.UnitAttribute.hp;
         chessName.text = selectedUnit.UnitAttribute.actorName;
 
         avatar.sprite = characterImage[selectedUnit.unitType];
-
 
     }
 }

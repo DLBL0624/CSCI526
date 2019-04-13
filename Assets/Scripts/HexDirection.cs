@@ -37,6 +37,7 @@ public static class HexDirectionExtensions
         direction += 2;
         return direction <= HexDirection.NW ? direction : (direction - 6);
     }
+
 }
 
 
