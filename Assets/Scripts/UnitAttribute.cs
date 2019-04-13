@@ -94,16 +94,18 @@ public class UnitAttribute : MonoBehaviour
     {
         var result = from r in Buffables
                      group r by (r.GetType() == ibuff.GetType()) into g
-                     where g.Count() > 1
+                     where g.Count() > 0
                      select g;
+
         foreach(var a in result)
         {
-            foreach(Buff buff in a)
+            Debug.Log("EffectBuffs Count = " + a.Count<Buff>());
+            foreach (Buff buff in a)
             {
                 buff.UnApply();
                 Debug.Log("RemoveBuff: " + Buffables.Remove(buff));
             }
-            
+
         }
         Debug.Log("After Remove : RestBuff = " + Buffables.Count);
     }
@@ -112,8 +114,6 @@ public class UnitAttribute : MonoBehaviour
     {
         return Buffables.Contains(ibuff);
     }
-
-
 
     public void Update()
     {
@@ -124,7 +124,6 @@ public class UnitAttribute : MonoBehaviour
 
             if (Buffables[i].FinishTurn)
             {
-                Buff disabledBuff = Buffables[i];
                 Buffables.Remove(Buffables[i]);
             }
                 

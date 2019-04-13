@@ -27,6 +27,8 @@ public static class BuffPool
                 return new FutureGuardian();
             case 2://乌瑟尔
                 return new HolyHalo();
+            case 3://吉安娜
+                return new SealingIce();
             default:
                 return new NoSkills();
         }
