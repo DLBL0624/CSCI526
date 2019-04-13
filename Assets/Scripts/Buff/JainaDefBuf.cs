@@ -8,10 +8,11 @@ public class JainaDefBuf : Buff
     private bool buffAdded = false;
     private string description = "被吉安娜弱化的小兵";
     public GameObject jaina;
+    //public bool cancelDebuf;
     public GameObject unit;
-    public JainaDefBuf(GameObject jainaFrom)
+    public JainaDefBuf(GameObject Jainaf)
     {
-        this.jaina = jainaFrom;
+        this.jaina = Jainaf;
     }
 
     private string buffName = "JainaDefBuf";
@@ -37,14 +38,15 @@ public class JainaDefBuf : Buff
             if (charUnit as UnitAttribute != null)
             {
                 this.unit = ((UnitAttribute)charUnit).gameObject;
-                //自己临时防御力加4
+                //各项数值均下降4
                 ((UnitAttribute)charUnit).defTemp -= buffEffect;
                 ((UnitAttribute)charUnit).apTemp -= buffEffect;
                 ((UnitAttribute)charUnit).attTemp -= buffEffect;
                 ((UnitAttribute)charUnit).spTemp -= buffEffect;
-
+                Debug.Log("Jaina target" + ((UnitAttribute)charUnit).actorName);
             }
 
+            
         }
     }
 
@@ -73,8 +75,12 @@ public class JainaDefBuf : Buff
     {
         get
         {
-            UnApply();
-            return true;
+            if(!unit)
+            {
+                UnApply();
+                return true;
+            }
+            return false;
         }
         set
         {

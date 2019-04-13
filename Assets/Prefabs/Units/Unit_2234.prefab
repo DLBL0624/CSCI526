@@ -459,15 +459,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actorName: Arthas
-  ap: 24
   hp: 134
+  hpMin: 0
   hpMax: 250
+  ap: 24
+  apTemp: 0
   att: 60
+  attTemp: 0
   def: 0
+  defTemp: 0
   sp: 0
+  spTemp: 0
   bs: 0
   team: 0
-  passSkillNumber: 0
+  passSkillNumber: 3
+  range: 1
 --- !u!1 &4468317445648127661
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,6 +679,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8684949807419282927}
     m_Modifications:
+    - target: {fileID: 100000, guid: 7675177c6d8ebf145ac39068b2f1719d, type: 3}
+      propertyPath: m_Name
+      value: arthas
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7675177c6d8ebf145ac39068b2f1719d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -728,10 +738,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 7675177c6d8ebf145ac39068b2f1719d, type: 3}
       propertyPath: m_LocalScale.z
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 7675177c6d8ebf145ac39068b2f1719d, type: 3}
-      propertyPath: m_Name
-      value: arthas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7675177c6d8ebf145ac39068b2f1719d, type: 3}

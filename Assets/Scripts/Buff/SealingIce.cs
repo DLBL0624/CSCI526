@@ -8,8 +8,9 @@ public class SealingIce : Buff
     private int buffEffect = 4;
     private string description = "回合开始时，全地图范围内离自己最近的敌人全数值-4（直到敌人下次行动结束)";
     public HexUnit ClosestEnemy;
-
     private string buffName = "SealingIce";
+
+    public bool NeedBuff = false;
 
     public string BuffName
     {
@@ -37,15 +38,34 @@ public class SealingIce : Buff
 
     public void Apply(Component charUnit)
     {
-        if(charUnit as UnitAttribute != null)
+        HexUnit TempClosestEny;
+        if (charUnit as UnitAttribute != null)
         {
-            ClosestEnemy = roundManager.unitManager.getClosestEnemy(charUnit.gameObject.GetComponent<HexUnit>());
+            TempClosestEny = roundManager.unitManager.getClosestEnemy(charUnit.gameObject.GetComponent<HexUnit>());
+            //假如最近目标更换 -> 把原来目标的buff消掉，然后给新的目标上buff
+            if(TempClosestEny != ClosestEnemy && TempClosestEny != null)
+            {
+                NeedBuff = true;
+            }
+            else
+            {
+                NeedBuff = false;
+            }
+            if (NeedBuff)
+            {
+                if (ClosestEnemy != null)
+                {
+                    ClosestEnemy.UnitAttribute.RemoveBuffable(new JainaDefBuf(((UnitAttribute)charUnit).gameObject));
+                }
+                ClosestEnemy = TempClosestEny;
+                ClosestEnemy.UnitAttribute.AddBuffable(new JainaDefBuf(((UnitAttribute)charUnit).gameObject));
+                NeedBuff = false;
+            }
+            //Debug.Log("closest enemy is" + ClosestEnemy.UnitAttribute.actorName);
         }
-        if (ClosestEnemy != null)
-        {
-            ClosestEnemy.UnitAttribute.RemoveBuffable(new JainaDefBuf(((UnitAttribute)charUnit).gameObject) { BuffName = "JainaDefBuf" });
-            ClosestEnemy.UnitAttribute.AddBuffable(new JainaDefBuf(((UnitAttribute)charUnit).gameObject));
-        }
+        //只 上一次buff，所以 你需要一个bool 值去表示 是否需要重新上buff
+        //意义在于 只上一次buff，然后不能同时减了又加
+        //ClosestEnemy.UnitAttribute.RemoveBuffable(new JainaDefBuf(((UnitAttribute)charUnit).gameObject) { BuffName = "JainaDefBuf" });
     }
 
     public void UnApply()
