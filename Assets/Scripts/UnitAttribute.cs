@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -118,7 +118,8 @@ public class UnitAttribute : MonoBehaviour
     public void Update()
     {
         //buff结算
-        for (int i = Buffables.Count-1; i >=0; i--)
+
+        for (int i = Buffables.Count - 1; i >= 0; i--)
         {
             Buffables[i].Apply(this);
 
@@ -126,7 +127,6 @@ public class UnitAttribute : MonoBehaviour
             {
                 Buffables.Remove(Buffables[i]);
             }
-                
         }
         //如果buff池已加载成功且当前角色拥有被动技能
         if (passSkill!=null)
