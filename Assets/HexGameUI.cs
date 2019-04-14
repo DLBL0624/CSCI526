@@ -25,6 +25,8 @@ public class HexGameUI : MonoBehaviour
 
     public CharacterStatus statusWindow;
 
+    public CharacterStatus targetWindow;
+
     bool showAttackRange = false;
 
     bool showSpellRange = false;
@@ -53,22 +55,11 @@ public class HexGameUI : MonoBehaviour
         UpdateCurrentCell();
         if (currentCell)
         {
-            ////若已有unit
-            //if(selectedUnit)
-            //{
-            //    //相同unit 双击取消
-            //    if(selectedUnit==currentCell.Unit)
-            //    {
-            //        selectedUnit = null;
-            //        statusWindow.showUnitStatus(null);
-                    
-            //        return;
-            //    }
-            //}
             selectedUnit = currentCell.Unit;
             if(selectedUnit)statusWindow.showUnitStatus(selectedUnit);
             else statusWindow.showUnitStatus(null);
         }
+        targetWindow.showUnitStatus(null);
     }
 
     void DoTargetSelection()
@@ -76,7 +67,9 @@ public class HexGameUI : MonoBehaviour
         UpdateCurrentCell();
         if (currentCell && currentCell.Unit && rangeCells.Contains(currentCell))
         {
-            targetUnit = currentCell.Unit; 
+            targetUnit = currentCell.Unit;
+            if (targetUnit) targetWindow.showUnitStatus(targetUnit);
+            else targetWindow.showUnitStatus(null);
         }
         
     }
@@ -103,6 +96,7 @@ public class HexGameUI : MonoBehaviour
         }
         
         DoAttack();//攻击
+        statusWindow.showUnitStatus(null);
     }
 
     public bool checkNeighbor(HexCell c1, HexCell c2)
@@ -352,6 +346,7 @@ public class HexGameUI : MonoBehaviour
             checkDie(targetUnit);
             showAttackRange = false;
             if(selectedUnit)statusWindow.showUnitStatus(selectedUnit);
+            targetWindow.showUnitStatus(null);
             targetUnit = null;
             selectedUnit.UnitAttribute.bs = behaviorStatus.rest;
         }
