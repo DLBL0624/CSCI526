@@ -235,4 +235,30 @@ public class HexMesh : MonoBehaviour
         terrainTypes.Add(types);
         terrainTypes.Add(types);
     }
+
+    public void wallAddUV()
+    {
+        int tmp = vertices.Count;
+        int tmpUV = uvs.Count;
+        for(int i = 0; i< tmp - tmpUV; i++)
+        {
+            switch(i%4)
+            {
+                case 0:
+                    uvs.Add(new Vector2(0, 0));
+                    break;
+                case 1:
+                    uvs.Add(new Vector2(0, 1));
+                    break;
+                case 2:
+                    uvs.Add(new Vector2(1, 1));
+                    break;
+                case 3:
+                    uvs.Add(new Vector2(1, 0));
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }

@@ -620,6 +620,7 @@ public class HexGridChunk : MonoBehaviour
         }
 
         features.AddWall(e1, cell, e2, neighbor, hasRiver, hasRoad);
+        features.walls.wallAddUV();
 
         HexCell nextNeighbor = cell.GetNeighbor(direction.Next());
         if (direction <= HexDirection.E && nextNeighbor != null)//角连接
@@ -732,6 +733,7 @@ public class HexGridChunk : MonoBehaviour
             terrain.AddTriangleTerrainTypes(types);
         }
         features.AddWall(bottom, bottomCell, left, leftCell, right, rightCell);
+        features.walls.wallAddUV();
     }
 
     void TriangulateCornerTerraces(

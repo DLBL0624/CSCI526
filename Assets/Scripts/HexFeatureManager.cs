@@ -289,6 +289,7 @@ public class HexFeatureManager : MonoBehaviour
         v3.y = v4.y = pointTop.y = center.y + HexMetrics.wallHeight;
 
         walls.AddQuadUnperturbed(v1, point, v3, pointTop);
+        
         walls.AddQuadUnperturbed(point, v2, pointTop, v4);
         walls.AddTriangleUnperturbed(pointTop, v3, v4);
     }
