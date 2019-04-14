@@ -207,20 +207,20 @@ public class HexUnit : MonoBehaviour
         //看向对手
         LookAtTarget(target.location.Position);
         //攻击方必先手
-        target.unitAttribute.hp -= (this.unitAttribute.Att - target.UnitAttribute.Def);
+        target.unitAttribute.DoDamage(this.unitAttribute.Att - target.UnitAttribute.Def);
         //如果对方还活着
         if(target.unitAttribute.hp>0)
         {
-            this.unitAttribute.hp -= (target.unitAttribute.Att - this.UnitAttribute.Def);
+            this.unitAttribute.DoDamage(target.unitAttribute.Att - this.UnitAttribute.Def);
             //如果我方比对方速度快3以上 追加攻击
             if(this.unitAttribute.Sp>=target.unitAttribute.Sp + 3)
             {
-                target.unitAttribute.hp -= (this.unitAttribute.Att - target.UnitAttribute.Def);
+                target.unitAttribute.DoDamage(this.unitAttribute.Att - target.UnitAttribute.Def);
             }
             //如果对方比我方速度快3以上 对方追加攻击
             else if (target.unitAttribute.Sp >= this.unitAttribute.Sp + 3)
             {
-                this.unitAttribute.hp -= (target.unitAttribute.Att - this.UnitAttribute.Def);
+                this.unitAttribute.DoDamage(target.unitAttribute.Att - this.UnitAttribute.Def);
             }
         }
     }

@@ -80,7 +80,9 @@ public class UnitAttribute : MonoBehaviour
 
     public Skill activeSkill;//主动技能
 
-    public int range = 1;//攻击范围 -> 默认为1，暂不可用
+    public int minRange = 1;//攻击范围 -> 默认为1，暂不可用
+
+    public int maxRange = 1;//最大攻击范围 -> 默认为1
 
 
 
@@ -149,5 +151,10 @@ public class UnitAttribute : MonoBehaviour
             //添加主动技能
             activeSkill = BuffPool.getActiveSkills(this.actiSkillNumber);
         }
+    }
+
+    public void DoDamage(int damage)
+    {
+        this.hp -= damage;
     }
 }

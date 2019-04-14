@@ -13,6 +13,8 @@ public class HexGameUI : MonoBehaviour
 
     List<HexCell> rangeCells = new List<HexCell>();
 
+    List<HexCell> centerCells = new List<HexCell>();
+
     HexUnit targetUnit;
 
     HexUnit selectedUnit;
@@ -99,7 +101,12 @@ public class HexGameUI : MonoBehaviour
         }
 
         if(!checkNeighbor(selectedUnit.Location, friendUnit.Location))DoMove();//移动
-        if(targetUnit) ShowAttackCell(true);
+        if (targetUnit)
+        {
+            //攻击范围
+            ShowRangeCell(true, 1);
+        }
+        
         DoAttack();//攻击
     }
 
@@ -294,14 +301,14 @@ public class HexGameUI : MonoBehaviour
         if(selectedUnit&&selectedUnit.UnitAttribute.team==0&&selectedUnit.UnitAttribute.bs!=behaviorStatus.rest)
         {
             showSpellRange = false;
-            ShowSpellCell(false);
+            ShowRangeCell(false, 0);//隐藏施法范围
             if (showAttackRange==false)
             {
-                ShowAttackCell(true);
+                ShowRangeCell(true,1);//显示攻击范围
             }
             else
             {
-                ShowAttackCell(false);
+                ShowRangeCell(false, 1);//隐藏攻击范围
             }
             showAttackRange = !showAttackRange;
         }
@@ -320,14 +327,14 @@ public class HexGameUI : MonoBehaviour
                 if (selectedUnit.UnitAttribute.team == 0 && selectedUnit.UnitAttribute.bs != behaviorStatus.rest)
                 {
                     showAttackRange = false;
-                    ShowAttackCell(false);
+                    ShowRangeCell(false,1);//隐藏攻击范围
                     if (showSpellRange == false)
                     {
-                        ShowSpellCell(true);
+                        ShowRangeCell(true,0);//显示施法范围
                     }
                     else
                     {
-                        ShowSpellCell(false);
+                        ShowRangeCell(false,0);//隐藏施法范围
                     }
                     showSpellRange = !showSpellRange;
                 }
@@ -340,7 +347,7 @@ public class HexGameUI : MonoBehaviour
     {
         if(targetUnit)
         {
-            ShowAttackCell(false);
+            ShowRangeCell(false,1);//隐藏攻击范围
             selectedUnit.Fight(targetUnit);
             checkDie(selectedUnit);
             checkDie(targetUnit);
@@ -353,7 +360,7 @@ public class HexGameUI : MonoBehaviour
 
     void DoSpell()
     {
-        ShowSpellCell(false);
+        ShowRangeCell(false,0);//隐藏施法范围
         selectedUnit.Spell(targetUnit);
         checkDie(selectedUnit);
         checkDie(targetUnit);
@@ -399,56 +406,133 @@ public class HexGameUI : MonoBehaviour
         
     }
 
-    void ShowAttackCell(bool enable)
-    {
-        //假设距离为一
-        if(enable)
-        {
-            grid.ClearPath();
-            for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++)
-            {
-                HexCell neighbor = selectedUnit.Location.GetNeighbor(d);
-                rangeCells.Add(neighbor);
-                neighbor.EnableHighlight(Color.yellow);
-            }
-        }
-        else
-        {
-            for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++)
-            {
-                HexCell neighbor = selectedUnit.Location.GetNeighbor(d);
-                neighbor.DisableHighlight();
+    //void ShowAttackCell(bool enable)
+    //{
+    //    //假设距离为一
+    //    if(enable)
+    //    {
+    //        grid.ClearPath();
+    //        for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++)
+    //        {
+    //            HexCell neighbor = selectedUnit.Location.GetNeighbor(d);
+    //            rangeCells.Add(neighbor);
+    //            neighbor.EnableHighlight(Color.yellow);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++)
+    //        {
+    //            HexCell neighbor = selectedUnit.Location.GetNeighbor(d);
+    //            neighbor.DisableHighlight();
                 
-            }
-            rangeCells.Clear();
-        }
+    //        }
+    //        rangeCells.Clear();
+    //    }
         
-    }
+    //}
 
 
-    void ShowSpellCell(bool enable)
+    //void ShowSpellCell(bool enable)
+    //{
+    //    //假设距离为一
+    //    if (enable)
+    //    {
+    //        grid.ClearPath();
+    //        for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++)
+    //        {
+    //            HexCell neighbor = selectedUnit.Location.GetNeighbor(d);
+    //            rangeCells.Add(neighbor);
+    //            neighbor.EnableHighlight(Color.cyan);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++)
+    //        {
+    //            HexCell neighbor = selectedUnit.Location.GetNeighbor(d);
+    //            neighbor.DisableHighlight();
+
+    //        }
+    //        rangeCells.Clear();
+    //    }
+
+    //}
+
+    void ShowRangeCell(bool enable, int model)
     {
-        //假设距离为一
         if (enable)
         {
             grid.ClearPath();
-            for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++)
-            {
-                HexCell neighbor = selectedUnit.Location.GetNeighbor(d);
-                rangeCells.Add(neighbor);
-                neighbor.EnableHighlight(Color.cyan);
-            }
+            //迭代遍历 -> 用于寻找最大maxRange
+            showMaxRangeIterator(selectedUnit.Location, model, selectedUnit.UnitAttribute.maxRange);
+            centerCells.Clear();
+            showMinRangeIterator(selectedUnit.UnitAttribute.minRange);
+            
         }
         else
         {
-            for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++)
+            foreach (HexCell cel in rangeCells)
             {
-                HexCell neighbor = selectedUnit.Location.GetNeighbor(d);
-                neighbor.DisableHighlight();
-
+                cel.DisableHighlight();
             }
             rangeCells.Clear();
         }
+    }
 
+    public void showMaxRangeIterator(HexCell center, int model, int maxRange)
+    {
+        //Debug.Log("MaxRangeIterator -> ");
+        if(centerCells.Contains(center))
+        {
+            return;
+        }
+        centerCells.Add(center);
+        for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++)
+        {
+            
+            HexCell neighbor = center.GetNeighbor(d);
+            //检测格子是否有效？
+            if (neighbor&&HexMetrics.FindDistanceBetweenCells(selectedUnit.Location,neighbor)<=maxRange&&HexMetrics.FindDistanceBetweenCells(selectedUnit.Location, neighbor)!=0)
+            {
+                if(!rangeCells.Contains(neighbor))
+                {
+                    rangeCells.Add(neighbor);
+                }
+            }
+            else
+            {
+                continue;
+            }
+            //上色
+            switch (model)
+            {
+                case 0:
+                    neighbor.EnableHighlight(Color.cyan);
+                    break;
+                case 1:
+                    neighbor.EnableHighlight(Color.yellow);
+                    break;
+                default:
+                    break;
+            }
+            if(HexMetrics.FindDistanceBetweenCells(selectedUnit.Location, neighbor) < maxRange)
+            {
+                showMaxRangeIterator(neighbor, model, maxRange);
+            }
+        }
+    }
+
+    public void showMinRangeIterator(int minRange)
+    {
+        for (int i = rangeCells.Count - 1; i >=0; i--)
+        {
+            HexCell cel = rangeCells[i];
+            if (HexMetrics.FindDistanceBetweenCells(selectedUnit.Location, cel)<minRange)
+            {
+                cel.DisableHighlight();
+                rangeCells.Remove(cel);
+            }
+        }
     }
 }
