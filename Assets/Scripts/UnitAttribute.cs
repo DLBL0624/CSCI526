@@ -80,9 +80,13 @@ public class UnitAttribute : MonoBehaviour
 
     public Skill activeSkill;//主动技能
 
-    public int minRange = 1;//攻击范围 -> 默认为1，暂不可用
+    public int minAttRange = 1;//攻击范围 -> 默认为1，暂不可用
 
-    public int maxRange = 1;//最大攻击范围 -> 默认为1
+    public int maxAttRange = 1;//最大攻击范围 -> 默认为1
+
+    public int minSplRange = 1;
+
+    public int maxSplRange = 1;
 
 
 

@@ -23,12 +23,6 @@ public class HexGameUI : MonoBehaviour
 
     bool isArthasDead = false;
 
-    //HexMapCamera hexMapCamera;
-
-    //public GameObject SelectedMark_pfb;
-
-    //private GameObject SelectedMark;
-
     public CharacterStatus statusWindow;
 
     bool showAttackRange = false;
@@ -59,20 +53,21 @@ public class HexGameUI : MonoBehaviour
         UpdateCurrentCell();
         if (currentCell)
         {
-            //若已有unit
-            if(selectedUnit)
-            {
-                //相同unit 双击取消
-                if(selectedUnit==currentCell.Unit)
-                {
-                    selectedUnit = null;
-                    statusWindow.showUnitStatus(null);
+            ////若已有unit
+            //if(selectedUnit)
+            //{
+            //    //相同unit 双击取消
+            //    if(selectedUnit==currentCell.Unit)
+            //    {
+            //        selectedUnit = null;
+            //        statusWindow.showUnitStatus(null);
                     
-                    return;
-                }
-            }
+            //        return;
+            //    }
+            //}
             selectedUnit = currentCell.Unit;
             if(selectedUnit)statusWindow.showUnitStatus(selectedUnit);
+            else statusWindow.showUnitStatus(null);
         }
     }
 
@@ -150,6 +145,7 @@ public class HexGameUI : MonoBehaviour
             currentCell = neighbor;//找能到的cell
         }
     }
+
     //用于攻击操作
     void Update()
     {
@@ -157,8 +153,10 @@ public class HexGameUI : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if(showAttackRange == false&&showSpellRange == false)
+                //未在施法或攻击状态
+                if(showAttackRange == false && showSpellRange == false)
                 {
+                    //选择目标
                     DoSelection();
                 }
                 else
@@ -179,7 +177,9 @@ public class HexGameUI : MonoBehaviour
                     }
                     else if(showAttackRange == true)
                     {
-                        if(selectedUnit.UnitAttribute.bs != behaviorStatus.rest && selectedUnit.checkTeam(targetUnit.Location))
+                        if(targetUnit
+                            && selectedUnit.UnitAttribute.bs != behaviorStatus.rest 
+                            && selectedUnit.checkTeam(targetUnit.Location))
                         {
                             DoAttack();
                         }
@@ -229,7 +229,6 @@ public class HexGameUI : MonoBehaviour
                                             }
                                             else
                                             {
-                                                Debug.Log("//不强求");
                                                 if (targetUnit.UnitAttribute.team == selectedUnitSkill.TargetTeam)
                                                 {
                                                     DoSpell();
@@ -461,14 +460,24 @@ public class HexGameUI : MonoBehaviour
 
     void ShowRangeCell(bool enable, int model)
     {
+        // model -> 0 => 施法 
+        // model -> 1 => 攻击
         if (enable)
         {
             grid.ClearPath();
             //迭代遍历 -> 用于寻找最大maxRange
-            showMaxRangeIterator(selectedUnit.Location, model, selectedUnit.UnitAttribute.maxRange);
-            centerCells.Clear();
-            showMinRangeIterator(selectedUnit.UnitAttribute.minRange);
-            
+            if (model == 0)
+            {
+                showMaxRangeIterator(selectedUnit.Location, model, selectedUnit.UnitAttribute.maxSplRange);
+                centerCells.Clear();
+                showMinRangeIterator(selectedUnit.UnitAttribute.minSplRange);
+            }
+            else if (model == 1)
+            {
+                showMaxRangeIterator(selectedUnit.Location, model, selectedUnit.UnitAttribute.maxAttRange);
+                centerCells.Clear();
+                showMinRangeIterator(selectedUnit.UnitAttribute.minAttRange);
+            }
         }
         else
         {

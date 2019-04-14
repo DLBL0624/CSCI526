@@ -15,13 +15,14 @@ public class CharacterStatus : MonoBehaviour
         Image avatar = transform.GetChild(3).GetChild(0).GetComponent<Image>();
         if (!selectedUnit)
         {
+            this.gameObject.SetActive(false);
             hpStatus.maxValue = 0;
             hpStatus.value = 0;
             chessName.text = "";
             avatar.sprite = null;
             return;
         }
-
+        this.gameObject.SetActive(true);
         hpStatus.maxValue = selectedUnit.UnitAttribute.hpMax;
         hpStatus.value = selectedUnit.UnitAttribute.hp;
         chessName.text = selectedUnit.UnitAttribute.actorName;

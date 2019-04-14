@@ -474,8 +474,10 @@ MonoBehaviour:
   team: 0
   passSkillNumber: 2
   actiSkillNumber: 2
-  minRange: 2
-  maxRange: 3
+  minAttRange: 1
+  maxAttRange: 2
+  minSplRange: 1
+  maxSplRange: 1
 --- !u!1 &4468317445648127661
 GameObject:
   m_ObjectHideFlags: 0

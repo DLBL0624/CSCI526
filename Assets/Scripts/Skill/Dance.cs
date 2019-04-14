@@ -24,7 +24,6 @@ public class Dance : Skill
         {
 
             recentTurn = roundManager.getRound();
-            Debug.Log("当前Turn：" + recentTurn + "起始Turn" + startTurn);
             if (recentTurn - startTurn >= coolDown)
             {
                 spellable = true;
