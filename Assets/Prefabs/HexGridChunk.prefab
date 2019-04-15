@@ -140,6 +140,33 @@ MonoBehaviour:
   - {fileID: 8205311345517822168, guid: f403d3c675fa98d4cae568a9f5cea6b9, type: 3}
   - {fileID: 61340451706420601, guid: 278bfae62ef1aba498a76497666a7c04, type: 3}
   - {fileID: 4306679315574254688, guid: f38e3cd59df9d9e4596053d510768a62, type: 3}
+  - {fileID: 400000, guid: 295cc1cdb74b3445aa0da49d1bc99504, type: 3}
+  - {fileID: 400000, guid: 53533c860343345f5b76e811f544ef28, type: 3}
+  - {fileID: 400000, guid: e64f43ca1077b483a9503626fdf94e19, type: 3}
+  - {fileID: 400000, guid: 007ae323e5c8645f28433db5d756f3de, type: 3}
+  - {fileID: 400000, guid: 26e1b317c70d84e5397b815f56cddc50, type: 3}
+  - {fileID: 400000, guid: f157a6579e85749188583e3eaeac1807, type: 3}
+  - {fileID: 400000, guid: 1824a59631d0342659245c3929dde351, type: 3}
+  - {fileID: 400000, guid: a3b3d64ac293e4eca8fe6b78269792e3, type: 3}
+  - {fileID: 4306679315574254688, guid: f38e3cd59df9d9e4596053d510768a62, type: 3}
+  - {fileID: 4306679315574254688, guid: f38e3cd59df9d9e4596053d510768a62, type: 3}
+  - {fileID: 4306679315574254688, guid: f38e3cd59df9d9e4596053d510768a62, type: 3}
+  - {fileID: 4306679315574254688, guid: f38e3cd59df9d9e4596053d510768a62, type: 3}
+  - {fileID: 4306679315574254688, guid: f38e3cd59df9d9e4596053d510768a62, type: 3}
+  - {fileID: 4306679315574254688, guid: f38e3cd59df9d9e4596053d510768a62, type: 3}
+  - {fileID: 4306679315574254688, guid: f38e3cd59df9d9e4596053d510768a62, type: 3}
+  - {fileID: 4306679315574254688, guid: f38e3cd59df9d9e4596053d510768a62, type: 3}
+  - {fileID: 4306679315574254688, guid: f38e3cd59df9d9e4596053d510768a62, type: 3}
+  greatWall:
+  - {fileID: 400000, guid: fcb95e5e7b6c1414a975905a25ad8d6c, type: 3}
+  - {fileID: 400000, guid: 8a69f916c96164ae2a1ee9f9cc409752, type: 3}
+  - {fileID: 400000, guid: 19d657074c0c7480fbaa643547a9720c, type: 3}
+  - {fileID: 400000, guid: 704d84c25d7d4403789f89a3aa2549c7, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &3817019293065966996
 GameObject:
   m_ObjectHideFlags: 0

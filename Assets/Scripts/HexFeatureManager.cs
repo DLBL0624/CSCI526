@@ -14,6 +14,8 @@ public class HexFeatureManager : MonoBehaviour
 
     public Transform[] special;
 
+    public Transform[] greatWall;
+
     public void Clear()
     {
         if(container)
@@ -312,6 +314,13 @@ public class HexFeatureManager : MonoBehaviour
         instance.localPosition = HexMetrics.Perturb(position);
         HexHash hash = HexMetrics.SampleHashGrid(position);
         instance.localRotation = Quaternion.Euler(0f, 360f * hash.e, 0f);
+        instance.SetParent(container, false);
+    }
+
+    public void AddSpecialWall (HexCell cell, Vector3 position)
+    {
+        Transform instance = Instantiate(greatWall[cell.GreatWallIndex - 1]);
+        instance.localPosition = HexMetrics.Perturb(position);
         instance.SetParent(container, false);
     }
 }

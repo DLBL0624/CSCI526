@@ -18,9 +18,9 @@ public class HexMapEditor : MonoBehaviour
 
     int activeWaterLevel;
 
-    bool applyUrbanLevel, applyFarmLevel, applyPlantLevel, applySpecialIndex;
+    bool applyUrbanLevel, applyFarmLevel, applyPlantLevel, applySpecialIndex, applyGreatWallIndex;
 
-    int activeUrbanLevel, activeFarmLevel, activePlantLevel, activeSpecialIndex;
+    int activeUrbanLevel, activeFarmLevel, activePlantLevel, activeSpecialIndex, activeGreatWallIndex;
 
     int brushSize;
 
@@ -162,6 +162,10 @@ public class HexMapEditor : MonoBehaviour
             {
                 cell.SpecialIndex = activeSpecialIndex;
             }
+            if (applyGreatWallIndex)
+            {
+                cell.GreatWallIndex = activeGreatWallIndex;
+            }
             if (applyUrbanLevel)
             {
                 cell.UrbanLevel = activeUrbanLevel;
@@ -246,6 +250,11 @@ public class HexMapEditor : MonoBehaviour
         applySpecialIndex = toggle;
     }
 
+    public void SetApplyGreatWallIndex(bool toggle)
+    {
+        applyGreatWallIndex = toggle;
+    }
+
     public void SetUrbanLevel (float level)
     {
         activeUrbanLevel = (int)level;
@@ -264,6 +273,11 @@ public class HexMapEditor : MonoBehaviour
     public void SetSpecialIndex(float index)
     {
         activeSpecialIndex = (int)index;
+    }
+
+    public void SetGreatWallIndex(float index)
+    {
+        activeGreatWallIndex = (int)index;
     }
 
     public void SetTerrainTypeIndex(int index)

@@ -34,6 +34,8 @@ public class HexCell : MonoBehaviour
 
     int specialIndex;
 
+    int greatWallIndex;
+
     public int SpecialIndex
     {
         get
@@ -51,11 +53,36 @@ public class HexCell : MonoBehaviour
         }
     }
 
+    public int GreatWallIndex
+    {
+        get
+        {
+            return greatWallIndex;
+        }
+        set
+        {
+            if (greatWallIndex != value && !HasRiver)
+            {
+                greatWallIndex = value;
+                RemoveRoads();
+                RefreshSelfOnly();
+            }
+        }
+    }
+
     public bool IsSpecial
     {
         get
         {
             return specialIndex > 0;
+        }
+    }
+
+    public bool IsGreatWall
+    {
+        get
+        {
+            return greatWallIndex > 0;
         }
     }
 
@@ -254,11 +281,13 @@ public class HexCell : MonoBehaviour
         hasOutgoingRiver = true;
         outgoingRiver = direction;
         specialIndex = 0;
+        greatWallIndex = 0;
 
         neighbor.RemoverIncomingRiver();
         neighbor.hasIncomingRiver = true;
         neighbor.incomingRiver = direction.Opposite();
         neighbor.specialIndex = 0;
+        neighbor.greatWallIndex = 0;
 
         SetRoad((int)direction, false);
     }
@@ -538,6 +567,7 @@ public class HexCell : MonoBehaviour
         writer.Write((byte)farmLevel);
         writer.Write((byte)plantLevel);
         writer.Write((byte)specialIndex);
+        writer.Write((byte)greatWallIndex);
         writer.Write(walled);
 
 
@@ -567,6 +597,7 @@ public class HexCell : MonoBehaviour
             }
         }
         writer.Write((byte)roadFlags);
+
     }
 
     public void Load (BinaryReader reader)
@@ -579,7 +610,9 @@ public class HexCell : MonoBehaviour
         farmLevel = reader.ReadByte();
         plantLevel = reader.ReadByte();
         specialIndex = reader.ReadByte();
+        greatWallIndex = reader.ReadByte();
         walled = reader.ReadBoolean();
+
 
         byte riverData = reader.ReadByte();
         if(riverData >= 128)
@@ -608,6 +641,7 @@ public class HexCell : MonoBehaviour
         {
             roads[i] = (roadFlags & (1 << i)) != 0;
         }
+
     }
 
     public void DisableHighlight()
