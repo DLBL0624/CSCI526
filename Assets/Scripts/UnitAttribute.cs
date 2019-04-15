@@ -10,11 +10,11 @@ public class UnitAttribute : MonoBehaviour
     public string actorName;//Actor Name
 
 
-    public int hp = 100;//HealthPower
+    public float hp = 100;//HealthPower
 
-    public int hpMin = 0;//用于检测不死效果 -> if 1
+    public float hpMin = 0;//用于检测不死效果 -> if 1
 
-    public int hpMax = 100;//HealthPowerMax
+    public float hpMax = 100;//HealthPowerMax
 
 
     public int ap = 24;//ActionPower
@@ -64,6 +64,8 @@ public class UnitAttribute : MonoBehaviour
             return sp + spTemp;
         }
     }
+
+    public float skillDamageDepth = 1.0f;
 
 
     public behaviorStatus bs;//棋子状态
@@ -160,5 +162,10 @@ public class UnitAttribute : MonoBehaviour
     public void DoDamage(int damage)
     {
         this.hp -= damage;
+    }
+
+    public void SkillDoDamage(int damage, float skillIndex)
+    {
+        this.hp -= damage * skillIndex;
     }
 }

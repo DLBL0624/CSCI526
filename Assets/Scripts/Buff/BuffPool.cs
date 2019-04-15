@@ -47,6 +47,12 @@ public static class BuffPool
                 return new Hunting();
             case 2://克罗米 -> 跳舞
                 return new Dance();
+            case 3://吉安娜 -> 冰华
+                return new Glimmer();
+            case 4://乌瑟尔 -> 圣光的祝福
+                return new BlessingofHolyLight();
+            case 5://穆拉丁 -> 血仇
+                return new BloodFeud();
             default:
                 return new SacredRuling();
         }
