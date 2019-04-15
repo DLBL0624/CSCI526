@@ -29,6 +29,8 @@ public static class BuffPool
                 return new HolyHalo();
             case 3://吉安娜
                 return new SealingIce();
+            case 99://马儿甘尼斯
+                return new Burning();
             default:
                 return new NoSkills();
         }
@@ -38,7 +40,7 @@ public static class BuffPool
 
     public static Skill getActiveSkills(int index)
     {
-        //被动池用于分发被动技能
+        //被动池用于分发主动技能
         switch (index)
         {
             case 0://阿尔萨斯 - > 圣裁

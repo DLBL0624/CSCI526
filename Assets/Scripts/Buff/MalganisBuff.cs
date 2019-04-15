@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChromieDanBuf : Buff
+public class MalganisBuff : Buff
 {
-    private int buffEffect = 4;
+    private int buffEffect = -20;
     private bool buffAdded = false;
-    private string description = "看到克罗米跳舞，你兴奋了许多";
+    private string description = "看到马儿甘尼斯跳舞，你兴奋了许多";
     private int startTurn = 0;
     private int recentTurn;
     private UnitAttribute unit;
@@ -37,6 +37,8 @@ public class ChromieDanBuf : Buff
                 //自己临时攻击力加4
                 this.unit = (UnitAttribute)charUnit;
                 unit.attTemp += buffEffect;
+                unit.defTemp += buffEffect;
+                unit.spTemp += buffEffect;
             }
 
         }
@@ -46,6 +48,8 @@ public class ChromieDanBuf : Buff
     public void UnApply()
     {
         unit.attTemp -= buffEffect;
+        unit.defTemp -= buffEffect;
+        unit.spTemp -= buffEffect;
         unit = null;
     }
 
@@ -53,7 +57,7 @@ public class ChromieDanBuf : Buff
     {
         get
         {
-            
+
             return this.description;
         }
         set
@@ -69,7 +73,7 @@ public class ChromieDanBuf : Buff
                 UnApply();
                 return true;
             }
-                
+
             return false;
         }
         set
@@ -91,5 +95,4 @@ public class ChromieDanBuf : Buff
 
         }
     }
-
 }

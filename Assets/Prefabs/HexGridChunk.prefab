@@ -449,7 +449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useCollider: 0
   useColors: 0
-  useUVCoordinates: 0
+  useUVCoordinates: 1
   useUV2Coordinates: 0
   useTerrainTypes: 0
 --- !u!1 &7211254944721904465

@@ -280,6 +280,10 @@ public class HexGrid : MonoBehaviour
                 {
                     continue;
                 }
+                if(neighbor.GreatWallIndex>0)
+                {
+                    continue;
+                }
                 HexEdgeType edgeType = current.GetEdgeType(neighbor);
                 if(edgeType == HexEdgeType.Cliff)
                 {
