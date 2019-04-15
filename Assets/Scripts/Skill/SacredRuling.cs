@@ -41,13 +41,11 @@ public class SacredRuling : Skill
         if(spellable)
         {
             startTurn = roundManager.getRound();
-
-
             if (targetUnit as HexUnit != null)
             {
                 //大范围受伤
                 this.target = ((HexUnit)targetUnit).UnitAttribute;
-                target.hp -= unit.Att - target.Def;
+                target.SkillDoDamage(unit.Att - target.Def, unit.skillDamageDepth);
                 HexCell targetCell = ((HexUnit)targetUnit).Location;
                 for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++)
                 {
@@ -55,13 +53,12 @@ public class SacredRuling : Skill
                     if (targetNeightbor && targetNeightbor.UnitAttribute.team == targetTeam)
                     {
                         this.target = targetNeightbor.UnitAttribute;
-                        target.hp -= unit.Att - target.Def;
+                        target.SkillDoDamage(unit.Att - target.Def, unit.skillDamageDepth);
                         target.hp = target.hp <= 0 ? 1 : target.hp;
                     }
 
                 }
             }
-
             spellable = false;
         }
         

@@ -48,7 +48,7 @@ public class Hunting : Skill
             {
                 //大范围受伤
                 this.target = ((HexUnit)targetUnit).UnitAttribute;
-                target.hp -= unit.Att;
+                target.SkillDoDamage(unit.Att, unit.skillDamageDepth);
                 //背后敌人造成伤害
             }
 

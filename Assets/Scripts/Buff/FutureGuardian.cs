@@ -6,6 +6,8 @@ public class FutureGuardian : Buff
 {
     private int recentTurn = 0;
 
+    private int startTurn = 0;
+
     private string description = "Future Guardian: 当自己的ＨＰ高于２，且遭受敌人致命攻击时，将伤害降低至自身ＨＰ会剩下１，每回合只能生效一次";
 
     private string buffName = "FutureGuardian";
@@ -36,7 +38,16 @@ public class FutureGuardian : Buff
     //其实啥也不用写，直接把克罗米hpMin设置成1就行了
     public void Apply(Component charUnit)
     {
-
+        this.recentTurn = roundManager.getRound();
+        if (charUnit as UnitAttribute != null)
+        {
+            if (recentTurn != startTurn)
+            {
+                ((UnitAttribute)charUnit).hpMin = 1;
+                //更新开始回合
+                startTurn = recentTurn;
+            }
+        }
     }
 
     public void UnApply()
