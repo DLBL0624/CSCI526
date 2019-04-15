@@ -17,6 +17,11 @@ public class BeginQuitBtn : MonoBehaviour
 
     public void beginQuit()
     {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
         Application.Quit();
+        Debug.Log("QUIT GAME");
+        #endif
     }
 }
