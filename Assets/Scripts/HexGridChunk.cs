@@ -149,6 +149,10 @@ public class HexGridChunk : MonoBehaviour
         {
             TriangulateWaterShore(direction, cell, neighbor, center);
         }
+        else
+        {
+            TriangulateOpenWater(direction, cell, neighbor, center);
+        }
     }
 
         void TriangulateOpenWater(HexDirection direction, HexCell cell, HexCell neighbor, Vector3 center)
