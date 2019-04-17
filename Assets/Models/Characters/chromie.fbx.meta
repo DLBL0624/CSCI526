@@ -1,0 +1,674 @@
+fileFormatVersion: 2
+guid: 6433b48bd6971da4788ba68cfa914beb
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: creature/tyrande/tyrande
+    100004: creature/tyrande/tyrande 1
+    100006: creature/tyrande/tyrande_bone_0
+    100008: creature/tyrande/tyrande_bone_1
+    100010: creature/tyrande/tyrande_bone_10
+    100012: creature/tyrande/tyrande_bone_100
+    100014: creature/tyrande/tyrande_bone_101
+    100016: creature/tyrande/tyrande_bone_102
+    100018: creature/tyrande/tyrande_bone_103
+    100020: creature/tyrande/tyrande_bone_104
+    100022: creature/tyrande/tyrande_bone_105
+    100024: creature/tyrande/tyrande_bone_106
+    100026: creature/tyrande/tyrande_bone_107
+    100028: creature/tyrande/tyrande_bone_108
+    100030: creature/tyrande/tyrande_bone_109
+    100032: creature/tyrande/tyrande_bone_11
+    100034: creature/tyrande/tyrande_bone_110
+    100036: creature/tyrande/tyrande_bone_111
+    100038: creature/tyrande/tyrande_bone_112
+    100040: creature/tyrande/tyrande_bone_113
+    100042: creature/tyrande/tyrande_bone_114
+    100044: creature/tyrande/tyrande_bone_115
+    100046: creature/tyrande/tyrande_bone_116
+    100048: creature/tyrande/tyrande_bone_117
+    100050: creature/tyrande/tyrande_bone_118
+    100052: creature/tyrande/tyrande_bone_119
+    100054: creature/tyrande/tyrande_bone_12
+    100056: creature/tyrande/tyrande_bone_120
+    100058: creature/tyrande/tyrande_bone_121
+    100060: creature/tyrande/tyrande_bone_122
+    100062: creature/tyrande/tyrande_bone_123
+    100064: creature/tyrande/tyrande_bone_124
+    100066: creature/tyrande/tyrande_bone_125
+    100068: creature/tyrande/tyrande_bone_126
+    100070: creature/tyrande/tyrande_bone_127
+    100072: creature/tyrande/tyrande_bone_128
+    100074: creature/tyrande/tyrande_bone_129
+    100076: creature/tyrande/tyrande_bone_13
+    100078: creature/tyrande/tyrande_bone_130
+    100080: creature/tyrande/tyrande_bone_131
+    100082: creature/tyrande/tyrande_bone_132
+    100084: creature/tyrande/tyrande_bone_133
+    100086: creature/tyrande/tyrande_bone_134
+    100088: creature/tyrande/tyrande_bone_135
+    100090: creature/tyrande/tyrande_bone_136
+    100092: creature/tyrande/tyrande_bone_137
+    100094: creature/tyrande/tyrande_bone_138
+    100096: creature/tyrande/tyrande_bone_139
+    100098: creature/tyrande/tyrande_bone_14
+    100100: creature/tyrande/tyrande_bone_140
+    100102: creature/tyrande/tyrande_bone_141
+    100104: creature/tyrande/tyrande_bone_142
+    100106: creature/tyrande/tyrande_bone_143
+    100108: creature/tyrande/tyrande_bone_144
+    100110: creature/tyrande/tyrande_bone_145
+    100112: creature/tyrande/tyrande_bone_146
+    100114: creature/tyrande/tyrande_bone_15
+    100116: creature/tyrande/tyrande_bone_16
+    100118: creature/tyrande/tyrande_bone_17
+    100120: creature/tyrande/tyrande_bone_18
+    100122: creature/tyrande/tyrande_bone_19
+    100124: creature/tyrande/tyrande_bone_2
+    100126: creature/tyrande/tyrande_bone_20
+    100128: creature/tyrande/tyrande_bone_21
+    100130: creature/tyrande/tyrande_bone_22
+    100132: creature/tyrande/tyrande_bone_23
+    100134: creature/tyrande/tyrande_bone_24
+    100136: creature/tyrande/tyrande_bone_25
+    100138: creature/tyrande/tyrande_bone_26
+    100140: creature/tyrande/tyrande_bone_27
+    100142: creature/tyrande/tyrande_bone_28
+    100144: creature/tyrande/tyrande_bone_29
+    100146: creature/tyrande/tyrande_bone_3
+    100148: creature/tyrande/tyrande_bone_30
+    100150: creature/tyrande/tyrande_bone_31
+    100152: creature/tyrande/tyrande_bone_32
+    100154: creature/tyrande/tyrande_bone_33
+    100156: creature/tyrande/tyrande_bone_34
+    100158: creature/tyrande/tyrande_bone_35
+    100160: creature/tyrande/tyrande_bone_36
+    100162: creature/tyrande/tyrande_bone_37
+    100164: creature/tyrande/tyrande_bone_38
+    100166: creature/tyrande/tyrande_bone_39
+    100168: creature/tyrande/tyrande_bone_4
+    100170: creature/tyrande/tyrande_bone_40
+    100172: creature/tyrande/tyrande_bone_41
+    100174: creature/tyrande/tyrande_bone_42
+    100176: creature/tyrande/tyrande_bone_43
+    100178: creature/tyrande/tyrande_bone_44
+    100180: creature/tyrande/tyrande_bone_45
+    100182: creature/tyrande/tyrande_bone_46
+    100184: creature/tyrande/tyrande_bone_47
+    100186: creature/tyrande/tyrande_bone_48
+    100188: creature/tyrande/tyrande_bone_49
+    100190: creature/tyrande/tyrande_bone_5
+    100192: creature/tyrande/tyrande_bone_50
+    100194: creature/tyrande/tyrande_bone_51
+    100196: creature/tyrande/tyrande_bone_52
+    100198: creature/tyrande/tyrande_bone_53
+    100200: creature/tyrande/tyrande_bone_54
+    100202: creature/tyrande/tyrande_bone_55
+    100204: creature/tyrande/tyrande_bone_56
+    100206: creature/tyrande/tyrande_bone_57
+    100208: creature/tyrande/tyrande_bone_58
+    100210: creature/tyrande/tyrande_bone_59
+    100212: creature/tyrande/tyrande_bone_6
+    100214: creature/tyrande/tyrande_bone_60
+    100216: creature/tyrande/tyrande_bone_61
+    100218: creature/tyrande/tyrande_bone_62
+    100220: creature/tyrande/tyrande_bone_63
+    100222: creature/tyrande/tyrande_bone_64
+    100224: creature/tyrande/tyrande_bone_65
+    100226: creature/tyrande/tyrande_bone_66
+    100228: creature/tyrande/tyrande_bone_67
+    100230: creature/tyrande/tyrande_bone_68
+    100232: creature/tyrande/tyrande_bone_69
+    100234: creature/tyrande/tyrande_bone_7
+    100236: creature/tyrande/tyrande_bone_70
+    100238: creature/tyrande/tyrande_bone_71
+    100240: creature/tyrande/tyrande_bone_72
+    100242: creature/tyrande/tyrande_bone_73
+    100244: creature/tyrande/tyrande_bone_74
+    100246: creature/tyrande/tyrande_bone_75
+    100248: creature/tyrande/tyrande_bone_76
+    100250: creature/tyrande/tyrande_bone_77
+    100252: creature/tyrande/tyrande_bone_78
+    100254: creature/tyrande/tyrande_bone_79
+    100256: creature/tyrande/tyrande_bone_8
+    100258: creature/tyrande/tyrande_bone_80
+    100260: creature/tyrande/tyrande_bone_81
+    100262: creature/tyrande/tyrande_bone_82
+    100264: creature/tyrande/tyrande_bone_83
+    100266: creature/tyrande/tyrande_bone_84
+    100268: creature/tyrande/tyrande_bone_85
+    100270: creature/tyrande/tyrande_bone_86
+    100272: creature/tyrande/tyrande_bone_87
+    100274: creature/tyrande/tyrande_bone_88
+    100276: creature/tyrande/tyrande_bone_89
+    100278: creature/tyrande/tyrande_bone_9
+    100280: creature/tyrande/tyrande_bone_90
+    100282: creature/tyrande/tyrande_bone_91
+    100284: creature/tyrande/tyrande_bone_92
+    100286: creature/tyrande/tyrande_bone_93
+    100288: creature/tyrande/tyrande_bone_94
+    100290: creature/tyrande/tyrande_bone_95
+    100292: creature/tyrande/tyrande_bone_96
+    100294: creature/tyrande/tyrande_bone_97
+    100296: creature/tyrande/tyrande_bone_98
+    100298: creature/tyrande/tyrande_bone_99
+    400000: //RootNode
+    400002: creature/tyrande/tyrande
+    400004: creature/tyrande/tyrande 1
+    400006: creature/tyrande/tyrande_bone_0
+    400008: creature/tyrande/tyrande_bone_1
+    400010: creature/tyrande/tyrande_bone_10
+    400012: creature/tyrande/tyrande_bone_100
+    400014: creature/tyrande/tyrande_bone_101
+    400016: creature/tyrande/tyrande_bone_102
+    400018: creature/tyrande/tyrande_bone_103
+    400020: creature/tyrande/tyrande_bone_104
+    400022: creature/tyrande/tyrande_bone_105
+    400024: creature/tyrande/tyrande_bone_106
+    400026: creature/tyrande/tyrande_bone_107
+    400028: creature/tyrande/tyrande_bone_108
+    400030: creature/tyrande/tyrande_bone_109
+    400032: creature/tyrande/tyrande_bone_11
+    400034: creature/tyrande/tyrande_bone_110
+    400036: creature/tyrande/tyrande_bone_111
+    400038: creature/tyrande/tyrande_bone_112
+    400040: creature/tyrande/tyrande_bone_113
+    400042: creature/tyrande/tyrande_bone_114
+    400044: creature/tyrande/tyrande_bone_115
+    400046: creature/tyrande/tyrande_bone_116
+    400048: creature/tyrande/tyrande_bone_117
+    400050: creature/tyrande/tyrande_bone_118
+    400052: creature/tyrande/tyrande_bone_119
+    400054: creature/tyrande/tyrande_bone_12
+    400056: creature/tyrande/tyrande_bone_120
+    400058: creature/tyrande/tyrande_bone_121
+    400060: creature/tyrande/tyrande_bone_122
+    400062: creature/tyrande/tyrande_bone_123
+    400064: creature/tyrande/tyrande_bone_124
+    400066: creature/tyrande/tyrande_bone_125
+    400068: creature/tyrande/tyrande_bone_126
+    400070: creature/tyrande/tyrande_bone_127
+    400072: creature/tyrande/tyrande_bone_128
+    400074: creature/tyrande/tyrande_bone_129
+    400076: creature/tyrande/tyrande_bone_13
+    400078: creature/tyrande/tyrande_bone_130
+    400080: creature/tyrande/tyrande_bone_131
+    400082: creature/tyrande/tyrande_bone_132
+    400084: creature/tyrande/tyrande_bone_133
+    400086: creature/tyrande/tyrande_bone_134
+    400088: creature/tyrande/tyrande_bone_135
+    400090: creature/tyrande/tyrande_bone_136
+    400092: creature/tyrande/tyrande_bone_137
+    400094: creature/tyrande/tyrande_bone_138
+    400096: creature/tyrande/tyrande_bone_139
+    400098: creature/tyrande/tyrande_bone_14
+    400100: creature/tyrande/tyrande_bone_140
+    400102: creature/tyrande/tyrande_bone_141
+    400104: creature/tyrande/tyrande_bone_142
+    400106: creature/tyrande/tyrande_bone_143
+    400108: creature/tyrande/tyrande_bone_144
+    400110: creature/tyrande/tyrande_bone_145
+    400112: creature/tyrande/tyrande_bone_146
+    400114: creature/tyrande/tyrande_bone_15
+    400116: creature/tyrande/tyrande_bone_16
+    400118: creature/tyrande/tyrande_bone_17
+    400120: creature/tyrande/tyrande_bone_18
+    400122: creature/tyrande/tyrande_bone_19
+    400124: creature/tyrande/tyrande_bone_2
+    400126: creature/tyrande/tyrande_bone_20
+    400128: creature/tyrande/tyrande_bone_21
+    400130: creature/tyrande/tyrande_bone_22
+    400132: creature/tyrande/tyrande_bone_23
+    400134: creature/tyrande/tyrande_bone_24
+    400136: creature/tyrande/tyrande_bone_25
+    400138: creature/tyrande/tyrande_bone_26
+    400140: creature/tyrande/tyrande_bone_27
+    400142: creature/tyrande/tyrande_bone_28
+    400144: creature/tyrande/tyrande_bone_29
+    400146: creature/tyrande/tyrande_bone_3
+    400148: creature/tyrande/tyrande_bone_30
+    400150: creature/tyrande/tyrande_bone_31
+    400152: creature/tyrande/tyrande_bone_32
+    400154: creature/tyrande/tyrande_bone_33
+    400156: creature/tyrande/tyrande_bone_34
+    400158: creature/tyrande/tyrande_bone_35
+    400160: creature/tyrande/tyrande_bone_36
+    400162: creature/tyrande/tyrande_bone_37
+    400164: creature/tyrande/tyrande_bone_38
+    400166: creature/tyrande/tyrande_bone_39
+    400168: creature/tyrande/tyrande_bone_4
+    400170: creature/tyrande/tyrande_bone_40
+    400172: creature/tyrande/tyrande_bone_41
+    400174: creature/tyrande/tyrande_bone_42
+    400176: creature/tyrande/tyrande_bone_43
+    400178: creature/tyrande/tyrande_bone_44
+    400180: creature/tyrande/tyrande_bone_45
+    400182: creature/tyrande/tyrande_bone_46
+    400184: creature/tyrande/tyrande_bone_47
+    400186: creature/tyrande/tyrande_bone_48
+    400188: creature/tyrande/tyrande_bone_49
+    400190: creature/tyrande/tyrande_bone_5
+    400192: creature/tyrande/tyrande_bone_50
+    400194: creature/tyrande/tyrande_bone_51
+    400196: creature/tyrande/tyrande_bone_52
+    400198: creature/tyrande/tyrande_bone_53
+    400200: creature/tyrande/tyrande_bone_54
+    400202: creature/tyrande/tyrande_bone_55
+    400204: creature/tyrande/tyrande_bone_56
+    400206: creature/tyrande/tyrande_bone_57
+    400208: creature/tyrande/tyrande_bone_58
+    400210: creature/tyrande/tyrande_bone_59
+    400212: creature/tyrande/tyrande_bone_6
+    400214: creature/tyrande/tyrande_bone_60
+    400216: creature/tyrande/tyrande_bone_61
+    400218: creature/tyrande/tyrande_bone_62
+    400220: creature/tyrande/tyrande_bone_63
+    400222: creature/tyrande/tyrande_bone_64
+    400224: creature/tyrande/tyrande_bone_65
+    400226: creature/tyrande/tyrande_bone_66
+    400228: creature/tyrande/tyrande_bone_67
+    400230: creature/tyrande/tyrande_bone_68
+    400232: creature/tyrande/tyrande_bone_69
+    400234: creature/tyrande/tyrande_bone_7
+    400236: creature/tyrande/tyrande_bone_70
+    400238: creature/tyrande/tyrande_bone_71
+    400240: creature/tyrande/tyrande_bone_72
+    400242: creature/tyrande/tyrande_bone_73
+    400244: creature/tyrande/tyrande_bone_74
+    400246: creature/tyrande/tyrande_bone_75
+    400248: creature/tyrande/tyrande_bone_76
+    400250: creature/tyrande/tyrande_bone_77
+    400252: creature/tyrande/tyrande_bone_78
+    400254: creature/tyrande/tyrande_bone_79
+    400256: creature/tyrande/tyrande_bone_8
+    400258: creature/tyrande/tyrande_bone_80
+    400260: creature/tyrande/tyrande_bone_81
+    400262: creature/tyrande/tyrande_bone_82
+    400264: creature/tyrande/tyrande_bone_83
+    400266: creature/tyrande/tyrande_bone_84
+    400268: creature/tyrande/tyrande_bone_85
+    400270: creature/tyrande/tyrande_bone_86
+    400272: creature/tyrande/tyrande_bone_87
+    400274: creature/tyrande/tyrande_bone_88
+    400276: creature/tyrande/tyrande_bone_89
+    400278: creature/tyrande/tyrande_bone_9
+    400280: creature/tyrande/tyrande_bone_90
+    400282: creature/tyrande/tyrande_bone_91
+    400284: creature/tyrande/tyrande_bone_92
+    400286: creature/tyrande/tyrande_bone_93
+    400288: creature/tyrande/tyrande_bone_94
+    400290: creature/tyrande/tyrande_bone_95
+    400292: creature/tyrande/tyrande_bone_96
+    400294: creature/tyrande/tyrande_bone_97
+    400296: creature/tyrande/tyrande_bone_98
+    400298: creature/tyrande/tyrande_bone_99
+    2100000: creature_tyrande_tyrande_0
+    2100002: creature_tyrande_tyrande_1
+    2100004: creature_tyrande_tyrande_2
+    2100006: creature_tyrande_tyrande_3
+    2100008: creature_tyrande_tyrande_4
+    2100010: creature_tyrande_tyrande_5
+    2100012: creature_tyrande_tyrande_6
+    2100014: creature_tyrande_tyrande_8
+    4300000: creature/tyrande/tyrande
+    7400000: Stand [1]
+    7400002: Walk [2]
+    7400004: Run [3]
+    7400006: Ready1H [5]
+    7400008: CombatWound [19]
+    7400010: Death [50]
+    7400012: Special1H [58]
+    7400014: SpellCastOmni [90]
+    9500000: //RootNode
+    13700000: creature/tyrande/tyrande
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: creature_tyrande_tyrande_0
+    second: {fileID: 2100000, guid: 2725f23e201368c4eaa44c7a79168c62, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: creature_tyrande_tyrande_1
+    second: {fileID: 2100000, guid: 9246918aa330d684dad9aff4b1fbc9f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: creature_tyrande_tyrande_2
+    second: {fileID: 2100000, guid: 9246918aa330d684dad9aff4b1fbc9f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: creature_tyrande_tyrande_3
+    second: {fileID: 2100000, guid: 5f2d9a192e0c4154fb8eff929d41421b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: creature_tyrande_tyrande_4
+    second: {fileID: 2100000, guid: 2725f23e201368c4eaa44c7a79168c62, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: creature_tyrande_tyrande_5
+    second: {fileID: 2100000, guid: 9246918aa330d684dad9aff4b1fbc9f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: creature_tyrande_tyrande_6
+    second: {fileID: 2100000, guid: 5f2d9a192e0c4154fb8eff929d41421b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: creature_tyrande_tyrande_8
+    second: {fileID: 2100000, guid: 9246918aa330d684dad9aff4b1fbc9f1, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Stand [1]
+      takeName: Stand [1]
+      firstFrame: 0
+      lastFrame: 55
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Walk [2]
+      takeName: Walk [2]
+      firstFrame: 0
+      lastFrame: 55
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Run [3]
+      takeName: Run [3]
+      firstFrame: 0
+      lastFrame: 55
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Ready1H [5]
+      takeName: Ready1H [5]
+      firstFrame: 0
+      lastFrame: 55
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: CombatWound [19]
+      takeName: CombatWound [19]
+      firstFrame: 0
+      lastFrame: 55
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Death [50]
+      takeName: Death [50]
+      firstFrame: 0
+      lastFrame: 55
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Special1H [58]
+      takeName: Special1H [58]
+      firstFrame: 0
+      lastFrame: 55
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: SpellCastOmni [90]
+      takeName: SpellCastOmni [90]
+      firstFrame: 0
+      lastFrame: 55
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

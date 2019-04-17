@@ -378,10 +378,10 @@ public class HexGameUI : MonoBehaviour
                 //胜利判断条件 --- 后续需要更改
                 //TODO -> change the victory condition
                 // this is just an example for level tutorial
-                if (hu.UnitAttribute.actorName == "Arthas")
-                {
-                    isArthasDead = true;
-                }
+                //if (hu.UnitAttribute.actorName == "Arthas")
+                //{
+                //    isArthasDead = true;
+                //}
                 if (hu.UnitAttribute.actorName == "Malganis")
                 {
                     isMalganisDead = true;
