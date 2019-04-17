@@ -83,7 +83,7 @@ public class CheckVideoStop : MonoBehaviour
     //just for test!
     public void setLoad()
     {
-        LoadVideo(6);
+        LoadVideo(0);
         Debug.Log("log video done");
     }
     public void setMusic()
