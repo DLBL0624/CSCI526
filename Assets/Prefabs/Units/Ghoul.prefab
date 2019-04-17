@@ -117,10 +117,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7007847402442963401}
     m_Modifications:
-    - target: {fileID: 100344, guid: 2c5de8f8d5319a548bf65fea78f7f103, type: 3}
-      propertyPath: m_Name
-      value: flesh eater
-      objectReference: {fileID: 0}
     - target: {fileID: 400344, guid: 2c5de8f8d5319a548bf65fea78f7f103, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -177,10 +173,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 100344, guid: 2c5de8f8d5319a548bf65fea78f7f103, type: 3}
+      propertyPath: m_Name
+      value: flesh eater
+      objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: 2c5de8f8d5319a548bf65fea78f7f103, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 02ab9ac9ebf26a1468a756ee7f94f0c2, type: 2}
+      objectReference: {fileID: 9100000, guid: 99f611ea935c1f4479f02cb5a7b3341a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c5de8f8d5319a548bf65fea78f7f103, type: 3}
 --- !u!4 &4717943693787777466 stripped
