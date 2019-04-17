@@ -15,8 +15,10 @@ public class HexUnit : MonoBehaviour
 
     public int unitType = 0;
 
+    private bool isQunar = false;
+
     //public AnimationClip[] animations;
-    Animation m_anim;
+    Animator m_anim;
 
 
     UnitAttribute unitAttribute;
@@ -58,9 +60,10 @@ public class HexUnit : MonoBehaviour
         if (GetComponent<UnitAttribute>())
         {
             unitAttribute = GetComponent<UnitAttribute>();
-            m_anim = GetComponent<Animation>();
+            m_anim = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
         }
     }
+
 
     public float Orientation
     {
@@ -82,14 +85,30 @@ public class HexUnit : MonoBehaviour
         transform.localPosition = location.Position;
     }
 
+    void Update()
+    {
+        if(!isQunar)
+        {
+            m_anim.SetInteger("aniState", -1);
+        }
+    }
+
     public void Die()
     {
         //加动画
-        m_anim.Play("Death");
+        m_anim.SetInteger("aniState", 4);
+        StartCoroutine(DealDie());
+    }
 
-
+    IEnumerator DealDie()
+    {
+        isQunar = true;
+        yield return new WaitForSeconds(3f);
+        yield return null;
         location.Unit = null;
         Destroy(gameObject);
+        Debug.Log("Die!!!!");
+        isQunar = false;
     }
 
     public void Save(BinaryWriter writer)
@@ -118,19 +137,21 @@ public class HexUnit : MonoBehaviour
     public void Travel(List<HexCell> path)//欢乐神游
     {
         //加动画
-
-        m_anim.Play("Walk");
-
-
+        m_anim.SetInteger("aniState", 1);
         Location = path[path.Count - 1];
         pathToTravel = path;
         StopAllCoroutines();
         StartCoroutine(TravelPath());
-
+        //获取动画层 0 指Base Layer.
+        AnimatorStateInfo stateinfo = m_anim.GetCurrentAnimatorStateInfo(0);
+        //如果正在播放walk动画.
+        //Debug.Log(m_anim.GetParameter(0).name);
+        
     }
 
     IEnumerator TravelPath()//欢乐神游，一格格走
     {
+        isQunar = true;
         Vector3 a, b, c = pathToTravel[0].Position;
         transform.localPosition = c;
         yield return LookAt(pathToTravel[1].Position);
@@ -166,6 +187,7 @@ public class HexUnit : MonoBehaviour
         orientation = transform.localRotation.eulerAngles.y;
         ListPool<HexCell>.Add(pathToTravel);
         pathToTravel = null;
+        isQunar = false;
     }
 
     IEnumerator LookAt(Vector3 point)//父亲，快看！诸葛亮！
@@ -217,28 +239,42 @@ public class HexUnit : MonoBehaviour
         orientation = transform.localRotation.eulerAngles.y;
     }
 
+    IEnumerator FightAnimation(HexUnit target)//欢乐神游，一格格走
+    {
+        isQunar = true;
+        
+        yield return LookAt(target.location.Position);
+
+        yield return null;
+        isQunar = false;
+    }
+
     public void Fight(HexUnit target)//欢乐战斗
     {
+        m_anim.SetInteger("aniState", 2);
         //看向对手
-        LookAtTarget(target.location.Position);
+
+        StartCoroutine(FightAnimation(target));
         //攻击方必先手
         //加动画
-        m_anim.Play("AttackUnarmed");
-
         target.unitAttribute.DoDamage(this.unitAttribute.Att - target.UnitAttribute.Def);
         //如果对方还活着
         if (target.unitAttribute.hp > 0)
         {
             this.unitAttribute.DoDamage(target.unitAttribute.Att - this.UnitAttribute.Def);
+            //m_anim.SetInteger("aniState", 2);
             //如果我方比对方速度快3以上 追加攻击
             if (this.unitAttribute.Sp >= target.unitAttribute.Sp + 3)
             {
                 target.unitAttribute.DoDamage(this.unitAttribute.Att - target.UnitAttribute.Def);
+                m_anim.SetInteger("aniState", 2);
+                StartCoroutine(FightAnimation(target));
             }
             //如果对方比我方速度快3以上 对方追加攻击
             else if (target.unitAttribute.Sp >= this.unitAttribute.Sp + 3)
             {
                 this.unitAttribute.DoDamage(target.unitAttribute.Att - this.UnitAttribute.Def);
+                //m_anim.SetInteger("aniState", 2);
             }
         }
     }
@@ -247,8 +283,8 @@ public class HexUnit : MonoBehaviour
     {
         LookAtTarget(target.location.Position);
         //加动画
-        m_anim.Play("CombatWound");
-
+        m_anim.GetParameter(0).defaultInt = 2;
+        Debug.Log(m_anim.GetParameter(0).name + " now is " + m_anim.GetParameter(0).defaultInt);
         unitAttribute.activeSkill.Spell(target);
     }
 
