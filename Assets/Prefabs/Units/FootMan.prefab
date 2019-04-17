@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actorName: FootMan
-  hp: 100
+  hp: 60
   hpMin: 0
   hpMax: 100
   ap: 24
@@ -162,11 +162,15 @@ MonoBehaviour:
   defTemp: 0
   sp: 0
   spTemp: 0
+  skillDamageDepth: 1
   bs: 0
   team: 0
   passSkillNumber: 0
   actiSkillNumber: 0
-  range: 1
+  minAttRange: 1
+  maxAttRange: 1
+  minSplRange: 1
+  maxSplRange: 1
 --- !u!1 &7288856870319514838
 GameObject:
   m_ObjectHideFlags: 0

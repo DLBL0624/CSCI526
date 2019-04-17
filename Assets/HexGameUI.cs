@@ -317,7 +317,7 @@ public class HexGameUI : MonoBehaviour
             {
                 Skill activeSkill = selectedUnit.UnitAttribute.activeSkill;
                 //目标选择条件
-                if (selectedUnit.UnitAttribute.team == 0 && selectedUnit.UnitAttribute.bs != behaviorStatus.rest)
+                if (selectedUnit.UnitAttribute.team == 0 && selectedUnit.UnitAttribute.bs != behaviorStatus.rest && activeSkill.Spellable)
                 {
                     showAttackRange = false;
                     ShowRangeCell(false,1);//隐藏攻击范围

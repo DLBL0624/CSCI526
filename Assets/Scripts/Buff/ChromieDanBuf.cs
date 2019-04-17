@@ -41,7 +41,6 @@ public class ChromieDanBuf : Buff
 
         }
         recentTurn = roundManager.getRound();
-        Debug.Log("当前Turn：" + recentTurn + "起始Turn" + startTurn);
     }
 
     public void UnApply()

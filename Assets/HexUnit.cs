@@ -15,6 +15,10 @@ public class HexUnit : MonoBehaviour
 
     public int unitType = 0;
 
+    //public AnimationClip[] animations;
+    Animation m_anim;
+
+
     UnitAttribute unitAttribute;
 
     public UnitAttribute UnitAttribute
@@ -33,7 +37,7 @@ public class HexUnit : MonoBehaviour
         }
         set
         {
-            if(location)
+            if (location)
             {
                 location.Unit = null;
             }
@@ -51,9 +55,10 @@ public class HexUnit : MonoBehaviour
         {
             transform.localPosition = location.Position;
         }
-        if(GetComponent<UnitAttribute>())
+        if (GetComponent<UnitAttribute>())
         {
             unitAttribute = GetComponent<UnitAttribute>();
+            m_anim = GetComponent<Animation>();
         }
     }
 
@@ -71,7 +76,7 @@ public class HexUnit : MonoBehaviour
     }
 
     float orientation;
-    
+
     public void ValidateLocation()
     {
         transform.localPosition = location.Position;
@@ -79,6 +84,10 @@ public class HexUnit : MonoBehaviour
 
     public void Die()
     {
+        //加动画
+        m_anim.Play("Death");
+
+
         location.Unit = null;
         Destroy(gameObject);
     }
@@ -101,13 +110,18 @@ public class HexUnit : MonoBehaviour
         );
     }
 
-    public bool isValidDestination (HexCell cell)
+    public bool isValidDestination(HexCell cell)
     {
         return !cell.IsUnderwater && !cell.Unit;
     }
 
     public void Travel(List<HexCell> path)//欢乐神游
     {
+        //加动画
+
+        m_anim.Play("Walk");
+
+
         Location = path[path.Count - 1];
         pathToTravel = path;
         StopAllCoroutines();
@@ -169,7 +183,8 @@ public class HexUnit : MonoBehaviour
                 float t = Time.deltaTime * speed;
                 t < 1f;
                 t += Time.deltaTime
-            ){
+            )
+            {
                 transform.localRotation =
                     Quaternion.Slerp(fromRotation, toRotation, t);
                 yield return null;
@@ -207,13 +222,16 @@ public class HexUnit : MonoBehaviour
         //看向对手
         LookAtTarget(target.location.Position);
         //攻击方必先手
+        //加动画
+        m_anim.Play("AttackUnarmed");
+
         target.unitAttribute.DoDamage(this.unitAttribute.Att - target.UnitAttribute.Def);
         //如果对方还活着
-        if(target.unitAttribute.hp>0)
+        if (target.unitAttribute.hp > 0)
         {
             this.unitAttribute.DoDamage(target.unitAttribute.Att - this.UnitAttribute.Def);
             //如果我方比对方速度快3以上 追加攻击
-            if(this.unitAttribute.Sp>=target.unitAttribute.Sp + 3)
+            if (this.unitAttribute.Sp >= target.unitAttribute.Sp + 3)
             {
                 target.unitAttribute.DoDamage(this.unitAttribute.Att - target.UnitAttribute.Def);
             }
@@ -228,6 +246,9 @@ public class HexUnit : MonoBehaviour
     public void Spell(HexUnit target)//欢乐施法
     {
         LookAtTarget(target.location.Position);
+        //加动画
+        m_anim.Play("CombatWound");
+
         unitAttribute.activeSkill.Spell(target);
     }
 
