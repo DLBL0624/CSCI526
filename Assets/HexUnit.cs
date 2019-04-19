@@ -19,7 +19,7 @@ public class HexUnit : MonoBehaviour
 
     //public AnimationClip[] animations;
     Animator m_anim;
-
+    skillAnimationEffect mySkill;
 
     UnitAttribute unitAttribute;
 
@@ -61,6 +61,7 @@ public class HexUnit : MonoBehaviour
         {
             unitAttribute = GetComponent<UnitAttribute>();
             m_anim = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
+            mySkill = GetComponent<skillAnimationEffect>();
         }
     }
 
@@ -283,7 +284,8 @@ public class HexUnit : MonoBehaviour
     {
         LookAtTarget(target.location.Position);
         //加动画
-        m_anim.GetParameter(0).defaultInt = 2;
+        //m_anim.GetParameter(0).defaultInt = 2;
+        mySkill.skillAt(target);
         Debug.Log(m_anim.GetParameter(0).name + " now is " + m_anim.GetParameter(0).defaultInt);
         unitAttribute.activeSkill.Spell(target);
     }
