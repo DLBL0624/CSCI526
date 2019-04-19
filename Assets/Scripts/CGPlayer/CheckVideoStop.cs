@@ -30,10 +30,10 @@ public class CheckVideoStop : MonoBehaviour
         //listen to the skip button
         button_Skip.onClick.AddListener(SkipStory);
 
-        //just for test!
-        SetStage.onClick.AddListener(setLoad);
+        ////just for test!
+        SetStage.onClick.AddListener(setLoadVideo);
         TestStart.onClick.AddListener(PlayVideo);
-        SetMusic.onClick.AddListener(setMusic);
+        SetMusic.onClick.AddListener(setLoadMusic);
     }
 
     // Update is called once per frame
@@ -48,6 +48,7 @@ public class CheckVideoStop : MonoBehaviour
     public void SkipStory()
     {
         videoPlayer.Stop();
+        audioSource.Stop();
         this.gameObject.SetActive(false);
     }
     
@@ -81,14 +82,24 @@ public class CheckVideoStop : MonoBehaviour
     }
 
     //just for test!
-    public void setLoad()
+    public void setLoadVideo()
     {
         LoadVideo(0);
-        Debug.Log("log video done");
+        //Debug.Log("log video done");
     }
-    public void setMusic()
+    public void setLoadMusic()
     {
         LoadAudio(5);
-        Debug.Log("log music done");
+        //Debug.Log("log music done");
+    }
+
+    public void setVideo(int index)
+    {
+        LoadVideo(index);
+    }
+
+    public void setMusic(int index)
+    {
+        LoadAudio(index);
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1511,6 +1511,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1825105270}
+  - {fileID: 1024262962}
   m_Father: {fileID: 2025370291}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3053,6 +3054,7 @@ MonoBehaviour:
   grid: {fileID: 73971510}
   statusWindow: {fileID: 1769612197}
   targetWindow: {fileID: 428542573}
+  checkVideoStop: {fileID: 1835351596}
 --- !u!4 &181187439
 Transform:
   m_ObjectHideFlags: 0
@@ -6712,7 +6714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.9628165, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6964,10 +6966,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterImage:
-  - {fileID: 21300000, guid: d856beccfd4f9fd4b83ead8f88d4c863, type: 3}
-  - {fileID: 21300000, guid: 90feda4a75c8c0a4a82fb4a53f1a317d, type: 3}
-  - {fileID: 21300000, guid: c38bff1b78e56a44e950aca94977aba6, type: 3}
-  - {fileID: 21300000, guid: f26f247e96179cf44a64c661cf8e6a4a, type: 3}
+  - {fileID: 21300000, guid: fbaf9ef8e7e34fc4596e65f92d3924e7, type: 3}
+  - {fileID: 21300000, guid: 9135673a2e0af29418a4d3a455157ff4, type: 3}
+  - {fileID: 21300000, guid: ce540afd2f6f6f648bcfaa15a197da7a, type: 3}
+  - {fileID: 21300000, guid: f539c564756a0944d805665990b2e2ac, type: 3}
+  - {fileID: 21300000, guid: a8059ab056255a643a1ff7e0d403fb69, type: 3}
+  - {fileID: 21300000, guid: c146c2714e099a34eb405fbb7bfbbeea, type: 3}
+  - {fileID: 21300000, guid: 989f295565c13154cafe4026fb5b58c9, type: 3}
+  - {fileID: 21300000, guid: 5eec0cb23e6a03043bc01cab7e8da092, type: 3}
+  - {fileID: 21300000, guid: fd17f08e53500df4589ac38b655c5678, type: 3}
 --- !u!114 &428542574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7271,7 +7278,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!1 &446831719
 GameObject:
@@ -13426,8 +13433,8 @@ GameObject:
   m_Component:
   - component: {fileID: 948464451}
   - component: {fileID: 948464454}
-  - component: {fileID: 948464453}
   - component: {fileID: 948464452}
+  - component: {fileID: 948464453}
   m_Layer: 5
   m_Name: Skip
   m_TagString: Untagged
@@ -13491,7 +13498,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 948464453}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -13517,8 +13524,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 171a326e1cead2c419ba1386327a74ae, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -14155,8 +14162,8 @@ RectTransform:
   - {fileID: 1989397518}
   - {fileID: 1769612194}
   - {fileID: 428542572}
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 76261213}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -17134,7 +17141,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 100}
+  m_SizeDelta: {x: 600, y: 200}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1220511971
 MonoBehaviour:
@@ -17149,7 +17156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -17892,7 +17899,7 @@ Transform:
   m_Children:
   - {fileID: 1410308915}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1268771636
 GameObject:
@@ -24302,10 +24309,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterImage:
-  - {fileID: 21300000, guid: d856beccfd4f9fd4b83ead8f88d4c863, type: 3}
-  - {fileID: 21300000, guid: 90feda4a75c8c0a4a82fb4a53f1a317d, type: 3}
-  - {fileID: 21300000, guid: c38bff1b78e56a44e950aca94977aba6, type: 3}
-  - {fileID: 21300000, guid: f26f247e96179cf44a64c661cf8e6a4a, type: 3}
+  - {fileID: 21300000, guid: fbaf9ef8e7e34fc4596e65f92d3924e7, type: 3}
+  - {fileID: 21300000, guid: 9135673a2e0af29418a4d3a455157ff4, type: 3}
+  - {fileID: 21300000, guid: ce540afd2f6f6f648bcfaa15a197da7a, type: 3}
+  - {fileID: 21300000, guid: f539c564756a0944d805665990b2e2ac, type: 3}
+  - {fileID: 21300000, guid: a8059ab056255a643a1ff7e0d403fb69, type: 3}
+  - {fileID: 21300000, guid: c146c2714e099a34eb405fbb7bfbbeea, type: 3}
+  - {fileID: 21300000, guid: 989f295565c13154cafe4026fb5b58c9, type: 3}
+  - {fileID: 21300000, guid: 5eec0cb23e6a03043bc01cab7e8da092, type: 3}
+  - {fileID: 21300000, guid: fd17f08e53500df4589ac38b655c5678, type: 3}
 --- !u!1 &1770049196
 GameObject:
   m_ObjectHideFlags: 0
@@ -24641,7 +24653,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1825105269}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2df0fa727a6a9df46ba3cc31fddc2f20, type: 3}
   m_Name: 
@@ -24739,7 +24751,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1835351594}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

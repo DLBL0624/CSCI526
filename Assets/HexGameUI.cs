@@ -27,6 +27,8 @@ public class HexGameUI : MonoBehaviour
 
     public CharacterStatus targetWindow;
 
+    public CheckVideoStop checkVideoStop;
+
     bool showAttackRange = false;
 
     bool showSpellRange = false;
@@ -340,6 +342,7 @@ public class HexGameUI : MonoBehaviour
     {
         if(targetUnit)
         {
+            selectedUnit.UnitAttribute.bs = behaviorStatus.rest;
             ShowRangeCell(false,1);//隐藏攻击范围
             selectedUnit.Fight(targetUnit);
             targetUnit.Wound(selectedUnit);
@@ -366,12 +369,13 @@ public class HexGameUI : MonoBehaviour
             if(selectedUnit)statusWindow.showUnitStatus(selectedUnit);
             targetWindow.showUnitStatus(null);
             targetUnit = null;
-            selectedUnit.UnitAttribute.bs = behaviorStatus.rest;
+            
         }
     }
 
     void DoSpell()
     {
+        selectedUnit.UnitAttribute.bs = behaviorStatus.rest;
         ShowRangeCell(false,0);//隐藏施法范围
         selectedUnit.Spell(targetUnit);
         checkDie(selectedUnit);
@@ -379,7 +383,6 @@ public class HexGameUI : MonoBehaviour
         showSpellRange = false;
         if (selectedUnit) statusWindow.showUnitStatus(selectedUnit);
         targetUnit = null;
-        selectedUnit.UnitAttribute.bs = behaviorStatus.rest;
     }
 
     void checkDie(HexUnit hu)
