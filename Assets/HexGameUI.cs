@@ -342,6 +342,24 @@ public class HexGameUI : MonoBehaviour
         {
             ShowRangeCell(false,1);//隐藏攻击范围
             selectedUnit.Fight(targetUnit);
+            targetUnit.Wound(selectedUnit);
+            if (targetUnit.unitAttribute.hp > 0)
+            {
+                targetUnit.Fight(selectedUnit);
+                selectedUnit.Wound(targetUnit);
+                //如果我方比对方速度快3以上 追加攻击
+                if (selectedUnit.unitAttribute.Sp >= targetUnit.unitAttribute.Sp + 3)
+                {
+                    selectedUnit.Fight(targetUnit);
+                    targetUnit.Wound(selectedUnit);
+                }
+                //如果对方比我方速度快3以上 对方追加攻击
+                else if (targetUnit.unitAttribute.Sp >= selectedUnit.unitAttribute.Sp + 3)
+                {
+                    targetUnit.Fight(selectedUnit);
+                    selectedUnit.Wound(targetUnit);
+                }
+            }
             checkDie(selectedUnit);
             checkDie(targetUnit);
             showAttackRange = false;
@@ -382,12 +400,12 @@ public class HexGameUI : MonoBehaviour
                 //{
                 //    isArthasDead = true;
                 //}
-                if (hu.UnitAttribute.actorName == "Malganis")
-                {
-                    isMalganisDead = true;
-                }
-                grid.unitManager.removeUnit(hu);
-                hu.Die();
+                //if (hu.UnitAttribute.actorName == "Malganis")
+                //{
+                //    isMalganisDead = true;
+                //}
+                //grid.unitManager.removeUnit(hu);
+                hu.Die(1);//有动画的die
             }
             //用于检测克罗米被动 (第一次死生命回到1)
             else if (hu.UnitAttribute.hpMin > 0)
