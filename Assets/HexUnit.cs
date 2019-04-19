@@ -26,8 +26,10 @@ public class HexUnit : MonoBehaviour
     //public AnimationClip[] animations;
     Animator m_anim;
 
+    skillAnimationEffect mySkill;
 
-    public UnitAttribute unitAttribute;
+
+    UnitAttribute unitAttribute;
 
     void Start()
     {
@@ -72,6 +74,7 @@ public class HexUnit : MonoBehaviour
         {
             unitAttribute = GetComponent<UnitAttribute>();
             m_anim = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
+            mySkill = GetComponent<skillAnimationEffect>();
         }
     }
 
@@ -333,6 +336,7 @@ public class HexUnit : MonoBehaviour
     public void Spell(HexUnit target)//欢乐施法
     {
         this.targetUnit = target;
+        mySkill.skillAt(target);
         unitAttribute.activeSkill.Spell(target);
         animationOperator.Add(5);
     }

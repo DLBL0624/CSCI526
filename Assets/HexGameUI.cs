@@ -343,18 +343,18 @@ public class HexGameUI : MonoBehaviour
             ShowRangeCell(false,1);//隐藏攻击范围
             selectedUnit.Fight(targetUnit);
             targetUnit.Wound(selectedUnit);
-            if (targetUnit.unitAttribute.hp > 0)
+            if (targetUnit.UnitAttribute.hp > 0)
             {
                 targetUnit.Fight(selectedUnit);
                 selectedUnit.Wound(targetUnit);
                 //如果我方比对方速度快3以上 追加攻击
-                if (selectedUnit.unitAttribute.Sp >= targetUnit.unitAttribute.Sp + 3)
+                if (selectedUnit.UnitAttribute.Sp >= targetUnit.UnitAttribute.Sp + 3)
                 {
                     selectedUnit.Fight(targetUnit);
                     targetUnit.Wound(selectedUnit);
                 }
                 //如果对方比我方速度快3以上 对方追加攻击
-                else if (targetUnit.unitAttribute.Sp >= selectedUnit.unitAttribute.Sp + 3)
+                else if (targetUnit.UnitAttribute.Sp >= selectedUnit.UnitAttribute.Sp + 3)
                 {
                     targetUnit.Fight(selectedUnit);
                     selectedUnit.Wound(targetUnit);
