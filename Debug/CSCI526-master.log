@@ -1,0 +1,17 @@
+﻿生成启动时间为 2019/4/18 16:34:21。
+     1>项目“D:\master-526\CSCI526-master\CSCI526-master.vcxproj”在节点 2 上(Build 个目标)。
+     1>Xsd:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6 Tools\xsd.exe /nologo /namespace:"CSCI526-master" /language:"cpp" /dataset "library\packagecache\com.unity.package-manager-ui@2.0.7\editor\resources\templates\uielementsschema\UnityEditor.Experimental.UIElements.xsd" 
+         正在写入文件“D:\master-526\CSCI526-master\UnityEditor.Experimental.UIElements.h”。
+         错误: 处理“library\packagecache\com.unity.package-manager-ui@2.0.7\editor\resources\templates\uielementsschema\UnityEditor.Experimental.UIElements.xsd”时出错。
+         
+         如果需要更多帮助，请键入“xsd /?”。
+           - 为数据集“”生成代码时出错。
+           - 无法将输入 XML 文件内容转换为数据集。未定义的 complexType“UnityEngine.Experimental.UIElements:VisualElementType”被用作复杂类型限制的基。
+           - 未定义的 complexType“UnityEngine.Experimental.UIElements:VisualElementType”被用作复杂类型限制的基。
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppCommon.targets(1776,5): error MSB6006: “xsd.exe”已退出，代码为 1。
+     1>已完成生成项目“D:\master-526\CSCI526-master\CSCI526-master.vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:00.29

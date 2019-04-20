@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6193347117517326812}
   - component: {fileID: 817208352464156947}
   - component: {fileID: 4114236389707230703}
+  - component: {fileID: 3775765383043249021}
   m_Layer: 0
   m_Name: Jiana
   m_TagString: Untagged
@@ -79,6 +80,19 @@ MonoBehaviour:
   maxAttRange: 2
   minSplRange: 1
   maxSplRange: 1
+--- !u!114 &3775765383043249021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4089628867766382355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5b30a24a315b4b8b8da577e512a528d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillPrefab: {fileID: 100002, guid: 68842aa127ff742008183ef43d2bc3c5, type: 3}
 --- !u!1 &4468317445648127661
 GameObject:
   m_ObjectHideFlags: 0

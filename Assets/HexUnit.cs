@@ -17,11 +17,24 @@ public class HexUnit : MonoBehaviour
 
     private bool isQunar = false;
 
+    private bool isSelected = false;
+
+    private HexUnit targetUnit;
+
+    private List<int> animationOperator = new List<int>();//1-> wall 2-> att 3-> wound 4-> die 5-> spell
+
     //public AnimationClip[] animations;
     Animator m_anim;
 
+    skillAnimationEffect mySkill;
+
 
     UnitAttribute unitAttribute;
+
+    void Start()
+    {
+        StartCoroutine(AnimationProcess());
+    }
 
     public UnitAttribute UnitAttribute
     {
@@ -61,6 +74,7 @@ public class HexUnit : MonoBehaviour
         {
             unitAttribute = GetComponent<UnitAttribute>();
             m_anim = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
+            mySkill = GetComponent<skillAnimationEffect>();
         }
     }
 
@@ -89,22 +103,35 @@ public class HexUnit : MonoBehaviour
     {
         if(!isQunar)
         {
-            m_anim.SetInteger("aniState", -1);
+            if(!isSelected)
+            {
+                m_anim.SetInteger("aniState", -1);//站立动作
+            }
+            else
+            {
+                m_anim.SetInteger("aniState", -1);//准备动作
+            }
         }
     }
 
-    public void Die()
+    public void Die(int loading)
     {
-        //加动画
-        m_anim.SetInteger("aniState", 4);
-        StartCoroutine(DealDie());
+        if(loading == 0)
+        {
+            location.Unit = null;
+            if(this)Destroy(gameObject);
+        }
+        else
+        {
+            animationOperator.Add(4);
+        }
     }
 
     IEnumerator DealDie()
     {
+        m_anim.SetInteger("aniState", 4);
         isQunar = true;
-        yield return new WaitForSeconds(3f);
-        yield return null;
+        yield return new WaitForSeconds(4f);
         location.Unit = null;
         Destroy(gameObject);
         Debug.Log("Die!!!!");
@@ -136,22 +163,21 @@ public class HexUnit : MonoBehaviour
 
     public void Travel(List<HexCell> path)//欢乐神游
     {
-        //加动画
-        m_anim.SetInteger("aniState", 1);
         Location = path[path.Count - 1];
         pathToTravel = path;
-        StopAllCoroutines();
-        StartCoroutine(TravelPath());
-        //获取动画层 0 指Base Layer.
-        AnimatorStateInfo stateinfo = m_anim.GetCurrentAnimatorStateInfo(0);
-        //如果正在播放walk动画.
-        //Debug.Log(m_anim.GetParameter(0).name);
-        
+        animationOperator.Add(1);
+        //StopAllCoroutines();
+        //StartCoroutine(TravelPath());
     }
+
+
+    
 
     IEnumerator TravelPath()//欢乐神游，一格格走
     {
+        m_anim.SetInteger("aniState", 1);
         isQunar = true;
+        Debug.Log(isQunar);
         Vector3 a, b, c = pathToTravel[0].Position;
         transform.localPosition = c;
         yield return LookAt(pathToTravel[1].Position);
@@ -187,7 +213,7 @@ public class HexUnit : MonoBehaviour
         orientation = transform.localRotation.eulerAngles.y;
         ListPool<HexCell>.Add(pathToTravel);
         pathToTravel = null;
-        isQunar = false;
+        isQunar = false;        
     }
 
     IEnumerator LookAt(Vector3 point)//父亲，快看！诸葛亮！
@@ -239,53 +265,68 @@ public class HexUnit : MonoBehaviour
         orientation = transform.localRotation.eulerAngles.y;
     }
 
-    IEnumerator FightAnimation(HexUnit target)//欢乐神游，一格格走
+    IEnumerator FightAnimation()//欢乐神游，一格格走
     {
         isQunar = true;
-        
-        yield return LookAt(target.location.Position);
-
-        yield return null;
+        Debug.Log(isQunar);
+        yield return LookAt(targetUnit.location.Position);
+        m_anim.SetInteger("aniState", 2);
+        yield return new WaitForSeconds(1f);
+        targetUnit.Wound(this);
         isQunar = false;
+        m_anim.SetInteger("aniState", -1);
     }
+
+    public IEnumerator WoundAnimation()
+    {
+        isQunar = true;
+        Debug.Log(isQunar);
+        //yield return new WaitForSeconds(1f);
+        m_anim.SetInteger("aniState", 3);
+        yield return LookAt(targetUnit.location.Position);
+        isQunar = false;
+        m_anim.SetInteger("aniState", -1);
+    }
+
+    IEnumerator SpellAnimations()
+    {
+        Debug.Log("施法");
+        isQunar = true;
+        yield return LookAt(targetUnit.location.Position);
+        m_anim.SetInteger("aniState", 5);
+        if (targetUnit.unitAttribute.activeSkill.TargetTeam != this.unitAttribute.team)
+        {
+            targetUnit.Wound(this);
+        }
+        yield return new WaitForSeconds(1f);
+        mySkill.skillAt(targetUnit);
+        isQunar = false;
+        m_anim.SetInteger("aniState", -1);
+    }
+
 
     public void Fight(HexUnit target)//欢乐战斗
     {
-        m_anim.SetInteger("aniState", 2);
-        //看向对手
-
-        StartCoroutine(FightAnimation(target));
-        //攻击方必先手
-        //加动画
+        this.targetUnit = target;
         target.unitAttribute.DoDamage(this.unitAttribute.Att - target.UnitAttribute.Def);
-        //如果对方还活着
-        if (target.unitAttribute.hp > 0)
-        {
-            this.unitAttribute.DoDamage(target.unitAttribute.Att - this.UnitAttribute.Def);
-            //m_anim.SetInteger("aniState", 2);
-            //如果我方比对方速度快3以上 追加攻击
-            if (this.unitAttribute.Sp >= target.unitAttribute.Sp + 3)
-            {
-                target.unitAttribute.DoDamage(this.unitAttribute.Att - target.UnitAttribute.Def);
-                m_anim.SetInteger("aniState", 2);
-                StartCoroutine(FightAnimation(target));
-            }
-            //如果对方比我方速度快3以上 对方追加攻击
-            else if (target.unitAttribute.Sp >= this.unitAttribute.Sp + 3)
-            {
-                this.unitAttribute.DoDamage(target.unitAttribute.Att - this.UnitAttribute.Def);
-                //m_anim.SetInteger("aniState", 2);
-            }
-        }
+        animationOperator.Add(2);
+    }
+
+    public void Wound(HexUnit target)//欢乐受伤
+    {
+        Debug.Log("unit "+this.unitAttribute.actorName+" is hit by "+target.unitAttribute.actorName);
+        this.targetUnit = target;
+        this.unitAttribute.DoDamage(target.unitAttribute.Att - this.UnitAttribute.Def);
+        animationOperator.Add(3);
     }
 
     public void Spell(HexUnit target)//欢乐施法
     {
-        LookAtTarget(target.location.Position);
-        //加动画
-        m_anim.GetParameter(0).defaultInt = 2;
-        Debug.Log(m_anim.GetParameter(0).name + " now is " + m_anim.GetParameter(0).defaultInt);
+        
+        this.targetUnit = target;
+        
         unitAttribute.activeSkill.Spell(target);
+        animationOperator.Add(5);
     }
 
     public bool checkTeam(HexCell target)
@@ -294,4 +335,56 @@ public class HexUnit : MonoBehaviour
     }
 
     //EnableHighLight;
+
+    IEnumerator AnimationProcess()
+    {
+        while(true)//动画循环
+        {
+            
+            //指令信息
+            while (this.animationOperator.Count == 0)
+            {
+                //Debug.Log(this.unitAttribute.actorName + " animationOperator count = " + animationOperator.Count);
+                yield return null;
+            }
+            while (this.animationOperator.Count > 0)
+            {
+                
+                for (; animationOperator.Count > 0;)
+                {
+                    Debug.Log(this.unitAttribute.actorName + " animationOperator count = " + animationOperator.Count + " opeation[0] = " + animationOperator[0]);
+                    switch (animationOperator[0])
+                    {
+                        
+                        case 1:
+                            animationOperator.RemoveAt(0);
+                            yield return TravelPath();
+                            break;
+                        case 2:
+                            animationOperator.RemoveAt(0);
+                            yield return FightAnimation();
+                            break;
+                        case 3:
+                            animationOperator.RemoveAt(0);
+                            yield return WoundAnimation();
+                            break;
+                        case 4:
+                            animationOperator.RemoveAt(0);
+                            yield return DealDie();
+                            break;
+                        case 5:
+                            animationOperator.RemoveAt(0);
+                            Debug.Log("default");
+                            yield return SpellAnimations();
+                            break;
+
+                        default:
+                            animationOperator.RemoveAt(0);
+                            
+                            break;
+                    }
+                }
+            }
+        }
+    }
 }

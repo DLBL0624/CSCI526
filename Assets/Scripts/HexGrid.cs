@@ -447,7 +447,7 @@ public class HexGrid : MonoBehaviour
         unitManager.clearUnits();
         for (int i = 0; i < units.Count; i++)
         {
-            units[i].Die();
+            units[i].Die(0);//无动画的die
         }
         units.Clear();
         
@@ -466,7 +466,7 @@ public class HexGrid : MonoBehaviour
     {
         units.Remove(unit);
         unitManager.removeUnit(unit);
-        unit.Die();
+        unit.Die(0);//无动画的die
     }
 
     public HexCell GetCell(Ray ray)

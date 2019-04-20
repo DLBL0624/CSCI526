@@ -27,6 +27,8 @@ public class HexGameUI : MonoBehaviour
 
     public CharacterStatus targetWindow;
 
+    public CheckVideoStop checkVideoStop;
+
     bool showAttackRange = false;
 
     bool showSpellRange = false;
@@ -340,20 +342,40 @@ public class HexGameUI : MonoBehaviour
     {
         if(targetUnit)
         {
+            selectedUnit.UnitAttribute.bs = behaviorStatus.rest;
             ShowRangeCell(false,1);//隐藏攻击范围
             selectedUnit.Fight(targetUnit);
+            //targetUnit.Wound(selectedUnit);
+            if (targetUnit.UnitAttribute.hp > 0)
+            {
+                targetUnit.Fight(selectedUnit);
+                //selectedUnit.Wound(targetUnit);
+                //如果我方比对方速度快3以上 追加攻击
+                if (selectedUnit.UnitAttribute.Sp >= targetUnit.UnitAttribute.Sp + 3)
+                {
+                    selectedUnit.Fight(targetUnit);
+                    //targetUnit.Wound(selectedUnit);
+                }
+                //如果对方比我方速度快3以上 对方追加攻击
+                else if (targetUnit.UnitAttribute.Sp >= selectedUnit.UnitAttribute.Sp + 3)
+                {
+                    targetUnit.Fight(selectedUnit);
+                    //selectedUnit.Wound(targetUnit);
+                }
+            }
             checkDie(selectedUnit);
             checkDie(targetUnit);
             showAttackRange = false;
             if(selectedUnit)statusWindow.showUnitStatus(selectedUnit);
             targetWindow.showUnitStatus(null);
             targetUnit = null;
-            selectedUnit.UnitAttribute.bs = behaviorStatus.rest;
+            
         }
     }
 
     void DoSpell()
     {
+        selectedUnit.UnitAttribute.bs = behaviorStatus.rest;
         ShowRangeCell(false,0);//隐藏施法范围
         selectedUnit.Spell(targetUnit);
         checkDie(selectedUnit);
@@ -361,7 +383,6 @@ public class HexGameUI : MonoBehaviour
         showSpellRange = false;
         if (selectedUnit) statusWindow.showUnitStatus(selectedUnit);
         targetUnit = null;
-        selectedUnit.UnitAttribute.bs = behaviorStatus.rest;
     }
 
     void checkDie(HexUnit hu)
@@ -382,12 +403,12 @@ public class HexGameUI : MonoBehaviour
                 //{
                 //    isArthasDead = true;
                 //}
-                if (hu.UnitAttribute.actorName == "Malganis")
-                {
-                    isMalganisDead = true;
-                }
-                grid.unitManager.removeUnit(hu);
-                hu.Die();
+                //if (hu.UnitAttribute.actorName == "Malganis")
+                //{
+                //    isMalganisDead = true;
+                //}
+                //grid.unitManager.removeUnit(hu);
+                hu.Die(1);//有动画的die
             }
             //用于检测克罗米被动 (第一次死生命回到1)
             else if (hu.UnitAttribute.hpMin > 0)
