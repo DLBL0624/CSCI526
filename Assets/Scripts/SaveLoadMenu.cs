@@ -50,7 +50,13 @@ public class SaveLoadMenu : MonoBehaviour
         {
             return null;
         }
+        Debug.Log(Application.dataPath + "/map/" + mapName + ".map");
+        return Application.dataPath + @"/map/" + mapName + ".map";
+        Debug.Log(Application.dataPath + "/map/" + mapName + ".map");
         return Path.Combine(Application.persistentDataPath, mapName + ".map");
+        //C:\Users\xjn06\Desktop\526-master\Assets\map
+        
+        
     }
 
     void Save(string path)
@@ -91,6 +97,7 @@ public class SaveLoadMenu : MonoBehaviour
     public void Action()
     {
         string path = GetSelectedPath();
+        Debug.Log(path);
         if(path == null)
         {
             return;
@@ -132,7 +139,8 @@ public class SaveLoadMenu : MonoBehaviour
         {
             Destroy(listContent.GetChild(i).gameObject);
         }
-        string[] paths = Directory.GetFiles(Application.persistentDataPath, "*.map");
+        //string[] paths = Directory.GetFiles(Application.persistentDataPath, "*.map");
+        string[] paths = Directory.GetFiles(Application.dataPath+"/map/", "*.map");
         Array.Sort(paths);
         for (int i = 0; i<paths.Length; i++)
         {
