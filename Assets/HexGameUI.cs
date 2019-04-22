@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -53,12 +54,18 @@ public class HexGameUI : MonoBehaviour
 
     void DoSelection()
     {
+        if (selectedUnit) selectedUnit.isSelected = false;
         grid.ClearPath();
         UpdateCurrentCell();
         if (currentCell)
         {
             selectedUnit = currentCell.Unit;
-            if(selectedUnit)statusWindow.showUnitStatus(selectedUnit);
+
+            if (selectedUnit)
+            {
+                statusWindow.showUnitStatus(selectedUnit);
+                selectedUnit.isSelected = true;
+            }
             else statusWindow.showUnitStatus(null);
         }
         targetWindow.showUnitStatus(null);
@@ -96,8 +103,8 @@ public class HexGameUI : MonoBehaviour
             //攻击范围
             ShowRangeCell(true, 1);
         }
-        
-        DoAttack();//攻击
+
+        StartCoroutine(DoAttack());//攻击
         statusWindow.showUnitStatus(null);
     }
 
@@ -177,7 +184,7 @@ public class HexGameUI : MonoBehaviour
                             && selectedUnit.UnitAttribute.bs != behaviorStatus.rest 
                             && selectedUnit.checkTeam(targetUnit.Location))
                         {
-                            DoAttack();
+                            StartCoroutine(DoAttack());
                         }
                     }
                     else if(showSpellRange == true)
@@ -338,7 +345,7 @@ public class HexGameUI : MonoBehaviour
         
     }
 
-    void DoAttack()
+    IEnumerator DoAttack()
     {
         if(targetUnit)
         {
@@ -346,25 +353,45 @@ public class HexGameUI : MonoBehaviour
             ShowRangeCell(false,1);//隐藏攻击范围
             selectedUnit.Fight(targetUnit);
             //targetUnit.Wound(selectedUnit);
-            if (targetUnit.UnitAttribute.hp > 0)
+            while(selectedUnit.isQunar&&targetUnit.isQunar)
+            {
+                Debug.Log("halting!");
+                yield return null;
+            }
+            if (targetUnit.UnitAttribute.hp > 0
+                && HexMetrics.FindDistanceBetweenCells(selectedUnit.Location, targetUnit.Location) <= targetUnit.UnitAttribute.maxAttRange
+                && HexMetrics.FindDistanceBetweenCells(selectedUnit.Location, targetUnit.Location) >= targetUnit.UnitAttribute.minAttRange
+                )
             {
                 targetUnit.Fight(selectedUnit);
                 //selectedUnit.Wound(targetUnit);
                 //如果我方比对方速度快3以上 追加攻击
-                if (selectedUnit.UnitAttribute.Sp >= targetUnit.UnitAttribute.Sp + 3)
+                
+                if (selectedUnit.UnitAttribute.Sp >= targetUnit.UnitAttribute.Sp + 15)
                 {
                     selectedUnit.Fight(targetUnit);
                     //targetUnit.Wound(selectedUnit);
                 }
                 //如果对方比我方速度快3以上 对方追加攻击
-                else if (targetUnit.UnitAttribute.Sp >= selectedUnit.UnitAttribute.Sp + 3)
+                else if (targetUnit.UnitAttribute.Sp >= selectedUnit.UnitAttribute.Sp + 15)
                 {
                     targetUnit.Fight(selectedUnit);
                     //selectedUnit.Wound(targetUnit);
                 }
             }
-            checkDie(selectedUnit);
-            checkDie(targetUnit);
+            else if (targetUnit.UnitAttribute.hp > 0
+                && (HexMetrics.FindDistanceBetweenCells(selectedUnit.Location, targetUnit.Location) > targetUnit.UnitAttribute.maxAttRange
+                    || HexMetrics.FindDistanceBetweenCells(selectedUnit.Location, targetUnit.Location) < targetUnit.UnitAttribute.minAttRange)
+                )
+            {
+                if (selectedUnit.UnitAttribute.Sp >= targetUnit.UnitAttribute.Sp + 15)
+                {
+                    selectedUnit.Fight(targetUnit);
+                    //targetUnit.Wound(selectedUnit);
+                }
+            }
+            //checkDie(selectedUnit);
+            //checkDie(targetUnit);
             showAttackRange = false;
             if(selectedUnit)statusWindow.showUnitStatus(selectedUnit);
             targetWindow.showUnitStatus(null);

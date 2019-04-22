@@ -464,9 +464,12 @@ public class HexGrid : MonoBehaviour
 
     public void RemoveUnit(HexUnit unit)
     {
-        units.Remove(unit);
-        unitManager.removeUnit(unit);
         unit.Die(0);//无动画的die
+    }
+
+    public void RemoveUnitFromList(HexUnit unit)
+    {
+        units.Remove(unit);
     }
 
     public HexCell GetCell(Ray ray)

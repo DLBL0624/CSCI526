@@ -15,13 +15,15 @@ public class HexUnit : MonoBehaviour
 
     public int unitType = 0;
 
-    private bool isQunar = false;
+    public bool isQunar = false;
 
-    private bool isSelected = false;
+    public bool isSelected = false;
 
     private HexUnit targetUnit;
 
     private List<int> animationOperator = new List<int>();//1-> wall 2-> att 3-> wound 4-> die 5-> spell
+
+    public HexGrid hexGrid;
 
     //public AnimationClip[] animations;
     Animator m_anim;
@@ -34,6 +36,7 @@ public class HexUnit : MonoBehaviour
     void Start()
     {
         StartCoroutine(AnimationProcess());
+        hexGrid = this.GetComponentInParent<HexGrid>();
     }
 
     public UnitAttribute UnitAttribute
@@ -116,10 +119,12 @@ public class HexUnit : MonoBehaviour
 
     public void Die(int loading)
     {
-        if(loading == 0)
+        hexGrid.unitManager.removeUnit(this);
+        hexGrid.RemoveUnitFromList(this);
+        if (loading == 0)
         {
             location.Unit = null;
-            if(this)Destroy(gameObject);
+            if (this)Destroy(gameObject);
         }
         else
         {
@@ -129,8 +134,8 @@ public class HexUnit : MonoBehaviour
 
     IEnumerator DealDie()
     {
-        m_anim.SetInteger("aniState", 4);
         isQunar = true;
+        m_anim.SetInteger("aniState", 4);
         yield return new WaitForSeconds(4f);
         location.Unit = null;
         Destroy(gameObject);
@@ -174,9 +179,9 @@ public class HexUnit : MonoBehaviour
     
 
     IEnumerator TravelPath()//欢乐神游，一格格走
-    {
-        m_anim.SetInteger("aniState", 1);
+    { 
         isQunar = true;
+        m_anim.SetInteger("aniState", 1);
         Debug.Log(isQunar);
         Vector3 a, b, c = pathToTravel[0].Position;
         transform.localPosition = c;
@@ -271,21 +276,20 @@ public class HexUnit : MonoBehaviour
         Debug.Log(isQunar);
         yield return LookAt(targetUnit.location.Position);
         m_anim.SetInteger("aniState", 2);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         targetUnit.Wound(this);
         isQunar = false;
-        m_anim.SetInteger("aniState", -1);
     }
 
     public IEnumerator WoundAnimation()
     {
         isQunar = true;
         Debug.Log(isQunar);
-        //yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         m_anim.SetInteger("aniState", 3);
         yield return LookAt(targetUnit.location.Position);
+        if (UnitAttribute.hp <= 0) Die(1);
         isQunar = false;
-        m_anim.SetInteger("aniState", -1);
     }
 
     IEnumerator SpellAnimations()
@@ -298,7 +302,7 @@ public class HexUnit : MonoBehaviour
         {
             targetUnit.Wound(this);
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         mySkill.skillAt(targetUnit);
         isQunar = false;
         m_anim.SetInteger("aniState", -1);

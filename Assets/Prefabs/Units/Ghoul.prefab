@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1222979346368251843}
   - component: {fileID: 8031260323872605539}
   - component: {fileID: 2672287133688834330}
+  - component: {fileID: 7401215577761666557}
   m_Layer: 0
   m_Name: Ghoul
   m_TagString: Untagged
@@ -79,6 +80,18 @@ MonoBehaviour:
   maxAttRange: 1
   minSplRange: 1
   maxSplRange: 1
+--- !u!114 &7401215577761666557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257555518560810494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b15d6567c24314f8089791934c26bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2547668224739229671
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7007847402442963401}
     m_Modifications:
+    - target: {fileID: 100344, guid: 2c5de8f8d5319a548bf65fea78f7f103, type: 3}
+      propertyPath: m_Name
+      value: flesh eater
+      objectReference: {fileID: 0}
     - target: {fileID: 400344, guid: 2c5de8f8d5319a548bf65fea78f7f103, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -172,10 +189,6 @@ PrefabInstance:
     - target: {fileID: 400344, guid: 2c5de8f8d5319a548bf65fea78f7f103, type: 3}
       propertyPath: m_LocalScale.z
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 100344, guid: 2c5de8f8d5319a548bf65fea78f7f103, type: 3}
-      propertyPath: m_Name
-      value: flesh eater
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: 2c5de8f8d5319a548bf65fea78f7f103, type: 3}
       propertyPath: m_Controller
