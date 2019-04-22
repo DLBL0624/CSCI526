@@ -10,7 +10,7 @@ public class gameSystem : MonoBehaviour
     public HexMapEditor hexMapEditor;
     public SaveLoadMenu saveLoadMenu;
     public CheckVideoStop checkVideoStop;
-    public Button quitButton;
+    public Button quitButton, roundEndButton;
 
     // Start is called before the first frame update
     void Start()
@@ -31,5 +31,7 @@ public class gameSystem : MonoBehaviour
     {
         roundManager.switchTurn();
         round.text = roundManager.getRound().ToString();
+        hexGameUI.transform.GetChild(0).gameObject.SetActive(false);
+        roundEndButton.gameObject.SetActive(false);
     }
 }

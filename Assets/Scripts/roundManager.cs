@@ -30,13 +30,14 @@ public static class roundManager
         if ((int)turn == 0)
         {
             turn++;
-            unitManager.aiManager.AIstart();
+            unitManager.aiManager.AIwakeup();
         }
         else
         {
             unitManager.grid.resetList();
             turn--;
             round++;
+            Debug.Log("Switch Turn! to " + round);
         }
     }
 }

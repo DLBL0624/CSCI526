@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class AIManager : MonoBehaviour
 {
@@ -10,11 +10,21 @@ public class AIManager : MonoBehaviour
     public UnitManager unitManager;
     public HexGameUI hexGameUI;
     public HexGrid hexGrid;
+    public Text round;
+    public Button roundEndButton;
 
-    public void AIstart()
+    private bool isAIAction = false;
+
+    public void AIwakeup()
     {
+        StartCoroutine(AIstart());
+    }
+
+    public IEnumerator AIstart()
+    {
+        isAIAction = false;
         List<HexUnit> enemy_temp = unitManager.enemyUnits;
-        Debug.Log("Number of Enemies = " + unitManager.enemyUnits.Count);
+        //Debug.Log("Number of Enemies = " + unitManager.enemyUnits.Count);
         for (int i = 0; i< enemy_temp.Count;i++ )
         {
             HexUnit aiChess = enemy_temp[i];
@@ -23,17 +33,25 @@ public class AIManager : MonoBehaviour
             //List<HexUnit> DetectChess = unitManager.friendUnits;
 
             List<HexUnit> DetectChess = AIFindTouchableChess(aiChess);
-            Debug.Log("DetectChess = " +DetectChess.Count);
-            AI(aiChess, DetectChess);
-            
+            //Debug.Log("DetectChess = " +DetectChess.Count);
+            yield return AI(aiChess, DetectChess);
+            while(isAIAction)
+            {
+                yield return null;
+            }
             DetectChess.Clear();
         }
+        
         roundManager.switchTurn();
+        yield return new WaitForSeconds(1f);
+        round.text = roundManager.getRound().ToString();
+        hexGameUI.transform.GetChild(0).gameObject.SetActive(true);
+        roundEndButton.gameObject.SetActive(true);
     }
 
-    void AI(HexUnit aiChess, List<HexUnit> DetectChess)
+    IEnumerator AI(HexUnit aiChess, List<HexUnit> DetectChess)
     {
-
+        isAIAction = true;
         HexUnit target = null;
         int maxScore = int.MinValue;
         for(int i = 0; i< DetectChess.Count; i++)
@@ -51,9 +69,11 @@ public class AIManager : MonoBehaviour
         
         if (maxScore != int.MinValue)
         {
-            Debug.Log("....");
-            hexGameUI.AIDoSelection(aiChess, target, aiChess.UnitAttribute.Ap);
+            Debug.Log("AI Operating!");
+            yield return hexGameUI.AIDoSelection(aiChess, target, aiChess.UnitAttribute.Ap);
+            
         }
+        isAIAction = false;
     }
 
     List<HexUnit> AIFindTouchableChess(HexUnit aiChess)

@@ -10133,6 +10133,8 @@ MonoBehaviour:
   unitManager: {fileID: 186293440}
   hexGameUI: {fileID: 181187438}
   hexGrid: {fileID: 73971510}
+  round: {fileID: 778981071}
+  roundEndButton: {fileID: 1135703482}
 --- !u!1 &783855826
 GameObject:
   m_ObjectHideFlags: 0
@@ -12110,6 +12112,7 @@ MonoBehaviour:
   saveLoadMenu: {fileID: 1408345772}
   checkVideoStop: {fileID: 1835351596}
   quitButton: {fileID: 640255720}
+  roundEndButton: {fileID: 1135703482}
 --- !u!1 &904536020
 GameObject:
   m_ObjectHideFlags: 0
@@ -19261,6 +19264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuLabel: {fileID: 122414850}
   actionButtonLabel: {fileID: 1253478402}
+  round: {fileID: 778981071}
   nameInput: {fileID: 1934203542}
   listContent: {fileID: 1734719948}
   itemPrefab: {fileID: 7107055015822649042, guid: 067888cadf6857f48ba8af72115e3257,

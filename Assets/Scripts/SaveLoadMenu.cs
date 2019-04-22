@@ -7,7 +7,7 @@ using System.IO;
 
 public class SaveLoadMenu : MonoBehaviour
 {
-    public Text menuLabel, actionButtonLabel;
+    public Text menuLabel, actionButtonLabel, round;
 
     bool saveMode;
 
@@ -97,6 +97,8 @@ public class SaveLoadMenu : MonoBehaviour
             {
                 Debug.LogWarning("Unkown map format" + header);
             }
+            roundManager.setRound(0);
+            round.text = roundManager.getRound().ToString();
         }
     }
 

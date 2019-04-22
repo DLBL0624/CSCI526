@@ -83,7 +83,7 @@ public class HexGameUI : MonoBehaviour
         
     }
 
-    public void AIDoSelection(HexUnit enemyUnit, HexUnit friendUnit, int speed)
+    public IEnumerator AIDoSelection(HexUnit enemyUnit, HexUnit friendUnit, int speed)
     {
         selectedUnit = enemyUnit;
         checkPos(friendUnit);
@@ -103,8 +103,11 @@ public class HexGameUI : MonoBehaviour
             //攻击范围
             ShowRangeCell(true, 1);
         }
-
-        StartCoroutine(DoAttack());//攻击
+        while(selectedUnit.isQunar)
+        {
+            yield return null;
+        }
+        yield return StartCoroutine(DoAttack());//攻击
         statusWindow.showUnitStatus(null);
     }
 
@@ -353,7 +356,8 @@ public class HexGameUI : MonoBehaviour
             ShowRangeCell(false,1);//隐藏攻击范围
             selectedUnit.Fight(targetUnit);
             //targetUnit.Wound(selectedUnit);
-            while(selectedUnit.isQunar&&targetUnit.isQunar)
+            
+            while(selectedUnit.isQunar||targetUnit.isQunar)
             {
                 Debug.Log("halting!");
                 yield return null;
@@ -364,19 +368,20 @@ public class HexGameUI : MonoBehaviour
                 )
             {
                 targetUnit.Fight(selectedUnit);
-                //selectedUnit.Wound(targetUnit);
-                //如果我方比对方速度快3以上 追加攻击
-                
+                //如果我方比对方速度快15以上 追加攻击
+                while (selectedUnit.isQunar || targetUnit.isQunar)
+                {
+                    Debug.Log("halting!");
+                    yield return null;
+                }
                 if (selectedUnit.UnitAttribute.Sp >= targetUnit.UnitAttribute.Sp + 15)
                 {
                     selectedUnit.Fight(targetUnit);
-                    //targetUnit.Wound(selectedUnit);
                 }
-                //如果对方比我方速度快3以上 对方追加攻击
+                //如果对方比我方速度快15以上 对方追加攻击
                 else if (targetUnit.UnitAttribute.Sp >= selectedUnit.UnitAttribute.Sp + 15)
                 {
                     targetUnit.Fight(selectedUnit);
-                    //selectedUnit.Wound(targetUnit);
                 }
             }
             else if (targetUnit.UnitAttribute.hp > 0
@@ -384,10 +389,14 @@ public class HexGameUI : MonoBehaviour
                     || HexMetrics.FindDistanceBetweenCells(selectedUnit.Location, targetUnit.Location) < targetUnit.UnitAttribute.minAttRange)
                 )
             {
+                while (selectedUnit.isQunar || targetUnit.isQunar)
+                {
+                    Debug.Log("halting!");
+                    yield return null;
+                }
                 if (selectedUnit.UnitAttribute.Sp >= targetUnit.UnitAttribute.Sp + 15)
                 {
                     selectedUnit.Fight(targetUnit);
-                    //targetUnit.Wound(selectedUnit);
                 }
             }
             //checkDie(selectedUnit);

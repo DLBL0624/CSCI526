@@ -11,7 +11,7 @@ public class HexUnit : MonoBehaviour
 
     const float travelSpeed = 4f;
 
-    const float rotationSpeed = 180f;
+    const float rotationSpeed = 360f;
 
     public int unitType = 0;
 
@@ -119,16 +119,21 @@ public class HexUnit : MonoBehaviour
 
     public void Die(int loading)
     {
-        hexGrid.unitManager.removeUnit(this);
-        hexGrid.RemoveUnitFromList(this);
         if (loading == 0)
         {
             location.Unit = null;
-            if (this)Destroy(gameObject);
+            if(this)Destroy(this.gameObject);
+        }
+        else if (loading == 1)
+        {
+            animationOperator.Add(4);
         }
         else
         {
-            animationOperator.Add(4);
+            location.Unit = null;
+            Destroy(this.gameObject);
+            hexGrid.unitManager.removeUnit(this);
+            hexGrid.RemoveUnitFromList(this);
         }
     }
 
@@ -181,12 +186,12 @@ public class HexUnit : MonoBehaviour
     IEnumerator TravelPath()//欢乐神游，一格格走
     { 
         isQunar = true;
-        m_anim.SetInteger("aniState", 1);
+        
         Debug.Log(isQunar);
         Vector3 a, b, c = pathToTravel[0].Position;
         transform.localPosition = c;
         yield return LookAt(pathToTravel[1].Position);
-
+        m_anim.SetInteger("aniState", 1);
         float t = Time.deltaTime * travelSpeed;
         for (int i = 1; i < pathToTravel.Count; i++)
         {
@@ -218,6 +223,7 @@ public class HexUnit : MonoBehaviour
         orientation = transform.localRotation.eulerAngles.y;
         ListPool<HexCell>.Add(pathToTravel);
         pathToTravel = null;
+        m_anim.SetInteger("aniState", 0);
         isQunar = false;        
     }
 
@@ -273,21 +279,21 @@ public class HexUnit : MonoBehaviour
     IEnumerator FightAnimation()//欢乐神游，一格格走
     {
         isQunar = true;
-        Debug.Log(isQunar);
         yield return LookAt(targetUnit.location.Position);
         m_anim.SetInteger("aniState", 2);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         targetUnit.Wound(this);
+        m_anim.SetInteger("aniState", 0);
         isQunar = false;
     }
 
     public IEnumerator WoundAnimation()
     {
         isQunar = true;
-        Debug.Log(isQunar);
-        yield return new WaitForSeconds(2f);
         m_anim.SetInteger("aniState", 3);
         yield return LookAt(targetUnit.location.Position);
+        yield return new WaitForSeconds(.25f);
+        m_anim.SetInteger("aniState", 0);
         if (UnitAttribute.hp <= 0) Die(1);
         isQunar = false;
     }
@@ -304,8 +310,9 @@ public class HexUnit : MonoBehaviour
         }
         yield return new WaitForSeconds(2f);
         mySkill.skillAt(targetUnit);
+        m_anim.SetInteger("aniState", 0);
         isQunar = false;
-        m_anim.SetInteger("aniState", -1);
+        //m_anim.SetInteger("aniState", -1);
     }
 
 
@@ -314,6 +321,7 @@ public class HexUnit : MonoBehaviour
         this.targetUnit = target;
         target.unitAttribute.DoDamage(this.unitAttribute.Att - target.UnitAttribute.Def);
         animationOperator.Add(2);
+        isQunar = true;
     }
 
     public void Wound(HexUnit target)//欢乐受伤
@@ -322,6 +330,7 @@ public class HexUnit : MonoBehaviour
         this.targetUnit = target;
         this.unitAttribute.DoDamage(target.unitAttribute.Att - this.UnitAttribute.Def);
         animationOperator.Add(3);
+        isQunar = true;
     }
 
     public void Spell(HexUnit target)//欢乐施法
