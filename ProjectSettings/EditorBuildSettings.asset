@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SavedGame.unity
     guid: 83873000283c5bf4db196345ce688f59
+  - enabled: 1
+    path: Assets/Scenes/ChooseStage.unity
+    guid: e3808b40cc8325949ace5a81a46d306c
   m_configObjects: {}

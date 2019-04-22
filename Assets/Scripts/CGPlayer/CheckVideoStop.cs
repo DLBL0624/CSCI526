@@ -20,6 +20,10 @@ public class CheckVideoStop : MonoBehaviour
     public Button TestStart;
     public Button SetMusic;
 
+    public GameObject actorPanel;
+    public GameObject gameMenu;
+    public GameObject editMenu;
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,10 +34,10 @@ public class CheckVideoStop : MonoBehaviour
         //listen to the skip button
         button_Skip.onClick.AddListener(SkipStory);
 
-        //just for test!
-        SetStage.onClick.AddListener(setLoad);
+        ////just for test!
+        SetStage.onClick.AddListener(setLoadVideo);
         TestStart.onClick.AddListener(PlayVideo);
-        SetMusic.onClick.AddListener(setMusic);
+        SetMusic.onClick.AddListener(setLoadMusic);
     }
 
     // Update is called once per frame
@@ -42,13 +46,20 @@ public class CheckVideoStop : MonoBehaviour
         if (videoPlayer.isPaused)
         {
             this.gameObject.SetActive(false);
+            editMenu.SetActive(true);
+            gameMenu.SetActive(true);
+            actorPanel.SetActive(true);
         }
     }
 
     public void SkipStory()
     {
         videoPlayer.Stop();
+        audioSource.Stop();
         this.gameObject.SetActive(false);
+        editMenu.SetActive(true);
+        gameMenu.SetActive(true);
+        actorPanel.SetActive(true);
     }
     
     public void LoadVideo(int index)
@@ -72,6 +83,10 @@ public class CheckVideoStop : MonoBehaviour
             //播放音频
             audioSource.Play();
         }
+        this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        editMenu.SetActive(false);
+        gameMenu.SetActive(false);
+        actorPanel.SetActive(false);
     }
     //get the path of mp4 file
     public string GetFilePath(string videoName)
@@ -81,14 +96,24 @@ public class CheckVideoStop : MonoBehaviour
     }
 
     //just for test!
-    public void setLoad()
+    public void setLoadVideo()
     {
-        LoadVideo(0);
-        Debug.Log("log video done");
+        LoadVideo(9);
+        //Debug.Log("log video done");
     }
-    public void setMusic()
+    public void setLoadMusic()
     {
-        LoadAudio(5);
-        Debug.Log("log music done");
+        LoadAudio(6);
+        //Debug.Log("log music done");
+    }
+
+    public void setVideo(int index)
+    {
+        LoadVideo(index);
+    }
+
+    public void setMusic(int index)
+    {
+        LoadAudio(index);
     }
 }

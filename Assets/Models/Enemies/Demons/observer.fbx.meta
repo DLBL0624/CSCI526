@@ -1,0 +1,478 @@
+fileFormatVersion: 2
+guid: 56c1396c9996ba340b0c8c735ce6d02c
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: creature/beholder/beholder
+    100002: creature/beholder/beholder 1
+    100004: creature/beholder/beholder_bone_0
+    100006: creature/beholder/beholder_bone_1
+    100008: creature/beholder/beholder_bone_10
+    100010: creature/beholder/beholder_bone_11
+    100012: creature/beholder/beholder_bone_12
+    100014: creature/beholder/beholder_bone_13
+    100016: creature/beholder/beholder_bone_14
+    100018: creature/beholder/beholder_bone_15
+    100020: creature/beholder/beholder_bone_16
+    100022: creature/beholder/beholder_bone_17
+    100024: creature/beholder/beholder_bone_18
+    100026: creature/beholder/beholder_bone_19
+    100028: creature/beholder/beholder_bone_2
+    100030: creature/beholder/beholder_bone_20
+    100032: creature/beholder/beholder_bone_21
+    100034: creature/beholder/beholder_bone_22
+    100036: creature/beholder/beholder_bone_23
+    100038: creature/beholder/beholder_bone_24
+    100040: creature/beholder/beholder_bone_25
+    100042: creature/beholder/beholder_bone_26
+    100044: creature/beholder/beholder_bone_27
+    100046: creature/beholder/beholder_bone_28
+    100048: creature/beholder/beholder_bone_29
+    100050: creature/beholder/beholder_bone_3
+    100052: creature/beholder/beholder_bone_30
+    100054: creature/beholder/beholder_bone_31
+    100056: creature/beholder/beholder_bone_32
+    100058: creature/beholder/beholder_bone_33
+    100060: creature/beholder/beholder_bone_34
+    100062: creature/beholder/beholder_bone_35
+    100064: creature/beholder/beholder_bone_36
+    100066: creature/beholder/beholder_bone_37
+    100068: creature/beholder/beholder_bone_38
+    100070: creature/beholder/beholder_bone_39
+    100072: creature/beholder/beholder_bone_4
+    100074: creature/beholder/beholder_bone_40
+    100076: creature/beholder/beholder_bone_41
+    100078: creature/beholder/beholder_bone_42
+    100080: creature/beholder/beholder_bone_43
+    100082: creature/beholder/beholder_bone_44
+    100084: creature/beholder/beholder_bone_45
+    100086: creature/beholder/beholder_bone_46
+    100088: creature/beholder/beholder_bone_47
+    100090: creature/beholder/beholder_bone_48
+    100092: creature/beholder/beholder_bone_49
+    100094: creature/beholder/beholder_bone_5
+    100096: creature/beholder/beholder_bone_50
+    100098: creature/beholder/beholder_bone_51
+    100100: creature/beholder/beholder_bone_52
+    100102: creature/beholder/beholder_bone_53
+    100104: creature/beholder/beholder_bone_54
+    100106: creature/beholder/beholder_bone_55
+    100108: creature/beholder/beholder_bone_56
+    100110: creature/beholder/beholder_bone_57
+    100112: creature/beholder/beholder_bone_58
+    100114: creature/beholder/beholder_bone_59
+    100116: creature/beholder/beholder_bone_6
+    100118: creature/beholder/beholder_bone_60
+    100120: creature/beholder/beholder_bone_61
+    100122: creature/beholder/beholder_bone_62
+    100124: creature/beholder/beholder_bone_63
+    100126: creature/beholder/beholder_bone_64
+    100128: creature/beholder/beholder_bone_65
+    100130: creature/beholder/beholder_bone_66
+    100132: creature/beholder/beholder_bone_67
+    100134: creature/beholder/beholder_bone_68
+    100136: creature/beholder/beholder_bone_69
+    100138: creature/beholder/beholder_bone_7
+    100140: creature/beholder/beholder_bone_70
+    100142: creature/beholder/beholder_bone_71
+    100144: creature/beholder/beholder_bone_72
+    100146: creature/beholder/beholder_bone_73
+    100148: creature/beholder/beholder_bone_74
+    100150: creature/beholder/beholder_bone_75
+    100152: creature/beholder/beholder_bone_76
+    100154: creature/beholder/beholder_bone_77
+    100156: creature/beholder/beholder_bone_78
+    100158: creature/beholder/beholder_bone_79
+    100160: creature/beholder/beholder_bone_8
+    100162: creature/beholder/beholder_bone_80
+    100164: creature/beholder/beholder_bone_81
+    100166: creature/beholder/beholder_bone_82
+    100168: creature/beholder/beholder_bone_83
+    100170: creature/beholder/beholder_bone_84
+    100172: creature/beholder/beholder_bone_85
+    100174: creature/beholder/beholder_bone_86
+    100176: creature/beholder/beholder_bone_87
+    100178: creature/beholder/beholder_bone_88
+    100180: creature/beholder/beholder_bone_89
+    100182: creature/beholder/beholder_bone_9
+    100184: creature/beholder/beholder_bone_90
+    100186: creature/beholder/beholder_bone_91
+    100188: creature/beholder/beholder_bone_92
+    100190: //RootNode
+    400000: creature/beholder/beholder
+    400002: creature/beholder/beholder 1
+    400004: creature/beholder/beholder_bone_0
+    400006: creature/beholder/beholder_bone_1
+    400008: creature/beholder/beholder_bone_10
+    400010: creature/beholder/beholder_bone_11
+    400012: creature/beholder/beholder_bone_12
+    400014: creature/beholder/beholder_bone_13
+    400016: creature/beholder/beholder_bone_14
+    400018: creature/beholder/beholder_bone_15
+    400020: creature/beholder/beholder_bone_16
+    400022: creature/beholder/beholder_bone_17
+    400024: creature/beholder/beholder_bone_18
+    400026: creature/beholder/beholder_bone_19
+    400028: creature/beholder/beholder_bone_2
+    400030: creature/beholder/beholder_bone_20
+    400032: creature/beholder/beholder_bone_21
+    400034: creature/beholder/beholder_bone_22
+    400036: creature/beholder/beholder_bone_23
+    400038: creature/beholder/beholder_bone_24
+    400040: creature/beholder/beholder_bone_25
+    400042: creature/beholder/beholder_bone_26
+    400044: creature/beholder/beholder_bone_27
+    400046: creature/beholder/beholder_bone_28
+    400048: creature/beholder/beholder_bone_29
+    400050: creature/beholder/beholder_bone_3
+    400052: creature/beholder/beholder_bone_30
+    400054: creature/beholder/beholder_bone_31
+    400056: creature/beholder/beholder_bone_32
+    400058: creature/beholder/beholder_bone_33
+    400060: creature/beholder/beholder_bone_34
+    400062: creature/beholder/beholder_bone_35
+    400064: creature/beholder/beholder_bone_36
+    400066: creature/beholder/beholder_bone_37
+    400068: creature/beholder/beholder_bone_38
+    400070: creature/beholder/beholder_bone_39
+    400072: creature/beholder/beholder_bone_4
+    400074: creature/beholder/beholder_bone_40
+    400076: creature/beholder/beholder_bone_41
+    400078: creature/beholder/beholder_bone_42
+    400080: creature/beholder/beholder_bone_43
+    400082: creature/beholder/beholder_bone_44
+    400084: creature/beholder/beholder_bone_45
+    400086: creature/beholder/beholder_bone_46
+    400088: creature/beholder/beholder_bone_47
+    400090: creature/beholder/beholder_bone_48
+    400092: creature/beholder/beholder_bone_49
+    400094: creature/beholder/beholder_bone_5
+    400096: creature/beholder/beholder_bone_50
+    400098: creature/beholder/beholder_bone_51
+    400100: creature/beholder/beholder_bone_52
+    400102: creature/beholder/beholder_bone_53
+    400104: creature/beholder/beholder_bone_54
+    400106: creature/beholder/beholder_bone_55
+    400108: creature/beholder/beholder_bone_56
+    400110: creature/beholder/beholder_bone_57
+    400112: creature/beholder/beholder_bone_58
+    400114: creature/beholder/beholder_bone_59
+    400116: creature/beholder/beholder_bone_6
+    400118: creature/beholder/beholder_bone_60
+    400120: creature/beholder/beholder_bone_61
+    400122: creature/beholder/beholder_bone_62
+    400124: creature/beholder/beholder_bone_63
+    400126: creature/beholder/beholder_bone_64
+    400128: creature/beholder/beholder_bone_65
+    400130: creature/beholder/beholder_bone_66
+    400132: creature/beholder/beholder_bone_67
+    400134: creature/beholder/beholder_bone_68
+    400136: creature/beholder/beholder_bone_69
+    400138: creature/beholder/beholder_bone_7
+    400140: creature/beholder/beholder_bone_70
+    400142: creature/beholder/beholder_bone_71
+    400144: creature/beholder/beholder_bone_72
+    400146: creature/beholder/beholder_bone_73
+    400148: creature/beholder/beholder_bone_74
+    400150: creature/beholder/beholder_bone_75
+    400152: creature/beholder/beholder_bone_76
+    400154: creature/beholder/beholder_bone_77
+    400156: creature/beholder/beholder_bone_78
+    400158: creature/beholder/beholder_bone_79
+    400160: creature/beholder/beholder_bone_8
+    400162: creature/beholder/beholder_bone_80
+    400164: creature/beholder/beholder_bone_81
+    400166: creature/beholder/beholder_bone_82
+    400168: creature/beholder/beholder_bone_83
+    400170: creature/beholder/beholder_bone_84
+    400172: creature/beholder/beholder_bone_85
+    400174: creature/beholder/beholder_bone_86
+    400176: creature/beholder/beholder_bone_87
+    400178: creature/beholder/beholder_bone_88
+    400180: creature/beholder/beholder_bone_89
+    400182: creature/beholder/beholder_bone_9
+    400184: creature/beholder/beholder_bone_90
+    400186: creature/beholder/beholder_bone_91
+    400188: creature/beholder/beholder_bone_92
+    400190: //RootNode
+    2100000: creature_beholder_beholder_0
+    2100002: creature_beholder_beholder_1
+    2100004: creature_beholder_beholder_2
+    4300000: creature/beholder/beholder
+    7400000: Run [0]
+    7400002: AttackUnarmed [1]
+    7400004: CombatWound [4]
+    7400006: Death [5]
+    7400008: Walk [12]
+    7400010: Stand [19]
+    9500000: //RootNode
+    13700000: creature/beholder/beholder
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: creature_beholder_beholder_0
+    second: {fileID: 2100000, guid: 57d370a4056c5f74bb56b59907686256, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: creature_beholder_beholder_1
+    second: {fileID: 2100000, guid: 57d370a4056c5f74bb56b59907686256, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: creature_beholder_beholder_2
+    second: {fileID: 2100000, guid: 57d370a4056c5f74bb56b59907686256, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Run [0]
+      takeName: Run [0]
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: AttackUnarmed [1]
+      takeName: AttackUnarmed [1]
+      firstFrame: 0
+      lastFrame: 33
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: CombatWound [4]
+      takeName: CombatWound [4]
+      firstFrame: 0
+      lastFrame: 33
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Death [5]
+      takeName: Death [5]
+      firstFrame: 0
+      lastFrame: 158
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Walk [12]
+      takeName: Walk [12]
+      firstFrame: 0
+      lastFrame: 158
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Stand [19]
+      takeName: Stand [19]
+      firstFrame: 0
+      lastFrame: 158
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
