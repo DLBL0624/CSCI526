@@ -41,6 +41,7 @@ public class AIManager : MonoBehaviour
             HexUnit userChess = DetectChess[i];
             //计算分数加权的方式，暂不考虑sp过三的事
             int score = Mathf.Min(aiChess.UnitAttribute.Att - userChess.UnitAttribute.Def, (int)userChess.UnitAttribute.hp) - Mathf.Min(userChess.UnitAttribute.Att - aiChess.UnitAttribute.Def, (int)aiChess.UnitAttribute.hp);
+            //触发连击的情况
             if (score > maxScore)
             {
                 maxScore = score;

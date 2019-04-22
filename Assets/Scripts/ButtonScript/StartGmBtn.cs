@@ -8,6 +8,9 @@ using UnityEngine.EventSystems;
 public class StartGmBtn : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject MainstartPanel;
+    public GameObject ChoosePanel;
+
     void Start()
     {
         //Button btn = this.GetComponent<Button>();
@@ -24,7 +27,9 @@ public class StartGmBtn : MonoBehaviour
 
     public void startGame()
     {
-        SceneManager.LoadScene("Main_Scene");
+        MainstartPanel.SetActive(false);
+        ChoosePanel.SetActive(true);
+        //SceneManager.LoadScene("ChooseStage");
     }
 
     void Update()

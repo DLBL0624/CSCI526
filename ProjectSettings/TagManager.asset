@@ -7,6 +7,12 @@ TagManager:
   - Map
   - UIText
   - PlayerChess
+  - GameManager
+  - IntroNextButton
+  - NextButton
+  - SwitchLevel
+  - QuitButton
+  - EndController
   layers:
   - Default
   - TransparentFX

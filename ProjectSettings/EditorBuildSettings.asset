@@ -18,9 +18,24 @@ EditorBuildSettings:
     path: Assets/Scenes/Main_Scene.unity
     guid: cd589bbc14ba8b54d9b8842f67dbe624
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: d44b4e14f5ea69046a47b324e160eb0c
-  - enabled: 1
     path: Assets/Scenes/SavedGame.unity
     guid: 83873000283c5bf4db196345ce688f59
+  - enabled: 1
+    path: Assets/Scenes/Tutorial_Intro.unity
+    guid: dd4aca30742d09f408d0a68507a0af2c
+  - enabled: 1
+    path: Assets/Scenes/Level1_Intro.unity
+    guid: 5dd6538ccea24034e9dc948a20fab4a9
+  - enabled: 1
+    path: Assets/Scenes/Level2_Intro.unity
+    guid: 51660bffc98378746bb86f2fd19ff1b2
+  - enabled: 1
+    path: Assets/Scenes/Level3_Intro.unity
+    guid: e4ecf63dc23fe2e4799f6a251c37db33
+  - enabled: 1
+    path: Assets/Scenes/Level4_Intro.unity
+    guid: c306f97a995dbd44b9d3a6119df05ea5
+  - enabled: 1
+    path: Assets/Scenes/Background_Intro.unity
+    guid: b5769fc73158f504dba7d8699ff94586
   m_configObjects: {}

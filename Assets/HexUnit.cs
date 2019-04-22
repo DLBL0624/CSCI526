@@ -109,7 +109,7 @@ public class HexUnit : MonoBehaviour
             }
             else
             {
-                m_anim.SetInteger("aniState", -1);//准备动作
+                m_anim.SetInteger("aniState", 0);//准备动作
             }
         }
     }
@@ -374,7 +374,6 @@ public class HexUnit : MonoBehaviour
                             break;
                         case 5:
                             animationOperator.RemoveAt(0);
-                            Debug.Log("default");
                             yield return SpellAnimations();
                             break;
 

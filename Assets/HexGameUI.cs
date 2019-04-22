@@ -416,63 +416,9 @@ public class HexGameUI : MonoBehaviour
                 hu.UnitAttribute.hp = hu.UnitAttribute.hpMin;
                 hu.UnitAttribute.hpMin = 0;
             }
-            
         }
-        
     }
 
-    //void ShowAttackCell(bool enable)
-    //{
-    //    //假设距离为一
-    //    if(enable)
-    //    {
-    //        grid.ClearPath();
-    //        for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++)
-    //        {
-    //            HexCell neighbor = selectedUnit.Location.GetNeighbor(d);
-    //            rangeCells.Add(neighbor);
-    //            neighbor.EnableHighlight(Color.yellow);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++)
-    //        {
-    //            HexCell neighbor = selectedUnit.Location.GetNeighbor(d);
-    //            neighbor.DisableHighlight();
-                
-    //        }
-    //        rangeCells.Clear();
-    //    }
-        
-    //}
-
-
-    //void ShowSpellCell(bool enable)
-    //{
-    //    //假设距离为一
-    //    if (enable)
-    //    {
-    //        grid.ClearPath();
-    //        for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++)
-    //        {
-    //            HexCell neighbor = selectedUnit.Location.GetNeighbor(d);
-    //            rangeCells.Add(neighbor);
-    //            neighbor.EnableHighlight(Color.cyan);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++)
-    //        {
-    //            HexCell neighbor = selectedUnit.Location.GetNeighbor(d);
-    //            neighbor.DisableHighlight();
-
-    //        }
-    //        rangeCells.Clear();
-    //    }
-
-    //}
 
     void ShowRangeCell(bool enable, int model)
     {

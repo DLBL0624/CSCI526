@@ -19,6 +19,7 @@ public class SaveLoadMenu : MonoBehaviour
 
     public HexGrid hexGrid;
 
+
     public void Open(bool saveMode)
     {
         this.saveMode = saveMode;
@@ -33,6 +34,8 @@ public class SaveLoadMenu : MonoBehaviour
             actionButtonLabel.text = "Load";
         }
         FillList();
+        //string pathses = Application.dataPath +;
+        //menuLabel.text = pathses;
         gameObject.SetActive(true);
         HexMapCamera.Locked = true;
     }
@@ -50,8 +53,11 @@ public class SaveLoadMenu : MonoBehaviour
         {
             return null;
         }
-        Debug.Log(Application.dataPath + "/map/" + mapName + ".map");
-        return Application.dataPath + @"/map/" + mapName + ".map";
+        //string pathses = Application.dataPath + "/Resources/" + mapName + ".map";
+        //menuLabel.text = pathses;
+        //Debug.Log(Application.dataPath + "/Resources/" + mapName + ".map");
+        
+        return Application.dataPath + @"/Resources/" + mapName + ".map";
         Debug.Log(Application.dataPath + "/map/" + mapName + ".map");
         return Path.Combine(Application.persistentDataPath, mapName + ".map");
         //C:\Users\xjn06\Desktop\526-master\Assets\map
@@ -70,7 +76,7 @@ public class SaveLoadMenu : MonoBehaviour
         }
     }
 
-    void Load(string path)
+    public void Load(string path)
     {
         if(!File.Exists(path))
         {
@@ -140,8 +146,12 @@ public class SaveLoadMenu : MonoBehaviour
             Destroy(listContent.GetChild(i).gameObject);
         }
         //string[] paths = Directory.GetFiles(Application.persistentDataPath, "*.map");
-        string[] paths = Directory.GetFiles(Application.dataPath+"/map/", "*.map");
+        string[] paths = Directory.GetFiles(Application.dataPath+ "/Resources/", "*.map");
+        //Debug.Log(Resources.Load("*.map").GetType());
+        //object[] resource_paths = Resources.LoadAll("*.map");
         Array.Sort(paths);
+        //Array.Sort(resource_paths);
+
         for (int i = 0; i<paths.Length; i++)
         {
             SaveLoadItem item = Instantiate(itemPrefab);
@@ -149,5 +159,11 @@ public class SaveLoadMenu : MonoBehaviour
             item.MapName = Path.GetFileNameWithoutExtension(paths[i]);
             item.transform.SetParent(listContent, false);
         }
+
+        //for (int i = 0; i<resource_paths.Length; i++)
+        //{
+        //    SaveLoadItem item = Instantiate(itemPrefab);
+        //    item.menu = this;
+        //}
     }
 }
