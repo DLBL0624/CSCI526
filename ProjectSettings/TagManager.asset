@@ -13,6 +13,10 @@ TagManager:
   - SwitchLevel
   - QuitButton
   - EndController
+  - UnitManager
+  - Chromie
+  - CGplayer
+  - 2234
   layers:
   - Default
   - TransparentFX

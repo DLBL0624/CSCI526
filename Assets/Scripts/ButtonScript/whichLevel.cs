@@ -9,6 +9,17 @@ public class whichLevel : MonoBehaviour
     public string LevelName;
     public string levelPath;
     private int levelIndex;
+    public int LevelIndex
+    {
+        get
+        {
+            return this.levelIndex;
+        }
+        set
+        {
+            this.levelIndex = value;
+        }
+    }
     
 
     private string[] LevelNameSet =

@@ -27,7 +27,7 @@ public class CharacterStatus : MonoBehaviour
         hpStatus.value = selectedUnit.UnitAttribute.hp;
         chessName.text = selectedUnit.UnitAttribute.actorName;
 
-        avatar.sprite = characterImage[selectedUnit.unitType];
+        if(selectedUnit.unitType<characterImage.Length)avatar.sprite = characterImage[selectedUnit.unitType];
 
     }
 }

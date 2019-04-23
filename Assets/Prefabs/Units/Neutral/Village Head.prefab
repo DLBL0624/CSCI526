@@ -45,7 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 200ca172120f9fc41af53dd1400c548a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitType: 0
+  unitType: 20
+  isQunar: 0
+  isSelected: 0
+  hexGrid: {fileID: 0}
 --- !u!114 &3246828393883533723
 MonoBehaviour:
   m_ObjectHideFlags: 0

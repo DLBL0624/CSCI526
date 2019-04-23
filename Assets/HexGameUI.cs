@@ -357,19 +357,19 @@ public class HexGameUI : MonoBehaviour
             selectedUnit.Fight(targetUnit);
             //targetUnit.Wound(selectedUnit);
             
-            while(selectedUnit.isQunar||targetUnit.isQunar)
+            while(targetUnit&&(selectedUnit.isQunar||targetUnit.isQunar))
             {
                 Debug.Log("halting!");
                 yield return null;
             }
-            if (targetUnit.UnitAttribute.hp > 0
+            if (targetUnit&&targetUnit.UnitAttribute.hp > 0
                 && HexMetrics.FindDistanceBetweenCells(selectedUnit.Location, targetUnit.Location) <= targetUnit.UnitAttribute.maxAttRange
                 && HexMetrics.FindDistanceBetweenCells(selectedUnit.Location, targetUnit.Location) >= targetUnit.UnitAttribute.minAttRange
                 )
             {
                 targetUnit.Fight(selectedUnit);
                 //如果我方比对方速度快15以上 追加攻击
-                while (selectedUnit.isQunar || targetUnit.isQunar)
+                while (targetUnit && (selectedUnit.isQunar || targetUnit.isQunar))
                 {
                     Debug.Log("halting!");
                     yield return null;
@@ -384,12 +384,12 @@ public class HexGameUI : MonoBehaviour
                     targetUnit.Fight(selectedUnit);
                 }
             }
-            else if (targetUnit.UnitAttribute.hp > 0
+            else if (targetUnit && targetUnit.UnitAttribute.hp > 0
                 && (HexMetrics.FindDistanceBetweenCells(selectedUnit.Location, targetUnit.Location) > targetUnit.UnitAttribute.maxAttRange
                     || HexMetrics.FindDistanceBetweenCells(selectedUnit.Location, targetUnit.Location) < targetUnit.UnitAttribute.minAttRange)
                 )
             {
-                while (selectedUnit.isQunar || targetUnit.isQunar)
+                while (targetUnit && (selectedUnit.isQunar || targetUnit.isQunar))
                 {
                     Debug.Log("halting!");
                     yield return null;
@@ -414,8 +414,6 @@ public class HexGameUI : MonoBehaviour
         selectedUnit.UnitAttribute.bs = behaviorStatus.rest;
         ShowRangeCell(false,0);//隐藏施法范围
         selectedUnit.Spell(targetUnit);
-        checkDie(selectedUnit);
-        checkDie(targetUnit);
         showSpellRange = false;
         if (selectedUnit) statusWindow.showUnitStatus(selectedUnit);
         targetUnit = null;

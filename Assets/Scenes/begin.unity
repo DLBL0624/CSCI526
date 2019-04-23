@@ -2662,6 +2662,7 @@ GameObject:
   - component: {fileID: 2018182420}
   - component: {fileID: 2018182419}
   - component: {fileID: 2018182421}
+  - component: {fileID: 2018182422}
   m_Layer: 0
   m_Name: SwitchLevel
   m_TagString: SwitchLevel
@@ -2714,3 +2715,19 @@ MonoBehaviour:
   nextButton: {fileID: 0}
   introNextButton: {fileID: 0}
   isLoading: 0
+--- !u!114 &2018182422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018182418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 428ccc738316d84418d732702d529702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  video: {fileID: 0}
+  levelSwitcher: {fileID: 2018182421}
+  um: {fileID: 0}
+  unitManager: {fileID: 0}

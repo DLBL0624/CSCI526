@@ -5,8 +5,32 @@ using UnityEngine;
 public class Victory : MonoBehaviour
 {
     public CheckVideoStop video;
+    public GameObject videoPlayer;
+    public whichLevel levelSwitcher;
+    public UnitManager um;
+    public GameObject unitManager;
+    private bool CGplaying = false;
+    private bool win = false;
 
-
+    public void Update()
+    {
+        unitManager = GameObject.FindGameObjectWithTag("UnitManager");
+        videoPlayer = GameObject.FindGameObjectWithTag("CGplayer");
+        if(videoPlayer)
+        {
+            video = videoPlayer.GetComponent<CheckVideoStop>();
+            checkVideoStop();
+        }
+        if(unitManager)
+        {
+            um = unitManager.GetComponent<UnitManager>();
+            checkEvent(levelSwitcher.LevelIndex, um);
+            if(CheckWinOrNot(levelSwitcher.LevelIndex, um)==1)
+            {
+                win = true;
+            }
+        }
+    }
 
 
     //判断胜利与否的接口 2失败，1胜利，0没有胜利
@@ -14,9 +38,13 @@ public class Victory : MonoBehaviour
 
         if (level == 0)
         {
-            if (Umanager.friendUnits.Count > 1) {
+            if (Umanager.friendUnits.Count > 1&&!win) {
                 //胜利并且播放动画
-                this.CG(0, 1);
+                if (!CGplaying)
+                {
+                    CGplaying = true;
+                    this.CG(0, 1);
+                }
                 return 1;
             }
             return 0;
@@ -26,7 +54,11 @@ public class Victory : MonoBehaviour
         {
             if (roundManager.getRound()>14) {
                 //胜利并且播放动画
-                this.CG(1, 1);
+                if (!CGplaying)
+                {
+                    CGplaying = true;
+                    this.CG(1, 1);
+                }
                 return 1;
             }
             return 0;
@@ -181,6 +213,46 @@ public class Victory : MonoBehaviour
         video.PlayVideo();
     }
 
+    public int checkVideoStop()
+    {
+        if (video.videoPlayer.isPaused)
+        {
+            CGplaying = false;
+            if(win)
+            {
+                levelSwitcher.SwitchToVictoryScene();
+            }
+        }
+        return 0;
+    }
 
+    public int checkEvent(int level, UnitManager Umanager)
+    {
+        
+        if (level == 0)
+        {
+            GameObject chromie = GameObject.FindGameObjectWithTag("Chromie");
+            GameObject arthus = GameObject.FindGameObjectWithTag("2234");
+            if (chromie&&arthus)
+            {
+                HexUnit chromieUnit = chromie.GetComponent<HexUnit>();
+                HexUnit arthusUnit = arthus.GetComponent<HexUnit>();
+                if (HexMetrics.FindDistanceBetweenCells(chromieUnit.Location,arthusUnit.Location)==1)
+                {
+                    Umanager.removeUnit(chromieUnit);
+                    chromieUnit.UnitAttribute.team = 0;
+                    Umanager.loadUnit(chromieUnit);
+                    Debug.Log("克罗米加入队伍");
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else return 0;
+        }
+        return 0;
+    }
 }
 

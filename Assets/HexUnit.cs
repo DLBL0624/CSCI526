@@ -126,6 +126,9 @@ public class HexUnit : MonoBehaviour
         }
         else if (loading == 1)
         {
+            location.Unit = null;
+            hexGrid.unitManager.removeUnit(this);
+            hexGrid.RemoveUnitFromList(this);
             animationOperator.Add(4);
         }
         else
@@ -142,9 +145,7 @@ public class HexUnit : MonoBehaviour
         isQunar = true;
         m_anim.SetInteger("aniState", 4);
         yield return new WaitForSeconds(4f);
-        location.Unit = null;
         Destroy(gameObject);
-        Debug.Log("Die!!!!");
         isQunar = false;
     }
 

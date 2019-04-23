@@ -472,7 +472,6 @@ public class HexGrid : MonoBehaviour
     public void RemoveUnitFromList(HexUnit unit)
     {
         units.Remove(unit);
-        Debug.Log(units.Count);
     }
 
     public HexCell GetCell(Ray ray)
