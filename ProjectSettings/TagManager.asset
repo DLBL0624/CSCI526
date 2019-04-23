@@ -17,6 +17,7 @@ TagManager:
   - Chromie
   - CGplayer
   - 2234
+  - OrcBoss
   layers:
   - Default
   - TransparentFX

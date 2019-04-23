@@ -54,7 +54,7 @@ public class SacredRuling : Skill
                     {
                         this.target = targetNeightbor.UnitAttribute;
                         target.SkillDoDamage(unit.Att - target.Def, unit.skillDamageDepth);
-                        target.hp = target.hp <= 0 ? 1 : target.hp;
+                        targetNeightbor.Wound(unit.GetComponent<HexUnit>());
                     }
 
                 }

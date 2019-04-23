@@ -10,6 +10,8 @@ public class HexGameUI : MonoBehaviour
 
     public HexGrid grid;
 
+    public AIManager aIManager;
+
     HexCell currentCell;
 
     List<HexCell> rangeCells = new List<HexCell>();
@@ -33,6 +35,9 @@ public class HexGameUI : MonoBehaviour
     bool showAttackRange = false;
 
     bool showSpellRange = false;
+
+    public Text spellText;
+
 
     public void SetEditMode(bool toggle)
     {
@@ -65,8 +70,31 @@ public class HexGameUI : MonoBehaviour
             {
                 statusWindow.showUnitStatus(selectedUnit);
                 selectedUnit.isSelected = true;
+                if (selectedUnit.UnitAttribute.activeSkill != null)
+                {
+                    if (selectedUnit.UnitAttribute.activeSkill.Spellable)
+                    {
+                        spellText.color = new Color(171f / 255f, 174f / 255f, 57f / 255f);
+                        spellText.text = "Spell";
+                    }
+                    else
+                    {
+                        spellText.color = Color.gray;
+                        spellText.text = "CoolDown: " + (selectedUnit.UnitAttribute.activeSkill.CoolDown - selectedUnit.UnitAttribute.activeSkill.RecentTurn - selectedUnit.UnitAttribute.activeSkill.StartTurn).ToString();
+                    }
+                }
+                else
+                {
+                    spellText.color = new Color(171f / 255f, 174f / 255f, 57f / 255f);
+                    spellText.text = "Spell";
+                }
             }
-            else statusWindow.showUnitStatus(null);
+            else
+            {
+                statusWindow.showUnitStatus(null);
+                spellText.color = new Color(171f / 255f, 174f / 255f, 57f / 255f);
+                spellText.text = "Spell";
+            }
         }
         targetWindow.showUnitStatus(null);
     }
@@ -131,7 +159,7 @@ public class HexGameUI : MonoBehaviour
             Debug.Log("Checking " + "friendUnit " + friendUnit.Location.coordinates);
             HexCell neighbor = friendUnit.Location.GetNeighbor(d);
             HexEdgeType edgeType = friendUnit.Location.GetEdgeType(neighbor);
-            Debug.Log(edgeType);
+            //Debug.Log(edgeType);
             if (neighbor == null)
             {
                 continue;
@@ -163,11 +191,17 @@ public class HexGameUI : MonoBehaviour
                 if(showAttackRange == false && showSpellRange == false)
                 {
                     //选择目标
-                    DoSelection();
+                    if(!aIManager.isAIworking)
+                    {
+                        DoSelection();
+                    }
                 }
                 else
                 {
-                    DoTargetSelection();
+                    if (!aIManager.isAIworking)
+                    {
+                        DoTargetSelection();
+                    }
                 }
             }
             else if (selectedUnit&&selectedUnit.UnitAttribute.team==0)//已选中目标
@@ -407,6 +441,8 @@ public class HexGameUI : MonoBehaviour
             targetUnit = null;
             
         }
+        spellText.color = new Color(171f / 255f, 174f / 255f, 57f / 255f);
+        spellText.text = "Spell";
     }
 
     void DoSpell()
@@ -417,6 +453,9 @@ public class HexGameUI : MonoBehaviour
         showSpellRange = false;
         if (selectedUnit) statusWindow.showUnitStatus(selectedUnit);
         targetUnit = null;
+
+        spellText.color = Color.gray;
+        spellText.text = "CoolDown: " + (selectedUnit.UnitAttribute.activeSkill.CoolDown - selectedUnit.UnitAttribute.activeSkill.RecentTurn - selectedUnit.UnitAttribute.activeSkill.StartTurn).ToString();
     }
 
     void checkDie(HexUnit hu)

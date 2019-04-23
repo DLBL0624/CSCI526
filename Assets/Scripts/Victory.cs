@@ -10,16 +10,44 @@ public class Victory : MonoBehaviour
     public UnitManager um;
     public GameObject unitManager;
     private bool CGplaying = false;
-    private bool win = false;
+    public bool win = false;
+    private bool CGLoading = false;
+    private bool[] events = { false, false, false, false, false };
+    private bool[] starts = { false, false, false, false, false };
 
     public void Update()
     {
         unitManager = GameObject.FindGameObjectWithTag("UnitManager");
         videoPlayer = GameObject.FindGameObjectWithTag("CGplayer");
+        if(videoPlayer&&!CGLoading)
+        {
+            
+            if(levelSwitcher.LevelIndex!=-1&&!starts[levelSwitcher.LevelIndex])
+            {//load 开场动画
+                win = false;
+                starts[levelSwitcher.LevelIndex] = true;
+                CGLoading = true;
+                video = videoPlayer.GetComponent<CheckVideoStop>();
+                Debug.Log("CG not Loading and Level is " + levelSwitcher.LevelIndex);
+                if (!CGplaying)
+                {
+                    CG(levelSwitcher.LevelIndex, 0);
+                }
+            }
+            else
+            {
+                CGLoading = true;
+                video = videoPlayer.GetComponent<CheckVideoStop>();
+            }
+        }
         if(videoPlayer)
         {
-            video = videoPlayer.GetComponent<CheckVideoStop>();
             checkVideoStop();
+        }
+        else
+        {
+            CGplaying = false;
+            CGLoading = false;
         }
         if(unitManager)
         {
@@ -38,11 +66,10 @@ public class Victory : MonoBehaviour
 
         if (level == 0)
         {
-            if (Umanager.friendUnits.Count > 1&&!win) {
+            if (!win && Umanager.friendUnits.Count > 1 && Umanager.enemyUnits.Count == 0) {
                 //胜利并且播放动画
                 if (!CGplaying)
                 {
-                    CGplaying = true;
                     this.CG(0, 1);
                 }
                 return 1;
@@ -52,11 +79,11 @@ public class Victory : MonoBehaviour
 
         if (level == 1)
         {
-            if (roundManager.getRound()>14) {
+            GameObject orc_boss = GameObject.FindGameObjectWithTag("OrcBoss");
+            if (!win && (roundManager.getRound()>14 || !orc_boss)) {
                 //胜利并且播放动画
                 if (!CGplaying)
                 {
-                    CGplaying = true;
                     this.CG(1, 1);
                 }
                 return 1;
@@ -65,55 +92,31 @@ public class Victory : MonoBehaviour
         }
 
 
-        //假设谷仓是eneyUnit list中的item
+        //谷仓是neuUnit list中的item
         if (level == 2)
         {
-            for (int i = 0; i < Umanager.enemyUnits.Count; i++)
+            if(!win && Umanager.neutralUnits.Count==0)
             {
-                if (Umanager.enemyUnits[i].unitType == 99)
+                if (!CGplaying)
                 {
-                    return 0;
+                    this.CG(2, 1);
+                    
                 }
-            }
-
-            int herosCount = 0;
-
-            for (int i = 0; i < Umanager.friendUnits.Count; i++)
-            {
-                if (Umanager.friendUnits[i].unitType != 0)
-                {
-                    herosCount++;
-                }
-            }
-
-            //== 后面的值对应本关最后应该幸存的英雄数量
-            if (herosCount == 4)
-            {
-                this.CG(2, 1);
                 return 1;
             }
-            else
-            {
-                return 0;
-            }
+            return 0;
         }
 
 
         if (level == 3)
         {
-            int herosCount = 0;
-
-            for (int i = 0; i < Umanager.friendUnits.Count; i++)
+            
+            if (!win && Umanager.enemyUnits.Count == 0 && Umanager.friendUnits.Count == 5)
             {
-                if (Umanager.friendUnits[i].unitType != 0)
+                if (!CGplaying)
                 {
-                    herosCount++;
+                    this.CG(3, 1);
                 }
-            }
-
-            if (Umanager.enemyUnits.Count == 0 && herosCount == 5)
-            {
-                this.CG(3, 1);
                 return 1;
             }
             else {
@@ -131,10 +134,15 @@ public class Victory : MonoBehaviour
                     return 0;
                 }
             }
-
-            //胜利并且播放动画
-            this.CG(4, 1);
-            return 1;
+            if(!win)
+            {
+                //胜利并且播放动画
+                if (!CGplaying)
+                {
+                    this.CG(4, 1);
+                }
+                return 1;
+            }
         }
 
         return 0;
@@ -146,6 +154,8 @@ public class Victory : MonoBehaviour
     //开场的动画以及音频
     public void CG(int level, int StartOrEnd)
     {
+        CGplaying = true;
+        levelSwitcher.stopBGM();
         //StartOrEnd 为0代表开场动画，1代表结束动画0
         if (StartOrEnd == 0) {
             if (level == 0)
@@ -178,7 +188,7 @@ public class Victory : MonoBehaviour
                 video.LoadAudio(4);
             }
         }
-        else {
+        else if (StartOrEnd == 1){
             if (level == 0)
             {
                 video.LoadVideo(1);
@@ -209,6 +219,15 @@ public class Victory : MonoBehaviour
                 video.LoadAudio(5);
             }
         }
+        else if (StartOrEnd == 2)
+        {
+            if (level == 0)
+            {
+                video.LoadVideo(10);
+                video.LoadAudio(0);
+            }
+
+        }
 
         video.PlayVideo();
     }
@@ -218,8 +237,10 @@ public class Victory : MonoBehaviour
         if (video.videoPlayer.isPaused)
         {
             CGplaying = false;
-            if(win)
+            levelSwitcher.playBGM();
+            if (win)
             {
+                win = false;
                 levelSwitcher.SwitchToVictoryScene();
             }
         }
@@ -231,28 +252,51 @@ public class Victory : MonoBehaviour
         
         if (level == 0)
         {
-            GameObject chromie = GameObject.FindGameObjectWithTag("Chromie");
-            GameObject arthus = GameObject.FindGameObjectWithTag("2234");
-            if (chromie&&arthus)
+            if(!events[levelSwitcher.LevelIndex])
             {
-                HexUnit chromieUnit = chromie.GetComponent<HexUnit>();
-                HexUnit arthusUnit = arthus.GetComponent<HexUnit>();
-                if (HexMetrics.FindDistanceBetweenCells(chromieUnit.Location,arthusUnit.Location)==1)
+                GameObject chromie = GameObject.FindGameObjectWithTag("Chromie");
+                GameObject arthus = GameObject.FindGameObjectWithTag("2234");
+                if (chromie && arthus)
                 {
-                    Umanager.removeUnit(chromieUnit);
-                    chromieUnit.UnitAttribute.team = 0;
-                    Umanager.loadUnit(chromieUnit);
-                    Debug.Log("克罗米加入队伍");
-                    return 1;
-                }
-                else
-                {
-                    return 0;
+                    HexUnit chromieUnit = chromie.GetComponent<HexUnit>();
+                    HexUnit arthusUnit = arthus.GetComponent<HexUnit>();
+                    if (HexMetrics.FindDistanceBetweenCells(chromieUnit.Location, arthusUnit.Location) == 1)
+                    {
+                        events[levelSwitcher.LevelIndex] = true;
+                        Umanager.removeUnit(chromieUnit);
+                        chromieUnit.UnitAttribute.team = 0;
+                        Umanager.loadUnit(chromieUnit);
+                        Debug.Log("克罗米加入队伍");
+                        if (!CGplaying)
+                        {
+                            this.CG(0, 2);
+                        }
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
                 }
             }
+            
             else return 0;
         }
         return 0;
+    }
+
+    public void resizeBool()
+    {
+        events[0] = false;
+        events[1] = false;
+        events[2] = false;
+        events[3] = false;
+        events[4] = false;
+        starts[0] = false;
+        starts[1] = false;
+        starts[2] = false;
+        starts[3] = false;
+        starts[4] = false;
     }
 }
 

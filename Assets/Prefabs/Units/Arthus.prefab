@@ -70,7 +70,7 @@ MonoBehaviour:
   apTemp: 0
   att: 70
   attTemp: 0
-  def: 60
+  def: 50
   defTemp: 0
   sp: 60
   spTemp: 0

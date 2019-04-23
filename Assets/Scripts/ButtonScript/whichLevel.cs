@@ -9,6 +9,7 @@ public class whichLevel : MonoBehaviour
     public string LevelName;
     public string levelPath;
     public Victory victory;
+    public AudioSource audioSource;
     private int levelIndex;
 
     public AudioClip[] audioClips;
@@ -103,10 +104,8 @@ public class whichLevel : MonoBehaviour
 
     public void SwitchToMainScene()
     {
-        
         SceneManager.LoadScene("Main_Scene");
         clearSceneTarget();
-        
     }
 
     public void SwitchToIntroScene()
@@ -114,12 +113,17 @@ public class whichLevel : MonoBehaviour
         
         SceneManager.LoadScene(levelIntro[levelIndex]);
         clearSceneTarget();
-        
+        if (levelIndex != -1)
+        {
+            audioSource.clip = audioClips[levelIndex];
+            playBGM();
+        }
     }
 
     public void SwitchToBeginScene()
     {
         SceneManager.LoadScene("begin");
+        
         Destroy(this.gameObject);
     }
 
@@ -163,6 +167,7 @@ public class whichLevel : MonoBehaviour
                 {
                     gs.saveLoadMenu.Load(levelPath);
                     gs.hexMapEditor.gameObject.SetActive(false);
+                    roundManager.setRound(0);
                 }
                 else
                 {
@@ -233,5 +238,14 @@ public class whichLevel : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    public void stopBGM()
+    {
+        audioSource.Pause();
+    }
+    public void playBGM()
+    {
+        audioSource.Play();
     }
 }

@@ -13,6 +13,8 @@ public class AIManager : MonoBehaviour
     public Text round;
     public Button roundEndButton;
 
+    public bool isAIworking = false;
+
     private bool isAIAction = false;
 
     public void AIwakeup()
@@ -22,6 +24,7 @@ public class AIManager : MonoBehaviour
 
     public IEnumerator AIstart()
     {
+        isAIworking = true;
         isAIAction = false;
         List<HexUnit> enemy_temp = unitManager.enemyUnits;
         //Debug.Log("Number of Enemies = " + unitManager.enemyUnits.Count);
@@ -47,6 +50,7 @@ public class AIManager : MonoBehaviour
         round.text = roundManager.getRound().ToString();
         hexGameUI.transform.GetChild(0).gameObject.SetActive(true);
         roundEndButton.gameObject.SetActive(true);
+        isAIworking = false;
     }
 
     IEnumerator AI(HexUnit aiChess, List<HexUnit> DetectChess)

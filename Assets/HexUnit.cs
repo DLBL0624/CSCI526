@@ -108,11 +108,11 @@ public class HexUnit : MonoBehaviour
         {
             if(!isSelected)
             {
-                m_anim.SetInteger("aniState", -1);//站立动作
+                if (m_anim) m_anim.SetInteger("aniState", -1);//站立动作
             }
             else
             {
-                m_anim.SetInteger("aniState", 0);//准备动作
+                if (m_anim) m_anim.SetInteger("aniState", 0);//准备动作
             }
         }
     }
@@ -143,8 +143,8 @@ public class HexUnit : MonoBehaviour
     IEnumerator DealDie()
     {
         isQunar = true;
-        m_anim.SetInteger("aniState", 4);
-        yield return new WaitForSeconds(4f);
+        if (m_anim) m_anim.SetInteger("aniState", 4);
+        if (m_anim) yield return new WaitForSeconds(4f);
         Destroy(gameObject);
         isQunar = false;
     }
@@ -192,7 +192,7 @@ public class HexUnit : MonoBehaviour
         Vector3 a, b, c = pathToTravel[0].Position;
         transform.localPosition = c;
         yield return LookAt(pathToTravel[1].Position);
-        m_anim.SetInteger("aniState", 1);
+        if (m_anim) m_anim.SetInteger("aniState", 1);
         float t = Time.deltaTime * travelSpeed;
         for (int i = 1; i < pathToTravel.Count; i++)
         {
@@ -224,7 +224,7 @@ public class HexUnit : MonoBehaviour
         orientation = transform.localRotation.eulerAngles.y;
         ListPool<HexCell>.Add(pathToTravel);
         pathToTravel = null;
-        m_anim.SetInteger("aniState", 0);
+        if (m_anim) m_anim.SetInteger("aniState", 0);
         isQunar = false;        
     }
 
@@ -281,20 +281,20 @@ public class HexUnit : MonoBehaviour
     {
         isQunar = true;
         yield return LookAt(targetUnit.location.Position);
-        m_anim.SetInteger("aniState", 2);
+        if (m_anim) m_anim.SetInteger("aniState", 2);
         yield return new WaitForSeconds(1f);
         targetUnit.Wound(this);
-        m_anim.SetInteger("aniState", 0);
+        if (m_anim) m_anim.SetInteger("aniState", 0);
         isQunar = false;
     }
 
     public IEnumerator WoundAnimation()
     {
         isQunar = true;
-        m_anim.SetInteger("aniState", 3);
-        yield return LookAt(targetUnit.location.Position);
+        if(m_anim)m_anim.SetInteger("aniState", 3);
+        if(m_anim) yield return LookAt(targetUnit.location.Position);
         yield return new WaitForSeconds(.25f);
-        m_anim.SetInteger("aniState", 0);
+        if (m_anim) m_anim.SetInteger("aniState", 0);
         if (UnitAttribute.hp <= 0) Die(1);
         isQunar = false;
     }
@@ -304,14 +304,14 @@ public class HexUnit : MonoBehaviour
         Debug.Log("施法");
         isQunar = true;
         yield return LookAt(targetUnit.location.Position);
-        m_anim.SetInteger("aniState", 5);
+        if (m_anim) m_anim.SetInteger("aniState", 5);
         if (targetUnit.unitAttribute.activeSkill.TargetTeam != this.unitAttribute.team)
         {
             targetUnit.Wound(this);
         }
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
         mySkill.skillAt(targetUnit);
-        m_anim.SetInteger("aniState", 0);
+        if (m_anim) m_anim.SetInteger("aniState", 0);
         isQunar = false;
         //m_anim.SetInteger("aniState", -1);
     }
@@ -338,9 +338,9 @@ public class HexUnit : MonoBehaviour
     {
         
         this.targetUnit = target;
-        
         unitAttribute.activeSkill.Spell(target);
         animationOperator.Add(5);
+        isQunar = true;
     }
 
     public bool checkTeam(HexCell target)
