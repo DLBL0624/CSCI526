@@ -82,7 +82,7 @@ MonoBehaviour:
   minAttRange: 1
   maxAttRange: 3
   minSplRange: 1
-  maxSplRange: 1
+  maxSplRange: 3
 --- !u!114 &3775765383043249021
 MonoBehaviour:
   m_ObjectHideFlags: 0

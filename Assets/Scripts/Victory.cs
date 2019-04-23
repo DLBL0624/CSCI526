@@ -129,7 +129,7 @@ public class Victory : MonoBehaviour
         {
             for (int i = 0; i < Umanager.enemyUnits.Count; i++)
             {
-                if (Umanager.enemyUnits[i].unitType == 3)
+                if (Umanager.enemyUnits[i].unitType == 24)
                 {
                     return 0;
                 }
@@ -230,6 +230,7 @@ public class Victory : MonoBehaviour
         }
 
         video.PlayVideo();
+        video.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     public int checkVideoStop()

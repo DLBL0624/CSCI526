@@ -35,9 +35,7 @@ public class CheckVideoStop : MonoBehaviour
         button_Skip.onClick.AddListener(SkipStory);
 
         ////just for test!
-        SetStage.onClick.AddListener(setLoadVideo);
         TestStart.onClick.AddListener(PlayVideo);
-        SetMusic.onClick.AddListener(setLoadMusic);
     }
 
     // Update is called once per frame
@@ -56,7 +54,7 @@ public class CheckVideoStop : MonoBehaviour
     {
         videoPlayer.Stop();
         audioSource.Stop();
-        this.gameObject.SetActive(false);
+        this.transform.GetChild(0).gameObject.SetActive(false);
         editMenu.SetActive(true);
         gameMenu.SetActive(true);
         actorPanel.SetActive(true);
@@ -93,18 +91,6 @@ public class CheckVideoStop : MonoBehaviour
     {
         string filePath = Application.streamingAssetsPath + "/" + videoName + ".mp4";
         return filePath;
-    }
-
-    //just for test!
-    public void setLoadVideo()
-    {
-        LoadVideo(9);
-        //Debug.Log("log video done");
-    }
-    public void setLoadMusic()
-    {
-        LoadAudio(5);
-        //Debug.Log("log music done");
     }
 
     public void setVideo(int index)

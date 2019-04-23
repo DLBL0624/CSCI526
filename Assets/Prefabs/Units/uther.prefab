@@ -81,7 +81,7 @@ MonoBehaviour:
   actiSkillNumber: 4
   minAttRange: 1
   maxAttRange: 2
-  minSplRange: 1
+  minSplRange: 0
   maxSplRange: 1
 --- !u!114 &3171532615177211020
 MonoBehaviour:

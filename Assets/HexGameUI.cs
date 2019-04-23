@@ -537,7 +537,7 @@ public class HexGameUI : MonoBehaviour
             
             HexCell neighbor = center.GetNeighbor(d);
             //检测格子是否有效？
-            if (neighbor&&HexMetrics.FindDistanceBetweenCells(selectedUnit.Location,neighbor)<=maxRange&&HexMetrics.FindDistanceBetweenCells(selectedUnit.Location, neighbor)!=0)
+            if (neighbor&&HexMetrics.FindDistanceBetweenCells(selectedUnit.Location,neighbor)<=maxRange)
             {
                 if(!rangeCells.Contains(neighbor))
                 {
