@@ -47,6 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitType: 5
+  isQunar: 0
+  isSelected: 0
+  hexGrid: {fileID: 0}
 --- !u!114 &4114236389707230703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,7 +80,7 @@ MonoBehaviour:
   passSkillNumber: 3
   actiSkillNumber: 3
   minAttRange: 1
-  maxAttRange: 2
+  maxAttRange: 3
   minSplRange: 1
   maxSplRange: 1
 --- !u!114 &3775765383043249021

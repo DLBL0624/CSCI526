@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitType: 19
+  isQunar: 0
+  isSelected: 0
+  hexGrid: {fileID: 0}
 --- !u!114 &2672287133688834330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,16 +62,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actorName: skeletal_minion
-  hp: 80
+  hp: 150
   hpMin: 0
-  hpMax: 80
-  ap: 24
+  hpMax: 150
+  ap: 30
   apTemp: 0
-  att: 35
+  att: 50
   attTemp: 0
-  def: 0
+  def: 20
   defTemp: 0
-  sp: 0
+  sp: 40
   spTemp: 0
   skillDamageDepth: 1
   bs: 0

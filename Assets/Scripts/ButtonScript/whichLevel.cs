@@ -8,7 +8,10 @@ public class whichLevel : MonoBehaviour
 {
     public string LevelName;
     public string levelPath;
+    public Victory victory;
     private int levelIndex;
+
+    public AudioClip[] audioClips;
     public int LevelIndex
     {
         get

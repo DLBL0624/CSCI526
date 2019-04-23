@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -427,7 +427,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 229519806}
-  - component: {fileID: 229519805}
   - component: {fileID: 229519807}
   m_Layer: 0
   m_Name: ChoosePanelControl
@@ -436,18 +435,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &229519805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 229519804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3933063d82eeab743a41071989b8e330, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &229519806
 Transform:
   m_ObjectHideFlags: 0
@@ -2660,7 +2647,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2018182420}
-  - component: {fileID: 2018182419}
   - component: {fileID: 2018182421}
   - component: {fileID: 2018182422}
   m_Layer: 0
@@ -2670,18 +2656,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2018182419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2018182418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a94e1f5ebda0b874fbe1ad84ec84c9bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2018182420
 Transform:
   m_ObjectHideFlags: 0
@@ -2710,6 +2684,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelName: 
   levelPath: 
+  victory: {fileID: 2018182422}
+  audioClips: {fileID: 0}
   gameManager: {fileID: 0}
   endController: {fileID: 0}
   nextButton: {fileID: 0}
@@ -2728,6 +2704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   video: {fileID: 0}
+  videoPlayer: {fileID: 0}
   levelSwitcher: {fileID: 2018182421}
   um: {fileID: 0}
   unitManager: {fileID: 0}

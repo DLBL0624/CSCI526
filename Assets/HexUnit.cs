@@ -320,7 +320,7 @@ public class HexUnit : MonoBehaviour
     public void Fight(HexUnit target)//欢乐战斗
     {
         this.targetUnit = target;
-        target.unitAttribute.DoDamage(this.unitAttribute.Att - target.UnitAttribute.Def);
+        target.unitAttribute.DoDamage(this.unitAttribute.Att - target.UnitAttribute.Def>0? this.unitAttribute.Att - target.UnitAttribute.Def:0);
         animationOperator.Add(2);
         isQunar = true;
     }
@@ -329,7 +329,7 @@ public class HexUnit : MonoBehaviour
     {
         Debug.Log("unit "+this.unitAttribute.actorName+" is hit by "+target.unitAttribute.actorName);
         this.targetUnit = target;
-        this.unitAttribute.DoDamage(target.unitAttribute.Att - this.UnitAttribute.Def);
+        //this.unitAttribute.DoDamage(target.unitAttribute.Att - this.UnitAttribute.Def);
         animationOperator.Add(3);
         isQunar = true;
     }
