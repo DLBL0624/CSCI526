@@ -2787,8 +2787,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6a4be0cd70824ac4590a045e548bb184, type: 3}
   - {fileID: 8300000, guid: a74abaca03a20bb4ebf232fe9ff4644a, type: 3}
   - {fileID: 8300000, guid: e3fee8e7f84ae47498e813b564976a43, type: 3}
-  - {fileID: 8300000, guid: fe11ae469e84b1044a0f899ee2d67c45, type: 3}
+  - {fileID: 8300000, guid: 6644ad3ad434fc1499251a3cce55bda6, type: 3}
   - {fileID: 8300000, guid: 7be9a6eb219586b4f9c430cc2f3fc5c4, type: 3}
+  winClip: {fileID: 8300000, guid: 46d560d343ec85940be5f66acb831d5a, type: 3}
   gameManager: {fileID: 0}
   endController: {fileID: 0}
   nextButton: {fileID: 0}
@@ -2811,3 +2812,5 @@ MonoBehaviour:
   levelSwitcher: {fileID: 2018182421}
   um: {fileID: 0}
   unitManager: {fileID: 0}
+  win: 0
+  fail: 0

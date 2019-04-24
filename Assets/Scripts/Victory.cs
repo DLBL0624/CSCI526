@@ -156,9 +156,14 @@ public class Victory : MonoBehaviour
 
         if (level == 4)
         {
-            if(!fail && Umanager.friendUnits.Count == 0)
+            //Debug.Log("friends" + Umanager.friendUnits.Count);
+            if(Umanager.friendUnits.Count < 5)
             {
-                return 2;
+                if (!CGplaying)
+                {
+                    this.CG(4, 1);
+                }
+                return 1;
             }
             for (int i = 0; i < Umanager.enemyUnits.Count; i++)
             {

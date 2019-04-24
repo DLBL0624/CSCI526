@@ -145,7 +145,11 @@ public class HexMapCamera : MonoBehaviour
     public static void moveToArthus()
     {
         ArthusGobj = GameObject.FindGameObjectWithTag("2234");
-        instance.gameObject.transform.position = new Vector3(ArthusGobj.transform.position.x - 20, 0f, ArthusGobj.transform.position.z);
+        if(ArthusGobj)
+        {
+            instance.gameObject.transform.position = new Vector3(ArthusGobj.transform.position.x - 20, 0f, ArthusGobj.transform.position.z);
+        }
+        
     }
 
     public static void moveToTarget(GameObject target)

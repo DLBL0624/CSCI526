@@ -30,6 +30,7 @@ public class HexUnit : MonoBehaviour
 
     skillAnimationEffect mySkill;
 
+    public AudioSource audioSource;
 
     UnitAttribute unitAttribute;
 
@@ -37,6 +38,7 @@ public class HexUnit : MonoBehaviour
     {
         StartCoroutine(AnimationProcess());
         hexGrid = this.GetComponentInParent<HexGrid>();
+        audioSource = this.gameObject.GetComponent<AudioSource>();
     }
 
     public UnitAttribute UnitAttribute
@@ -285,6 +287,7 @@ public class HexUnit : MonoBehaviour
         isQunar = true;
         yield return LookAt(targetUnit.location.Position);
         if (m_anim) m_anim.SetInteger("aniState", 2);
+        audioSource.Play();
         yield return new WaitForSeconds(1f);
         targetUnit.Wound(this);
         if (m_anim) m_anim.SetInteger("aniState", 0);

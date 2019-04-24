@@ -16,7 +16,6 @@ public class UnitAttribute : MonoBehaviour
 
     public float hpMax = 100;//HealthPowerMax
 
-
     public int ap = 24;//ActionPower
 
     public int apTemp = 0;//附加行动力
@@ -122,6 +121,8 @@ public class UnitAttribute : MonoBehaviour
     {
         return Buffables.Contains(ibuff);
     }
+
+    
 
     public void Update()
     {

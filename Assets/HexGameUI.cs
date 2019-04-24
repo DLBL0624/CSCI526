@@ -442,6 +442,7 @@ public class HexGameUI : MonoBehaviour
             showAttackRange = false;
             if(selectedUnit)statusWindow.showUnitStatus(selectedUnit);
             if (targetUnit) targetWindow.showUnitStatus(targetUnit);
+            else targetWindow.showUnitStatus(null);
             targetUnit = null;
             
         }
@@ -464,6 +465,7 @@ public class HexGameUI : MonoBehaviour
         yield return new WaitForSeconds(1f);
         if (selectedUnit) statusWindow.showUnitStatus(selectedUnit);
         if (targetUnit) targetWindow.showUnitStatus(targetUnit);
+        else targetWindow.showUnitStatus(null);
     }
 
     void checkDie(HexUnit hu)

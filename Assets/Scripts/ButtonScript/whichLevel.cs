@@ -13,6 +13,7 @@ public class whichLevel : MonoBehaviour
     private int levelIndex;
 
     public AudioClip[] audioClips;
+    public AudioClip winClip;
     public int LevelIndex
     {
         get
@@ -139,6 +140,8 @@ public class whichLevel : MonoBehaviour
     {
         SceneManager.LoadScene("Victory");
         clearSceneTarget();
+        audioSource.clip = winClip;
+        playBGM();
     }
 
     public void SwitchToFailureScene()
