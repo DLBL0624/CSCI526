@@ -80,7 +80,7 @@ public class HexGameUI : MonoBehaviour
                     else
                     {
                         spellText.color = Color.gray;
-                        spellText.text = "CoolDown: " + (selectedUnit.UnitAttribute.activeSkill.CoolDown - selectedUnit.UnitAttribute.activeSkill.RecentTurn - selectedUnit.UnitAttribute.activeSkill.StartTurn).ToString();
+                        spellText.text = "CoolDown: " + (selectedUnit.UnitAttribute.activeSkill.CoolDown - (selectedUnit.UnitAttribute.activeSkill.RecentTurn - selectedUnit.UnitAttribute.activeSkill.StartTurn)).ToString();
                     }
                 }
                 else
@@ -417,6 +417,8 @@ public class HexGameUI : MonoBehaviour
                 {
                     targetUnit.Fight(selectedUnit);
                 }
+                if (selectedUnit) statusWindow.showUnitStatus(selectedUnit);
+                if (targetUnit) targetWindow.showUnitStatus(targetUnit);
             }
             else if (targetUnit && targetUnit.UnitAttribute.hp > 0
                 && (HexMetrics.FindDistanceBetweenCells(selectedUnit.Location, targetUnit.Location) > targetUnit.UnitAttribute.maxAttRange
@@ -432,12 +434,14 @@ public class HexGameUI : MonoBehaviour
                 {
                     selectedUnit.Fight(targetUnit);
                 }
+                if (selectedUnit) statusWindow.showUnitStatus(selectedUnit);
+                if (targetUnit) targetWindow.showUnitStatus(targetUnit);
             }
             //checkDie(selectedUnit);
             //checkDie(targetUnit);
             showAttackRange = false;
             if(selectedUnit)statusWindow.showUnitStatus(selectedUnit);
-            targetWindow.showUnitStatus(null);
+            if (targetUnit) targetWindow.showUnitStatus(targetUnit);
             targetUnit = null;
             
         }
@@ -445,17 +449,21 @@ public class HexGameUI : MonoBehaviour
         spellText.text = "Spell";
     }
 
-    void DoSpell()
+    IEnumerator DoSpell()
     {
         selectedUnit.UnitAttribute.bs = behaviorStatus.rest;
         ShowRangeCell(false,0);//隐藏施法范围
         selectedUnit.Spell(targetUnit);
         showSpellRange = false;
         if (selectedUnit) statusWindow.showUnitStatus(selectedUnit);
+        if (targetUnit) targetWindow.showUnitStatus(targetUnit);
         targetUnit = null;
 
         spellText.color = Color.gray;
-        spellText.text = "CoolDown: " + (selectedUnit.UnitAttribute.activeSkill.CoolDown - selectedUnit.UnitAttribute.activeSkill.RecentTurn - selectedUnit.UnitAttribute.activeSkill.StartTurn).ToString();
+        spellText.text = "CoolDown: " + (selectedUnit.UnitAttribute.activeSkill.CoolDown - (selectedUnit.UnitAttribute.activeSkill.RecentTurn - selectedUnit.UnitAttribute.activeSkill.StartTurn)).ToString();
+        yield return new WaitForSeconds(1f);
+        if (selectedUnit) statusWindow.showUnitStatus(selectedUnit);
+        if (targetUnit) targetWindow.showUnitStatus(targetUnit);
     }
 
     void checkDie(HexUnit hu)

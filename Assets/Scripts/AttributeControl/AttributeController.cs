@@ -10,6 +10,7 @@ public class AttributeController : MonoBehaviour
     public Image attributeImage;
     public Button attributeQuit;
     public GameObject actionpanel;
+    public GameObject QUIT;
 
     public UnitAttribute getattribute;
 
@@ -36,6 +37,7 @@ public class AttributeController : MonoBehaviour
         {
             this.gameObject.SetActive(true);
             actionpanel.SetActive(false);
+            QUIT.SetActive(false);
             attributeImage.sprite = characterAttribute[num];
             getattribute = Unit.UnitAttribute;
             //Debug.Log("hp is "+ getattribute.hp);
@@ -52,5 +54,6 @@ public class AttributeController : MonoBehaviour
     {
         this.gameObject.SetActive(false);
         actionpanel.SetActive(true);
+        QUIT.SetActive(true);
     }
 }

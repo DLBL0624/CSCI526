@@ -69,6 +69,7 @@ public class whichLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         searchSceneTarget();
         loadTarget();
         //checkMultiple();

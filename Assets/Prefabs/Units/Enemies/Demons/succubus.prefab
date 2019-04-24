@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f55931480bc3c446b321e6086c1faf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actorName: succubus
+  actorName: Succubus
   hp: 120
   hpMin: 0
   hpMax: 80

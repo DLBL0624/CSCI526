@@ -8,6 +8,8 @@ public class HexMapCamera : MonoBehaviour
 
     static HexMapCamera instance;
 
+    public GameObject ArthusGobj;
+
     public static bool Locked
     {
         set
@@ -127,7 +129,6 @@ public class HexMapCamera : MonoBehaviour
         Vector3 position = transform.localPosition;
         position += direction * distance;
         transform.localPosition = ClampPosition(position);
-        
     }
 
     Vector3 ClampPosition (Vector3 position)
