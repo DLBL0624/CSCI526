@@ -107,6 +107,7 @@ public class whichLevel : MonoBehaviour
     {
         SceneManager.LoadScene("Main_Scene");
         clearSceneTarget();
+        
     }
 
     public void SwitchToIntroScene()

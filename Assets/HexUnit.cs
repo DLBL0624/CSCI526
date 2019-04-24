@@ -191,6 +191,7 @@ public class HexUnit : MonoBehaviour
         Debug.Log(isQunar);
         Vector3 a, b, c = pathToTravel[0].Position;
         transform.localPosition = c;
+        HexMapCamera.moveToTarget(this.gameObject);
         yield return LookAt(pathToTravel[1].Position);
         if (m_anim) m_anim.SetInteger("aniState", 1);
         float t = Time.deltaTime * travelSpeed;
@@ -205,6 +206,7 @@ public class HexUnit : MonoBehaviour
                 Vector3 d = Bezier.GetDerivative(a, b, c, t);
                 d.y = 0f;
                 transform.localRotation = Quaternion.LookRotation(d);
+                HexMapCamera.moveToTarget(this.gameObject);
                 yield return null;
             }
             t -= 1f;
@@ -218,6 +220,7 @@ public class HexUnit : MonoBehaviour
             Vector3 d = Bezier.GetDerivative(a, b, c, t);
             d.y = 0f;
             transform.localRotation = Quaternion.LookRotation(d);
+            HexMapCamera.moveToTarget(this.gameObject);
             yield return null;
         }
         transform.localPosition = location.Position;

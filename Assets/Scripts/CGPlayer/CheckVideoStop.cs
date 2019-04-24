@@ -40,7 +40,7 @@ public class CheckVideoStop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("video->menu");
+        
         if (videoPlayer.isPaused)
         {
             activeSetting(true);
@@ -100,5 +100,6 @@ public class CheckVideoStop : MonoBehaviour
         editMenu.SetActive(show);
         gameMenu.SetActive(show);
         actorPanel.SetActive(show);
+        HexMapCamera.moveToArthus();
     }
 }

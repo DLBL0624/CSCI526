@@ -8,7 +8,7 @@ public class HexMapCamera : MonoBehaviour
 
     static HexMapCamera instance;
 
-    public GameObject ArthusGobj;
+    static GameObject ArthusGobj;
 
     public static bool Locked
     {
@@ -44,11 +44,6 @@ public class HexMapCamera : MonoBehaviour
         cmr = stick.GetChild(0).GetComponent<Camera>();
 
 
-    }
-
-    public void moveFollowChess()
-    {
-        
     }
 
     private void Update()
@@ -145,5 +140,16 @@ public class HexMapCamera : MonoBehaviour
     public static void ValidatePosition()
     {
         instance.AdjustPosition(0f, 0f);
+    }
+
+    public static void moveToArthus()
+    {
+        ArthusGobj = GameObject.FindGameObjectWithTag("2234");
+        instance.gameObject.transform.position = new Vector3(ArthusGobj.transform.position.x - 20, 0f, ArthusGobj.transform.position.z);
+    }
+
+    public static void moveToTarget(GameObject target)
+    {
+        instance.gameObject.transform.position = new Vector3(target.transform.position.x - 20, 0f, target.transform.position.z);
     }
 }

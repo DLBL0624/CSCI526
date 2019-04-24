@@ -162,10 +162,12 @@ public class UnitAttribute : MonoBehaviour
     public void DoDamage(int damage)
     {
         this.hp -= damage;
+        this.hp = this.hp < 0 ? 0 : this.hp;
     }
 
     public void SkillDoDamage(int damage, float skillIndex)
     {
         this.hp -= damage * skillIndex;
+        this.hp = this.hp < 0 ? 0 : this.hp;
     }
 }
