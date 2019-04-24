@@ -12,6 +12,12 @@ public class CharacterStatus : MonoBehaviour
     public AttributeController ac;
     public HexUnit tranUnit;
 
+    public Text bloodvisible;
+    public Text Dpap;
+    public Text Dpatt;
+    public Text Dpdef;
+    public Text Dpspd;
+
     public void showUnitStatus(HexUnit selectedUnit)
     {
         Slider hpStatus = transform.GetChild(0).GetComponent<Slider>();
@@ -40,6 +46,13 @@ public class CharacterStatus : MonoBehaviour
         }
         avaterBtn.onClick.AddListener(HitImage);
         tranUnit = selectedUnit;
+
+        bloodvisible.text = selectedUnit.UnitAttribute.hp + " / " + selectedUnit.UnitAttribute.hpMax;
+
+        Dpap.text = selectedUnit.UnitAttribute.Ap + "";
+        Dpatt.text = selectedUnit.UnitAttribute.Att + "";
+        Dpdef.text = selectedUnit.UnitAttribute.Def + "";
+        Dpspd.text = selectedUnit.UnitAttribute.Sp + "";
     }
 
     public void HitImage()
