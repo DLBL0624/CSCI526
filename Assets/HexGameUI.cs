@@ -240,7 +240,7 @@ public class HexGameUI : MonoBehaviour
                                     if(selectedUnitSkill.Spellable)
                                     {
                                         targetUnit = selectedUnit;
-                                        DoSpell();
+                                        StartCoroutine(DoSpell());
                                     }
                                 }
                                 //如果当前角色主动技能对其他人释放
@@ -263,7 +263,7 @@ public class HexGameUI : MonoBehaviour
                                                 {
                                                     if (targetUnit.UnitAttribute.team == selectedUnitSkill.TargetTeam)
                                                     {
-                                                        DoSpell();
+                                                        StartCoroutine(DoSpell());
                                                     }
                                                 }
                                             }
@@ -271,7 +271,7 @@ public class HexGameUI : MonoBehaviour
                                             {
                                                 if (targetUnit.UnitAttribute.team == selectedUnitSkill.TargetTeam)
                                                 {
-                                                    DoSpell();
+                                                    StartCoroutine(DoSpell());
                                                 }
                                             
                                             }

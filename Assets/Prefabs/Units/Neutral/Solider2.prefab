@@ -62,9 +62,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actorName: Solider
-  hp: 600
+  hp: 200
   hpMin: 0
-  hpMax: 600
+  hpMax: 200
   ap: 24
   apTemp: 0
   att: 25
@@ -123,46 +123,6 @@ PrefabInstance:
     - target: {fileID: 100436, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
       propertyPath: m_Name
       value: hunk
-      objectReference: {fileID: 0}
-    - target: {fileID: 400026, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.022644259
-      objectReference: {fileID: 0}
-    - target: {fileID: 400026, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.0157167
-      objectReference: {fileID: 0}
-    - target: {fileID: 400066, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.008819672
-      objectReference: {fileID: 0}
-    - target: {fileID: 400066, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.00012207222
-      objectReference: {fileID: 0}
-    - target: {fileID: 400284, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.0008850314
-      objectReference: {fileID: 0}
-    - target: {fileID: 400284, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.020081095
-      objectReference: {fileID: 0}
-    - target: {fileID: 400292, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.009002672
-      objectReference: {fileID: 0}
-    - target: {fileID: 400292, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.012847899
-      objectReference: {fileID: 0}
-    - target: {fileID: 400404, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.0012207148
-      objectReference: {fileID: 0}
-    - target: {fileID: 400404, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.025024641
       objectReference: {fileID: 0}
     - target: {fileID: 400436, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
       propertyPath: m_LocalPosition.x
@@ -224,6 +184,46 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 55dab007a770c0b49b1f8a3cd17b171f, type: 2}
+    - target: {fileID: 400284, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.0008850314
+      objectReference: {fileID: 0}
+    - target: {fileID: 400284, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.020081095
+      objectReference: {fileID: 0}
+    - target: {fileID: 400292, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.009002672
+      objectReference: {fileID: 0}
+    - target: {fileID: 400292, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.012847899
+      objectReference: {fileID: 0}
+    - target: {fileID: 400404, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.0012207148
+      objectReference: {fileID: 0}
+    - target: {fileID: 400404, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.025024641
+      objectReference: {fileID: 0}
+    - target: {fileID: 400026, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.022644259
+      objectReference: {fileID: 0}
+    - target: {fileID: 400026, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0157167
+      objectReference: {fileID: 0}
+    - target: {fileID: 400066, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.008819672
+      objectReference: {fileID: 0}
+    - target: {fileID: 400066, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.00012207222
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7670b36ecea0e44e94c5a9e989e4182, type: 3}
 --- !u!4 &2649944824326887513 stripped
