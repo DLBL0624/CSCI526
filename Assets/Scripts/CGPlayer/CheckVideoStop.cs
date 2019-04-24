@@ -35,29 +35,23 @@ public class CheckVideoStop : MonoBehaviour
         button_Skip.onClick.AddListener(SkipStory);
 
         ////just for test!
-        TestStart.onClick.AddListener(PlayVideo);
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("video->menu");
         if (videoPlayer.isPaused)
         {
-            this.gameObject.SetActive(false);
-            editMenu.SetActive(true);
-            gameMenu.SetActive(true);
-            actorPanel.SetActive(true);
+            activeSetting(true);
         }
     }
 
     public void SkipStory()
     {
-        videoPlayer.Stop();
-        audioSource.Stop();
+        videoPlayer.Pause();
+        audioSource.Pause();
         this.transform.GetChild(0).gameObject.SetActive(false);
-        editMenu.SetActive(true);
-        gameMenu.SetActive(true);
-        actorPanel.SetActive(true);
     }
     
     public void LoadVideo(int index)
@@ -82,9 +76,7 @@ public class CheckVideoStop : MonoBehaviour
             audioSource.Play();
         }
         this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
-        editMenu.SetActive(false);
-        gameMenu.SetActive(false);
-        actorPanel.SetActive(false);
+        activeSetting(false);
     }
     //get the path of mp4 file
     public string GetFilePath(string videoName)
@@ -101,5 +93,12 @@ public class CheckVideoStop : MonoBehaviour
     public void setMusic(int index)
     {
         LoadAudio(index);
+    }
+
+    public void activeSetting(bool show)
+    {
+        editMenu.SetActive(show);
+        gameMenu.SetActive(show);
+        actorPanel.SetActive(show);
     }
 }

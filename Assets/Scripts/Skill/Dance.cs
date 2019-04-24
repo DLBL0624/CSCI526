@@ -15,7 +15,7 @@ public class Dance : Skill
     private UnitAttribute unit;
     private UnitAttribute target;
     private bool targetItself = false;
-    private bool needBehaviour = true;
+    private bool needBehaviour = false;
 
 
     public void Apply(Component charUnit)

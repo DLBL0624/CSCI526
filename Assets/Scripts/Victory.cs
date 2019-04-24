@@ -11,6 +11,7 @@ public class Victory : MonoBehaviour
     public GameObject unitManager;
     private bool CGplaying = false;
     public bool win = false;
+    public bool fail = false;
     private bool CGLoading = false;
     private bool[] events = { false, false, false, false, false };
     private bool[] starts = { false, false, false, false, false };
@@ -25,6 +26,7 @@ public class Victory : MonoBehaviour
             if(levelSwitcher.LevelIndex!=-1&&!starts[levelSwitcher.LevelIndex])
             {//load 开场动画
                 win = false;
+                fail = false;
                 starts[levelSwitcher.LevelIndex] = true;
                 CGLoading = true;
                 video = videoPlayer.GetComponent<CheckVideoStop>();
@@ -56,6 +58,12 @@ public class Victory : MonoBehaviour
             if(CheckWinOrNot(levelSwitcher.LevelIndex, um)==1)
             {
                 win = true;
+                fail = false;
+            }
+            else if(CheckWinOrNot(levelSwitcher.LevelIndex, um) == 2)
+            {
+                fail = true;
+                win = false;
             }
         }
     }
@@ -66,6 +74,7 @@ public class Victory : MonoBehaviour
 
         if (level == 0)
         {
+            //胜利条件
             if (!win && Umanager.friendUnits.Count > 1 && Umanager.enemyUnits.Count == 0) {
                 //胜利并且播放动画
                 if (!CGplaying)
@@ -74,12 +83,19 @@ public class Victory : MonoBehaviour
                 }
                 return 1;
             }
+            //失败条件
+            else if(!fail && Umanager.friendUnits.Count==0)
+            {
+                return 2;
+            }
             return 0;
         }
 
         if (level == 1)
         {
+            
             GameObject orc_boss = GameObject.FindGameObjectWithTag("OrcBoss");
+            //胜利条件
             if (!win && (roundManager.getRound()>14 || !orc_boss)) {
                 //胜利并且播放动画
                 if (!CGplaying)
@@ -88,6 +104,11 @@ public class Victory : MonoBehaviour
                 }
                 return 1;
             }
+            //失败条件
+            else if(!fail&&Umanager.friendUnits.Count < 3)
+            {
+                return 2;
+            }
             return 0;
         }
 
@@ -95,6 +116,7 @@ public class Victory : MonoBehaviour
         //谷仓是neuUnit list中的item
         if (level == 2)
         {
+            //胜利条件
             if(!win && Umanager.neutralUnits.Count==0)
             {
                 if (!CGplaying)
@@ -104,13 +126,18 @@ public class Victory : MonoBehaviour
                 }
                 return 1;
             }
+            //失败条件
+            else if (!fail && Umanager.friendUnits.Count < 4)
+            {
+                return 2;
+            }
             return 0;
         }
 
 
         if (level == 3)
         {
-            
+            //胜利条件
             if (!win && Umanager.enemyUnits.Count == 0 && Umanager.friendUnits.Count == 5)
             {
                 if (!CGplaying)
@@ -119,14 +146,20 @@ public class Victory : MonoBehaviour
                 }
                 return 1;
             }
-            else {
-                return 0;
+            else if (!fail && Umanager.friendUnits.Count == 0)
+            {
+                return 2;
             }
+            return 0;
         }
 
 
         if (level == 4)
         {
+            if(!fail && Umanager.friendUnits.Count == 0)
+            {
+                return 2;
+            }
             for (int i = 0; i < Umanager.enemyUnits.Count; i++)
             {
                 if (Umanager.enemyUnits[i].unitType == 24)
@@ -237,12 +270,21 @@ public class Victory : MonoBehaviour
     {
         if (video.videoPlayer.isPaused)
         {
+            video.activeSetting(true);
+            video.gameObject.SetActive(false);
+            
+            Debug.Log("Video Stop");
             CGplaying = false;
             levelSwitcher.playBGM();
             if (win)
             {
                 win = false;
                 levelSwitcher.SwitchToVictoryScene();
+            }
+            else if(fail)
+            {
+                fail = false;
+                levelSwitcher.SwitchToFailureScene();
             }
         }
         return 0;
