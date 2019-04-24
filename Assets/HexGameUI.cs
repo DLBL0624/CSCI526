@@ -587,4 +587,13 @@ public class HexGameUI : MonoBehaviour
             }
         }
     }
+
+    public void resetSelect()
+    {
+        if(this.selectedUnit)this.selectedUnit.isSelected = false;
+        this.selectedUnit = null;
+        statusWindow.showUnitStatus(null);
+        spellText.color = new Color(171f / 255f, 174f / 255f, 57f / 255f);
+        spellText.text = "Spell";
+    }
 }

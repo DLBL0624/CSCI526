@@ -264,6 +264,7 @@ public class Victory : MonoBehaviour
 
         video.PlayVideo();
         video.transform.GetChild(0).gameObject.SetActive(true);
+        if(levelSwitcher.gameManager)levelSwitcher.gameManager.GetComponent<gameSystem>().hexGameUI.resetSelect();
     }
 
     public int checkVideoStop()

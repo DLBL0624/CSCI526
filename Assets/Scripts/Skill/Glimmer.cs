@@ -5,7 +5,7 @@ using UnityEngine;
 public class Glimmer : Skill
 {
     private string skillName = "Glimmer";
-    private string description = "增加目标友军攻击 x 80% 的奥义伤害";
+    private string description = "增加友放目标额外 80% 的奥义伤害";
     private int startTurn = 0;
     private int recentTurn = 0;
     private int coolDown = 4;

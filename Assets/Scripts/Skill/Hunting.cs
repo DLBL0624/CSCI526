@@ -50,7 +50,7 @@ public class Hunting : Skill
                 this.target = ((HexUnit)targetUnit).UnitAttribute;
                 int spDiffer = unit.Sp - ((HexUnit)targetUnit).UnitAttribute.Sp > 0 ? unit.Sp - ((HexUnit)targetUnit).UnitAttribute.Sp : 0;
                 target.SkillDoDamage(unit.Att + spDiffer, unit.skillDamageDepth);
-                if(spDiffer>=3)
+                if(spDiffer>=15)
                 {
                     target.SkillDoDamage(unit.Att + spDiffer, unit.skillDamageDepth);
                 }
