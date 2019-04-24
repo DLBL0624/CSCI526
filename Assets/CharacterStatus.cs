@@ -10,6 +10,7 @@ public class CharacterStatus : MonoBehaviour
     //public GameObject attControl;
     public int typego;
     public AttributeController ac;
+    public HexUnit tranUnit;
 
     public void showUnitStatus(HexUnit selectedUnit)
     {
@@ -38,11 +39,13 @@ public class CharacterStatus : MonoBehaviour
             avatar.sprite = characterImage[selectedUnit.unitType];
         }
         avaterBtn.onClick.AddListener(HitImage);
+        tranUnit = selectedUnit;
     }
 
     public void HitImage()
     {
         //attControl.SetActive(true);
-        ac.LoadattImage(typego);
+        ac.LoadattImage(typego, tranUnit);
+
     }
 }
